@@ -271,3 +271,5 @@ WHEEL_HANDLER = ConversationHandler(
         allow_reentry=True,
         per_user=True
     )
+
+dispatcher.add_handler(WHEEL_HANDLER)
