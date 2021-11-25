@@ -21,3 +21,606 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 #callback data
 S_START , S_INCREASE ,S_POP , SS_POP, FIRST , SECOND ,THIRD,CHECK, SHOW, *_ = range(1000)
 owners = [163494588]
+
+def start(update , context):
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    exist = DB.get_user_value(conn , id, "white")
+    text = f"Welcome <b>{name}</b> to <u><b><i>Casino 482</i></b></u>\n\n" \
+           f"We have registered you under our player lists with your below information\n" \
+           f"\n# username : <code>{username}</code>\n# ID : <code>{id}</code>"
+    if exist == None:
+     context.bot.send_photo(chat_id = update.effective_chat.id, caption = text , photo = "https://telegra.ph/file/b50d95b7d42b2f866fcac.jpg", parse_mode=ParseMode.HTML)
+     DB.add_user(conn , id)
+    else:
+        context.bot.send_message(chat_id = update.effective_chat.id , text = "You are already a member")
+
+def games(update , context):
+    text = "<b><u>Available Games</u></b>\n\n/Dice\n/Hilo\n/Blackjack\n/Wheel"
+    context.bot.send_message(chat_id = update.effective_chat.id, text = text, parse_mode = ParseMode.HTML)
+
+def value(update , context):
+    text = "<b><u>Values of each chips</u></b>\n\n⚪️ white chip : 1$\n" \
+           "🔴 red chip : 5$\n🟠 orange chip : 25$\n🟡 yellow chip : 100$\n🔵 blue chip : 500$" \
+           "\n🟣 purple chip : 2000$\n⚫️ black chip : 15000$"
+    context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
+
+def wallet(update , context):
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    VIP = DB.get_user_value(conn, id, "vip")
+    worth = DB.get_user_value(conn, id, "worth")
+    white = DB.get_user_value(conn , id, "white")
+    red = DB.get_user_value(conn, id, "red")
+    orange = DB.get_user_value(conn, id, "orange")
+    yellow = DB.get_user_value(conn, id, "yellow")
+    blue = DB.get_user_value(conn, id, "blue")
+    purple = DB.get_user_value(conn, id, "purple")
+    black = DB.get_user_value(conn, id, "black")
+
+    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2500)+(black*15000)
+    try:
+     update.message.reply_text(f"<u><b>{name}'s Wallet</b></u>\n"
+                              f"🎖 VIP : {VIP}\n\n"
+                              f"<b>⚪️White Chip</b> : {white}\n"
+                              f"<b>🔴Red Chip</b> : {red}\n"
+                              f"<b>🟠Orange Chip</b> : {orange}\n"
+                              f"<b>🟡Yellow Chip</b> : {yellow}\n"
+                              f"<b>🔵Blue Chip</b> : {blue}\n"
+                              f"<b>🟣Purple Chip</b> : {purple}\n"
+                              f"<b>⚫Black Chip</b> : {black}\n\n"
+                              f"<i>Net Worth</i> : {value}$",
+                              parse_mode=ParseMode.HTML)
+    except TypeError:
+     update.message.reply_text('start the bot /start')
+
+
+def add(update , context):
+    if not update.message.reply_to_message:
+             update.message.reply_text('reply to someone')
+             return
+    type = update.message.text.split()[1]
+    units = update.message.text.split()[2]
+    user_name = update.message.from_user.first_name
+    to = update.message.reply_to_message.from_user.first_name
+    user_id = update.message.reply_to_message.from_user.id
+    id = update.message.from_user.id
+
+    a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
+    msg = int(units)
+    if id in owners:
+        if type == "white":
+         DB.add_white(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units}  ⚪️ white chips')
+        if type == "red":
+         DB.add_red(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units}  🔴 red chips')
+        if type == "orange":
+         DB.add_orange(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units}  🟠 orange chips')
+        if type == "yellow":
+         DB.add_yellow(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units} 🟡 yellow chips')
+        if type == "blue":
+         DB.add_blue(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units} 🔵 blue chips')
+        if type == "purple":
+         DB.add_purple(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units} 🟣 purple chips')
+        if type == "black":
+         DB.add_black(conn, user_id, units)
+         update.message.reply_text(f'{to} received {units} ⚫️ black chips')
+    else:
+         update.message.reply_text('not authorized')
+         return -1
+
+        
+def exchange(update , context):
+    cd = context.chat_data
+    query = update.callback_query
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    VIP = DB.get_user_value(conn, id, "vip")
+    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
+    cd["white"] = white = DB.get_user_value(conn , id, "white")
+    cd["red"] = red = DB.get_user_value(conn, id, "red")
+    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
+    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
+    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
+    cd["black"] = black = DB.get_user_value(conn, id, "black")
+    colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
+
+    values = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
+
+    try:
+     cd['type'] = type = update.message.text.split()[1]
+     cd['units'] = units = int(update.message.text.split()[2])
+
+     cd['exwhite'] = exwhite  = round(units/values['white'],4)
+     cd['exred'] = exred = round(units/values['red'], 4)
+     cd['exorange'] = exorange = round(units / values['orange'], 4)
+     cd['exyellow'] = exyellow = round(units / values['yellow'], 4)
+
+     cd['ex2white'] = ex2white = round(units * values['red'], 4)
+     cd['ex2red'] = ex2red = round(units / values['white'], 4)
+     cd['ex2orange'] = ex2orange = round(values['red'] / values['orange']*units, 4)
+     cd['ex2yellow'] = ex2yellow = round(values['red'] / values['yellow']*units, 4)
+     cd['ex2blue'] = ex2blue = round(values['red'] / values['blue']*units, 4)
+
+     cd['ex3white'] = ex3white = round(values['orange'] / values['white']*units, 4)
+     cd['ex3red'] = ex3red = round(values['orange'] / values['red']*units, 4)
+     cd['ex3orange'] =ex3orange = round(values['orange'] / values['orange']*units, 4)
+     cd['ex3yellow'] =ex3yellow = round(values['orange'] / values['yellow']*units, 4)
+     cd['ex3blue'] =ex3blue = round(values['orange'] / values['blue']*units, 4)
+     cd['ex3purple'] = ex3purple = round(values['orange'] / values['purple']*units, 4)
+
+     cd['ex4white'] = ex4white = round(values['yellow'] / values['white']*units, 4)
+     cd['ex4red'] = ex4red = round(values['yellow'] / values['red']*units, 4)
+     cd['ex4orange'] = ex4orange = round(values['yellow'] / values['orange']*units, 4)
+     cd['ex4yellow'] = ex4yellow = round(values['yellow'] / values['yellow']*units, 4)
+     cd['ex4blue'] = ex4blue = round(values['yellow'] / values['blue']*units, 4)
+     cd['ex4purple'] = ex4purple = round(values['yellow'] / values['purple']*units, 4)
+     cd['ex4black'] = ex4black = round(values['yellow'] / values['black']*units, 4)
+
+     cd['ex5white'] = ex5white = round(values['blue'] / values['white']*units, 4)
+     cd['ex5red'] =ex5red = round(values['blue'] / values['red']*units, 4)
+     cd['ex5orange'] = ex5orange = round(values['blue'] / values['orange']*units, 4)
+     cd['ex5yellow'] =ex5yellow = round(values['blue'] / values['yellow']*units, 4)
+     cd['ex5blue'] = ex5blue = round(values['blue'] / values['blue']*units, 4)
+     cd['ex5purple'] = ex5purple = round(values['blue'] / values['purple']*units, 4)
+     cd['ex5black'] =ex5black = round(values['blue'] / values['black']*units, 4)
+
+     cd['ex6white'] =ex6white = round(values['purple'] / values['white']*units, 4)
+     cd['ex6red'] = ex6red =  round(values['purple'] / values['red']*units, 4)
+     cd['ex6orange'] =ex6orange =  round(values['purple'] / values['orange']*units, 4)
+     cd['ex6yellow'] =ex6yellow =  round(values['purple'] / values['yellow']*units, 4)
+     cd['ex6blue'] =ex6blue =  round(values['purple'] / values['blue']*units, 4)
+     cd['ex6purple'] =ex6purple =  round(values['purple'] / values['purple']*units, 4)
+     cd['ex6black'] =ex6black =  round(values['purple'] / values['black']*units, 4)
+
+     cd['ex7white'] = ex7white =  round(values['black'] / values['white']*units, 4)
+     cd['ex7red'] =ex7red = round(values['black'] / values['red']*units, 4)
+     cd['ex7orange'] =ex7orange = round(values['black'] / values['orange']*units, 4)
+     cd['ex7yellow'] = ex7yellow = round(values['black'] / values['yellow']*units, 4)
+     cd['ex7blue'] = ex7blue = round(values['black'] / values['blue']*units, 4)
+     cd['ex7purple'] =ex7purple = round(values['black'] / values['purple']*units, 4)
+     cd['ex7black'] =ex7black = round(values['black'] / values['black']*units, 4)
+
+     keyboard1 = [
+         [InlineKeyboardButton(f'{exwhite} ⚪', callback_data='white'),InlineKeyboardButton(f'{exred} 🔴', callback_data='red')],
+         [InlineKeyboardButton(f'{exorange} 🟠', callback_data='orange'),InlineKeyboardButton(f'{exyellow} 🟡', callback_data='yellow')],
+     ]
+     reply_markup1 = InlineKeyboardMarkup(keyboard1)
+
+     keyboard2 = [
+         [InlineKeyboardButton(f'{ex2white} ⚪', callback_data='white2'),
+          InlineKeyboardButton(f'{ex2red} 🔴', callback_data='red2')],
+         [InlineKeyboardButton(f'{ex2orange} 🟠', callback_data='orange2'),
+          InlineKeyboardButton(f'{ex2yellow} 🟡', callback_data='yellow2')],
+         [InlineKeyboardButton(f'{ex2blue} 🔵', callback_data='blue2'),]
+     ]
+     reply_markup2 = InlineKeyboardMarkup(keyboard2)
+
+     keyboard3 = [
+         [InlineKeyboardButton(f'{ex3white} ⚪', callback_data='white3'),
+          InlineKeyboardButton(f'{ex3red} 🔴', callback_data='red3')],
+         [InlineKeyboardButton(f'{ex3orange} 🟠', callback_data='orange3'),
+          InlineKeyboardButton(f'{ex3yellow} 🟡', callback_data='yellow3')],
+         [InlineKeyboardButton(f'{ex3blue} 🔵', callback_data='blue3'),
+          InlineKeyboardButton(f'{ex3purple} 🟣', callback_data='purple3')],
+     ]
+     reply_markup3 = InlineKeyboardMarkup(keyboard3)
+
+     keyboard4 = [
+         [InlineKeyboardButton(f'{ex4white} ⚪', callback_data='white4'),
+          InlineKeyboardButton(f'{ex4red} 🔴', callback_data='red4')],
+         [InlineKeyboardButton(f'{ex4orange} 🟠', callback_data='orange4'),
+          InlineKeyboardButton(f'{ex4yellow} 🟡', callback_data='yellow4')],
+         [InlineKeyboardButton(f'{ex4blue} 🔵', callback_data='blue4'),
+          InlineKeyboardButton(f'{ex4purple} 🟣', callback_data='purple4')],
+         [InlineKeyboardButton(f'{ex4black} ⚫', callback_data='black4'), ]
+     ]
+     reply_markup4 = InlineKeyboardMarkup(keyboard4)
+
+     keyboard5 = [
+         [InlineKeyboardButton(f'{ex5white} ⚪', callback_data='white5'),
+          InlineKeyboardButton(f'{ex5red} 🔴', callback_data='red5')],
+         [InlineKeyboardButton(f'{ex5orange} 🟠', callback_data='orange5'),
+          InlineKeyboardButton(f'{ex5yellow} 🟡', callback_data='yellow5')],
+         [InlineKeyboardButton(f'{ex5blue} 🔵', callback_data='blue5'),
+          InlineKeyboardButton(f'{ex5purple} 🟣', callback_data='purple5')],
+         [InlineKeyboardButton(f'{ex5black} ⚫', callback_data='black5'), ]
+     ]
+     reply_markup5 = InlineKeyboardMarkup(keyboard5)
+
+     keyboard6 = [
+         [InlineKeyboardButton(f'{ex6white} ⚪', callback_data='white6'),
+          InlineKeyboardButton(f'{ex6red} 🔴', callback_data='red6')],
+         [InlineKeyboardButton(f'{ex6orange} 🟠', callback_data='orange6'),
+          InlineKeyboardButton(f'{ex6yellow} 🟡', callback_data='yellow6')],
+         [InlineKeyboardButton(f'{ex6blue} 🔵', callback_data='blue6'),
+          InlineKeyboardButton(f'{ex6purple} 🟣', callback_data='purple6')],
+         [InlineKeyboardButton(f'{ex6black} ⚫', callback_data='black6'), ]
+     ]
+     reply_markup6 = InlineKeyboardMarkup(keyboard6)
+
+     keyboard7 = [
+         [InlineKeyboardButton(f'{ex7white} ⚪', callback_data='white7'),
+          InlineKeyboardButton(f'{ex7red} 🔴', callback_data='red7')],
+         [InlineKeyboardButton(f'{ex7orange} 🟠', callback_data='orange7'),
+          InlineKeyboardButton(f'{ex7yellow} 🟡', callback_data='yellow7')],
+         [InlineKeyboardButton(f'{ex7blue} 🔵', callback_data='blue7'),
+          InlineKeyboardButton(f'{ex7purple} 🟣', callback_data='purple7')],
+         [InlineKeyboardButton(f'{ex7black} ⚫', callback_data='black7'), ]
+     ]
+     reply_markup7 = InlineKeyboardMarkup(keyboard7)
+
+
+     if type.lower() not in colour:
+        update.message.reply_text("please type either\n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
+     if type.lower() =='white':
+        if units>white:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=white:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup1, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='red':
+        if units>red:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=red:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup2, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='orange':
+        if units>orange:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=orange:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup3, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='yellow':
+        if units>yellow:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=yellow:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup4, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='blue':
+        if units>blue:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=blue:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup5, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='purple':
+        if units>purple:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=purple:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup6, parse_mode = ParseMode.HTML)
+
+     if type.lower() =='black':
+        if units>black:
+            update.message.reply_text('You dont have enough to do this conversion')
+        if units<=black:
+            update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup7, parse_mode = ParseMode.HTML)
+    except IndexError:
+        update.message.reply_text("use this format\n\n/exchange <type of chip> <amount>")
+
+    return THREE
+
+def exchange2(update , context):
+    cd = context.chat_data
+    query = update.callback_query
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    VIP = DB.get_user_value(conn, id, "vip")
+    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
+    cd["white"] = white = DB.get_user_value(conn , id, "white")
+    cd["red"] = red = DB.get_user_value(conn, id, "red")
+    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
+    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
+    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
+    cd["black"] = black = DB.get_user_value(conn, id, "black")
+
+    white = cd['exwhite'] #EXCHANGED TO AMOUNT (INT)
+    red = cd['exred']
+    orange = cd['exorange']
+    yellow = cd['exyellow']
+
+    white2 = cd['ex2white']
+    red2 = cd['ex2red']
+    orange2 = cd['ex2orange']
+    yellow2 = cd['ex2yellow']
+    blue2 =cd['ex2blue']
+
+    white3 = cd['ex3white']
+    red3 =cd['ex3red']
+    orange3 = cd['ex3orange']
+    yellow3 = cd['ex3yellow']
+    blue3 = cd['ex3blue']
+    purple3 = cd['ex3purple']
+
+    white4 = cd['ex4white']
+    red4 = cd['ex4red']
+    orange4 = cd['ex4orange']
+    yellow4 = cd['ex4yellow']
+    blue4 = cd['ex4blue']
+    purple4 = cd['ex4purple']
+    black4 = cd['ex4black']
+
+    white5 = cd['ex5white']
+    red5 = cd['ex5red']
+    orange5 = cd['ex5orange']
+    yellow5 = cd['ex5yellow']
+    blue5 = cd['ex5blue']
+    purple5 = cd['ex5purple']
+    black5 = cd['ex5black']
+
+    white6 = cd['ex6white']
+    red6 = cd['ex6red']
+    orange6 = cd['ex6orange']
+    yellow6 = cd['ex6yellow']
+    blue6 = cd['ex6blue']
+    purple6 = cd['ex6purple']
+    black6 = cd['ex6black']
+
+    white7 = cd['ex7white']
+    red7 = cd['ex7red']
+    orange7 = cd['ex7orange']
+    yellow7 = cd['ex7yellow']
+    blue7 = cd['ex7blue']
+    purple7 = cd['ex7purple']
+    black7 = cd['ex7black']
+
+    type = cd['type']
+    units =cd['units']
+
+    if query.data == 'white':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white} white chip')
+        DB.add_white(conn, id , white) # minus
+        DB.add_white(conn , id , -white) # add
+    if query.data == 'red':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red} red chip')
+        DB.add_white(conn, id , -white) # minus
+        DB.add_red(conn , id , red) # add
+    if query.data == 'orange':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange} orange chip')
+        DB.add_white(conn, id , -white) # minus
+        DB.add_orange(conn , id , orange) # add
+    if query.data == 'yellow':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow} yellow chip')
+        DB.add_white(conn, id , -white) # minus
+        DB.add_yellow(conn , id , yellow) # add
+    if query.data == 'white2':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white2} white chip')
+        DB.add_red(conn, id , -red2) # minus
+        DB.add_white(conn , id , white2) # add
+    if query.data == 'red2':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red2} red chip')
+        DB.add_red(conn, id , -red2) # minus
+        DB.add_red(conn , id , red2) # add
+    if query.data == 'orange2':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
+        DB.add_red(conn, id , -red2) # minus
+        DB.add_orange(conn , id , orange2) # add
+    if query.data == 'yellow2':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow2} yellow chip')
+        DB.add_red(conn, id , -red2) # minus
+        DB.add_yellow(conn , id , yellow2) # add
+    if query.data == 'blue2':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue2} blue chip')
+        DB.add_red(conn, id , -red2) # minus
+        DB.add_blue(conn , id , blue2) # add
+    if query.data == 'white3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white3} white chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_white(conn , id , white3) # add
+    if query.data == 'red3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red3} red chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_red(conn , id , red3) # add
+    if query.data == 'orange3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_orange(conn , id , orange3) # add
+    if query.data == 'yellow3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow3} yellow chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_yellow(conn , id , yellow3) # add
+    if query.data == 'blue3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue3} blue chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_blue(conn , id , blue3) # add
+    if query.data == 'purple3':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple3} purple chip')
+        DB.add_orange(conn, id , -orange3) # minus
+        DB.add_purple(conn , id , purple3) # add
+    if query.data == 'white4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white4} white chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_white(conn , id , white4) # add
+    if query.data == 'red4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red4} red chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_red(conn , id , red4) # add
+    if query.data == 'orange4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange4} orange chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_orange(conn , id , orange4) # add
+    if query.data == 'yellow4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow4} yellow chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_yellow(conn , id , yellow4) # add
+    if query.data == 'blue4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue4} blue chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_blue(conn , id , blue4) # add
+    if query.data == 'purple4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple4} purple chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_purple(conn , id , purple4) # add
+    if query.data == 'black4':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black4} black chip')
+        DB.add_yellow(conn, id , -yellow4) # minus
+        DB.add_black(conn , id , black4) # add
+    if query.data == 'white5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white5} black chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_white(conn , id , white5) # add
+    if query.data == 'red5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red5} red chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_red(conn , id , red5) # add
+    if query.data == 'orange5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange5} orange chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_orange(conn , id , orange5) # add
+    if query.data == 'yellow5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow5} yellow chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_yellow(conn , id , yellow5) # add
+    if query.data == 'blue5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue5} blue chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_blue(conn , id , blue5) # add
+    if query.data == 'purple5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple5} purple chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_purple(conn , id , purple5) # add
+    if query.data == 'black5':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black5} black chip')
+        DB.add_blue(conn, id , -blue5) # minus
+        DB.add_black(conn , id , black5) # add
+    if query.data == 'white6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white6} white chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_white(conn , id , white6) # add
+    if query.data == 'red6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red6} red chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_red(conn , id , red6) # add
+    if query.data == 'orange6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange6} orange chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_orange(conn , id , orange6) # add
+    if query.data == 'yellow6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow6} yellow chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_yellow(conn , id , yellow6) # add
+    if query.data == 'blue6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue6} blue chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_blue(conn , id , blue6) # add
+    if query.data == 'purple6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple6} purple chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_pruple(conn , id , purple6) # add
+    if query.data == 'black6':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black6} black chip')
+        DB.add_purple(conn, id , -purple6) # minus
+        DB.add_black(conn , id , black6) # add
+    if query.data == 'white7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white7} white chip')
+        DB.add_black(conn, id , -black7) # minus
+        DB.add_white(conn , id , white7) # add
+    if query.data == 'red7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red7} red chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_red(conn, id, red7)  # add
+    if query.data == 'orange7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange7} orange chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_orange(conn, id, orange7)  # add
+    if query.data == 'yellow7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow7} yellow chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_yellow(conn, id, yellow7)  # add
+    if query.data == 'blue7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue7} blue chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_blue(conn, id, blue7)  # add
+    if query.data == 'purple7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple7} purple chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_purple(conn, id, purple7)  # add
+    if query.data == 'black7':
+        query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black7} black chip')
+        DB.add_black(conn, id, -black7)  # minus
+        DB.add_black(conn, id, black7)  # add
+
+def claim(update , context):
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    VIP = DB.get_user_value(conn, id, "vip")
+    worth = DB.get_user_value(conn, id, "worth")
+    white = DB.get_user_value(conn, id, "white")
+    red = DB.get_user_value(conn, id, "red")
+    orange = DB.get_user_value(conn, id, "orange")
+    yellow = DB.get_user_value(conn, id, "yellow")
+    blue = DB.get_user_value(conn, id, "blue")
+    purple = DB.get_user_value(conn, id, "purple")
+    black = DB.get_user_value(conn, id, "black")
+    value = (white * 1) + (red * 5) + (orange * 25) + (yellow * 100) + (blue * 500) + (purple * 2500) + (black * 15000)
+    if value <=200:
+     if white <=100:
+        DB.add_white(conn , id , 100)
+        update.message.reply_text('You received 100 ⚪️ white chip ')
+     else:
+        update.message.reply_text('Your white chip should be less than 100 to claim this')
+    else:
+     update.message.reply_text("You cannot claim free chips if your wallet balance is more than 200$")
+
+    
+    
+EXCHANGE_HANDLER = ConversationHandler(
+        entry_points=[CommandHandler('exchange', exchange)],
+        states={
+            THREE: [CallbackQueryHandler(exchange2, pattern='^' + str("white") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("red") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("red4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("orange") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("orange4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("yellow") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("yellow4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("white2") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("blue4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("red2") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("purple4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("orange2") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("black4") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("yellow2") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("white5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("blue2") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("red5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("white3") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("orange5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("red3") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("yellow5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("orange3") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("blue5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("blue3") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("purple5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("purple3") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("black5") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("white4") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("white6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("white7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("red6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("red7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("orange6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("orange7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("yellow6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("yellow7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("blue6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("blue7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("purple6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("purple7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("black6") + '$'),
+CallbackQueryHandler(exchange2, pattern='^' + str("black7") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("yellow3") + '$')
+
+
+
+            ],
+        },
+        fallbacks=[],
+
+    allow_reentry=True,
+    per_user=False
+    )
+START_HANDLER = CommandHandler('start', start)
+WALLET_HANDLER = CommandHandler('wallet', wallet)
+GAMES_HANDLER = CommandHandler('games', games)
+ADD_HANDLER = CommandHandler('add', add)
+VALUE_HANDLER = CommandHandler('value', value)
+CLAIM_HANDLER = CommandHandler('claim', claim)
+
+dispatcher.add_handler(START_HANDLER)
+dispatcher.add_handler(WALLET_HANDLER)
+dispatcher.add_handler(GAMES_HANDLER)
+dispatcher.add_handler(ADD_HANDLER)
+dispatcher.add_handler(VALUE_HANDLER)
+dispatcher.add_handler(CLAIM_HANDLER)
+dispatcher.add_handler(EXCHANGE_HANDLER)
