@@ -1,3 +1,11 @@
+import logging
+from main import dispatcher 
+from telegram import InlineQueryResultArticle, InputTextMessageContent
+from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
+from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
+from main import database as DB
+
 dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
 colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
 
