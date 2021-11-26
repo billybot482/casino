@@ -71,7 +71,7 @@ def add_user(user_id):
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM User WHERE user_id=%s;"
     try:
-     r= conn.execute(stmt).fetchone()[0]
+     r= cur.fetchone()[0]
     except TypeError:
      r = None
     finally:
