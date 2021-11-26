@@ -26,13 +26,13 @@ def start(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    exist = DB.get_user_value(conn , id, "white")
+    exist = DB.get_user_value(id, "white")
     text = f"Welcome <b>{name}</b> to <u><b><i>Casino 482</i></b></u>\n\n" \
            f"We have registered you under our player lists with your below information\n" \
            f"\n# username : <code>{username}</code>\n# ID : <code>{id}</code>"
     if exist == None:
      context.bot.send_photo(chat_id = update.effective_chat.id, caption = text , photo = "https://telegra.ph/file/b50d95b7d42b2f866fcac.jpg", parse_mode=ParseMode.HTML)
-     DB.add_user(conn , id)
+     DB.add_user(id)
     else:
         context.bot.send_message(chat_id = update.effective_chat.id , text = "You are already a member")
 
@@ -50,15 +50,15 @@ def wallet(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(conn, id, "vip")
-    worth = DB.get_user_value(conn, id, "worth")
-    white = DB.get_user_value(conn , id, "white")
-    red = DB.get_user_value(conn, id, "red")
-    orange = DB.get_user_value(conn, id, "orange")
-    yellow = DB.get_user_value(conn, id, "yellow")
-    blue = DB.get_user_value(conn, id, "blue")
-    purple = DB.get_user_value(conn, id, "purple")
-    black = DB.get_user_value(conn, id, "black")
+    VIP = DB.get_user_value(id, "vip")
+    worth = DB.get_user_value(id, "worth")
+    white = DB.get_user_value(id, "white")
+    red = DB.get_user_value(id, "red")
+    orange = DB.get_user_value(id, "orange")
+    yellow = DB.get_user_value(id, "yellow")
+    blue = DB.get_user_value(id, "blue")
+    purple = DB.get_user_value(id, "purple")
+    black = DB.get_user_value(id, "black")
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2500)+(black*15000)
     try:
@@ -92,25 +92,25 @@ def add(update , context):
     msg = int(units)
     if id in owners:
         if type == "white":
-         DB.add_white(conn, user_id, units)
+         DB.add_white(user_id, units)
          update.message.reply_text(f'{to} received {units}  ⚪️ white chips')
         if type == "red":
-         DB.add_red(conn, user_id, units)
+         DB.add_red(user_id, units)
          update.message.reply_text(f'{to} received {units}  🔴 red chips')
         if type == "orange":
-         DB.add_orange(conn, user_id, units)
+         DB.add_orange(user_id, units)
          update.message.reply_text(f'{to} received {units}  🟠 orange chips')
         if type == "yellow":
-         DB.add_yellow(conn, user_id, units)
+         DB.add_yellow(user_id, units)
          update.message.reply_text(f'{to} received {units} 🟡 yellow chips')
         if type == "blue":
-         DB.add_blue(conn, user_id, units)
+         DB.add_blue(user_id, units)
          update.message.reply_text(f'{to} received {units} 🔵 blue chips')
         if type == "purple":
-         DB.add_purple(conn, user_id, units)
+         DB.add_purple(user_id, units)
          update.message.reply_text(f'{to} received {units} 🟣 purple chips')
         if type == "black":
-         DB.add_black(conn, user_id, units)
+         DB.add_black(user_id, units)
          update.message.reply_text(f'{to} received {units} ⚫️ black chips')
     else:
          update.message.reply_text('not authorized')
@@ -124,14 +124,14 @@ def exchange(update , context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(conn, id, "vip")
-    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
-    cd["white"] = white = DB.get_user_value(conn , id, "white")
-    cd["red"] = red = DB.get_user_value(conn, id, "red")
-    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
-    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
-    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
-    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
-    cd["black"] = black = DB.get_user_value(conn, id, "black")
+    cd["worth"] = worth = DB.get_user_value(id, "worth")
+    cd["white"] = white = DB.get_user_value(id, "white")
+    cd["red"] = red = DB.get_user_value(id, "red")
+    cd["orange"] = orange = DB.get_user_value(id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value(id, "yellow")
+    cd["blue"] = blue = DB.get_user_value(id, "blue")
+    cd["purple"] = purple = DB.get_user_value(id, "purple")
+    cd["black"] = black = DB.get_user_value(id, "black")
     colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
 
     values = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
@@ -315,14 +315,14 @@ def exchange2(update , context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(conn, id, "vip")
-    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
-    cd["white"] = white = DB.get_user_value(conn , id, "white")
-    cd["red"] = red = DB.get_user_value(conn, id, "red")
-    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
-    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
-    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
-    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
-    cd["black"] = black = DB.get_user_value(conn, id, "black")
+    cd["worth"] = worth = DB.get_user_value(id, "worth")
+    cd["white"] = white = DB.get_user_value( id, "white")
+    cd["red"] = red = DB.get_user_value(id, "red")
+    cd["orange"] = orange = DB.get_user_value(id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value( id, "yellow")
+    cd["blue"] = blue = DB.get_user_value( id, "blue")
+    cd["purple"] = purple = DB.get_user_value( id, "purple")
+    cd["black"] = black = DB.get_user_value( id, "black")
 
     white = cd['exwhite'] #EXCHANGED TO AMOUNT (INT)
     red = cd['exred']
@@ -379,194 +379,194 @@ def exchange2(update , context):
 
     if query.data == 'white':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white} white chip')
-        DB.add_white(conn, id , white) # minus
-        DB.add_white(conn , id , -white) # add
+        DB.add_white(id , white) # minus
+        DB.add_white(id , -white) # add
     if query.data == 'red':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red} red chip')
-        DB.add_white(conn, id , -white) # minus
-        DB.add_red(conn , id , red) # add
+        DB.add_white(id , -white) # minus
+        DB.add_red(id , red) # add
     if query.data == 'orange':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange} orange chip')
-        DB.add_white(conn, id , -white) # minus
-        DB.add_orange(conn , id , orange) # add
+        DB.add_white(id , -white) # minus
+        DB.add_orange(id , orange) # add
     if query.data == 'yellow':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow} yellow chip')
-        DB.add_white(conn, id , -white) # minus
-        DB.add_yellow(conn , id , yellow) # add
+        DB.add_white(id , -white) # minus
+        DB.add_yellow(id , yellow) # add
     if query.data == 'white2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white2} white chip')
-        DB.add_red(conn, id , -red2) # minus
-        DB.add_white(conn , id , white2) # add
+        DB.add_red(id , -red2) # minus
+        DB.add_white(id , white2) # add
     if query.data == 'red2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red2} red chip')
-        DB.add_red(conn, id , -red2) # minus
-        DB.add_red(conn , id , red2) # add
+        DB.add_red(id , -red2) # minus
+        DB.add_red(id , red2) # add
     if query.data == 'orange2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
-        DB.add_red(conn, id , -red2) # minus
-        DB.add_orange(conn , id , orange2) # add
+        DB.add_red(id , -red2) # minus
+        DB.add_orange(id , orange2) # add
     if query.data == 'yellow2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow2} yellow chip')
-        DB.add_red(conn, id , -red2) # minus
-        DB.add_yellow(conn , id , yellow2) # add
+        DB.add_red(id , -red2) # minus
+        DB.add_yellow( id , yellow2) # add
     if query.data == 'blue2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue2} blue chip')
-        DB.add_red(conn, id , -red2) # minus
-        DB.add_blue(conn , id , blue2) # add
+        DB.add_red(id , -red2) # minus
+        DB.add_blue(id , blue2) # add
     if query.data == 'white3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white3} white chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_white(conn , id , white3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_white(id , white3) # add
     if query.data == 'red3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red3} red chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_red(conn , id , red3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_red(id , red3) # add
     if query.data == 'orange3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_orange(conn , id , orange3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_orange(id , orange3) # add
     if query.data == 'yellow3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow3} yellow chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_yellow(conn , id , yellow3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_yellow( id , yellow3) # add
     if query.data == 'blue3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue3} blue chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_blue(conn , id , blue3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_blue( id , blue3) # add
     if query.data == 'purple3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple3} purple chip')
-        DB.add_orange(conn, id , -orange3) # minus
-        DB.add_purple(conn , id , purple3) # add
+        DB.add_orange(id , -orange3) # minus
+        DB.add_purple( id , purple3) # add
     if query.data == 'white4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white4} white chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_white(conn , id , white4) # add
+        DB.add_yellow( id , -yellow4) # minus
+        DB.add_white( id , white4) # add
     if query.data == 'red4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red4} red chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_red(conn , id , red4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_red(id , red4) # add
     if query.data == 'orange4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange4} orange chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_orange(conn , id , orange4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_orange( id , orange4) # add
     if query.data == 'yellow4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow4} yellow chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_yellow(conn , id , yellow4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_yellow(id , yellow4) # add
     if query.data == 'blue4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue4} blue chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_blue(conn , id , blue4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_blue(id , blue4) # add
     if query.data == 'purple4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple4} purple chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_purple(conn , id , purple4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_purple(id , purple4) # add
     if query.data == 'black4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black4} black chip')
-        DB.add_yellow(conn, id , -yellow4) # minus
-        DB.add_black(conn , id , black4) # add
+        DB.add_yellow(id , -yellow4) # minus
+        DB.add_black( id , black4) # add
     if query.data == 'white5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white5} black chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_white(conn , id , white5) # add
+        DB.add_blue(id , -blue5) # minus
+        DB.add_white(id , white5) # add
     if query.data == 'red5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red5} red chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_red(conn , id , red5) # add
+        DB.add_blue(id , -blue5) # minus
+        DB.add_red( id , red5) # add
     if query.data == 'orange5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange5} orange chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_orange(conn , id , orange5) # add
+        DB.add_blue( id , -blue5) # minus
+        DB.add_orange( id , orange5) # add
     if query.data == 'yellow5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow5} yellow chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_yellow(conn , id , yellow5) # add
+        DB.add_blue(id , -blue5) # minus
+        DB.add_yellow( id , yellow5) # add
     if query.data == 'blue5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue5} blue chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_blue(conn , id , blue5) # add
+        DB.add_blue(id , -blue5) # minus
+        DB.add_blue(id , blue5) # add
     if query.data == 'purple5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple5} purple chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_purple(conn , id , purple5) # add
+        DB.add_blue(id , -blue5) # minus
+        DB.add_purple( id , purple5) # add
     if query.data == 'black5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black5} black chip')
-        DB.add_blue(conn, id , -blue5) # minus
-        DB.add_black(conn , id , black5) # add
+        DB.add_blue( id , -blue5) # minus
+        DB.add_black(id , black5) # add
     if query.data == 'white6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white6} white chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_white(conn , id , white6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_white(id , white6) # add
     if query.data == 'red6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red6} red chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_red(conn , id , red6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_red(id , red6) # add
     if query.data == 'orange6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange6} orange chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_orange(conn , id , orange6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_orange(id , orange6) # add
     if query.data == 'yellow6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow6} yellow chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_yellow(conn , id , yellow6) # add
+        DB.add_purple( id , -purple6) # minus
+        DB.add_yellow(id , yellow6) # add
     if query.data == 'blue6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue6} blue chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_blue(conn , id , blue6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_blue( id , blue6) # add
     if query.data == 'purple6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple6} purple chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_pruple(conn , id , purple6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_pruple(id , purple6) # add
     if query.data == 'black6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black6} black chip')
-        DB.add_purple(conn, id , -purple6) # minus
-        DB.add_black(conn , id , black6) # add
+        DB.add_purple(id , -purple6) # minus
+        DB.add_black( id , black6) # add
     if query.data == 'white7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white7} white chip')
-        DB.add_black(conn, id , -black7) # minus
-        DB.add_white(conn , id , white7) # add
+        DB.add_black(id , -black7) # minus
+        DB.add_white( id , white7) # add
     if query.data == 'red7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red7} red chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_red(conn, id, red7)  # add
+        DB.add_black( id, -black7)  # minus
+        DB.add_red(id, red7)  # add
     if query.data == 'orange7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange7} orange chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_orange(conn, id, orange7)  # add
+        DB.add_black(id, -black7)  # minus
+        DB.add_orange(id, orange7)  # add
     if query.data == 'yellow7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow7} yellow chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_yellow(conn, id, yellow7)  # add
+        DB.add_black(id, -black7)  # minus
+        DB.add_yellow( id, yellow7)  # add
     if query.data == 'blue7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue7} blue chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_blue(conn, id, blue7)  # add
+        DB.add_black( id, -black7)  # minus
+        DB.add_blue(id, blue7)  # add
     if query.data == 'purple7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple7} purple chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_purple(conn, id, purple7)  # add
+        DB.add_black(id, -black7)  # minus
+        DB.add_purple(id, purple7)  # add
     if query.data == 'black7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black7} black chip')
-        DB.add_black(conn, id, -black7)  # minus
-        DB.add_black(conn, id, black7)  # add
+        DB.add_black(id, -black7)  # minus
+        DB.add_black( id, black7)  # add
 
 def claim(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(conn, id, "vip")
-    worth = DB.get_user_value(conn, id, "worth")
-    white = DB.get_user_value(conn, id, "white")
-    red = DB.get_user_value(conn, id, "red")
-    orange = DB.get_user_value(conn, id, "orange")
-    yellow = DB.get_user_value(conn, id, "yellow")
-    blue = DB.get_user_value(conn, id, "blue")
-    purple = DB.get_user_value(conn, id, "purple")
-    black = DB.get_user_value(conn, id, "black")
+    VIP = DB.get_user_value(id, "vip")
+    worth = DB.get_user_value(id, "worth")
+    white = DB.get_user_value( id, "white")
+    red = DB.get_user_value(id, "red")
+    orange = DB.get_user_value( id, "orange")
+    yellow = DB.get_user_value( id, "yellow")
+    blue = DB.get_user_value(id, "blue")
+    purple = DB.get_user_value( id, "purple")
+    black = DB.get_user_value( id, "black")
     value = (white * 1) + (red * 5) + (orange * 25) + (yellow * 100) + (blue * 500) + (purple * 2500) + (black * 15000)
     if value <=200:
      if white <=100:
-        DB.add_white(conn , id , 100)
+        DB.add_white( id , 100)
         update.message.reply_text('You received 100 ⚪️ white chip ')
      else:
         update.message.reply_text('Your white chip should be less than 100 to claim this')
