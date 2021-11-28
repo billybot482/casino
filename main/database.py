@@ -48,7 +48,7 @@ def setup():
     conn.commit()
 
 def add_user(user_id):
-  stmt = """INSERT INTO User (user_id, white , red , orange , yellow , blue , purple , black , wager, worth , win , loss , vip)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , wager, worth , win , loss , vip)
   VALUES (
   ?,
   100,
@@ -69,7 +69,7 @@ def add_user(user_id):
   return conn
 
 def get_user_value(user_id: int, items: str):
-    stmt = f"SELECT {items} FROM User WHERE user_id=%s;"
+    stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
     try:
      r= cur.fetchone()[0]
     except TypeError:
@@ -78,36 +78,36 @@ def get_user_value(user_id: int, items: str):
      return r
 
 def add_white( user_id : int , white : int):
-    stmt = f"UPDATE User SET white = white + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET white = white + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_red(user_id : int , white : int):
-    stmt = f"UPDATE User SET red = red + %s WHERE user_id %s;"
+    stmt = f"UPDATE Usr SET red = red + %s WHERE user_id %s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_orange(user_id : int , white : int):
-    stmt = f"UPDATE User SET orange = orange + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET orange = orange + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_yellow(user_id : int , white : int):
-    stmt = f"UPDATE User SET yellow = yellow + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET yellow = yellow + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_blue( user_id : int , white : int):
-    stmt = f"UPDATE User SET blue = blue + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET blue = blue + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_purple(user_id : int , white : int):
-    stmt = f"UPDATE User SET purple = purple + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET purple = purple + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
 def add_black(user_id : int , white : int):
-    stmt = f"UPDATE User SET black = black + %s WHERE user_id =%s;"
+    stmt = f"UPDATE Usr SET black = black + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
