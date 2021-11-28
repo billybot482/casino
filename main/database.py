@@ -50,7 +50,7 @@ def setup():
 def add_user(user_id):
   stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , wager, worth , win , loss , vip)
   VALUES (
-  ?,
+  %s,
   100,
   0,
   0,
@@ -63,7 +63,7 @@ def add_user(user_id):
   0,
   0,
   0
-)"""
+);"""
   cur.execute(stmt, (user_id,))
   conn.commit()
   return conn
