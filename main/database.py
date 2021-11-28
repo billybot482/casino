@@ -70,8 +70,7 @@ def add_user(user_id):
 
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
-    r= cur.fetchone()[0]
-    return r
+    return cur.fetchone()[0]
 
 def add_white( user_id : int , white : int):
     stmt = f"UPDATE Usr SET white = white + %s WHERE user_id =%s;"

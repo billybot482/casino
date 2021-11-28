@@ -26,6 +26,11 @@ def start(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
+    user_registered = DB.get_user_value(id, 1)
+
+    if user_registered:
+	return
+
     text = f"Welcome <b>{name}</b> to <u><b><i>Casino 482</i></b></u>\n\n" \
            f"We have registered you under our player lists with your below information\n" \
            f"\n# username : <code>{username}</code>\n# ID : <code>{id}</code>"
