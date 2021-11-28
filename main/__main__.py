@@ -29,6 +29,7 @@ def start(update , context):
     text = f"Welcome <b>{name}</b> to <u><b><i>Casino 482</i></b></u>\n\n" \
            f"We have registered you under our player lists with your below information\n" \
            f"\n# username : <code>{username}</code>\n# ID : <code>{id}</code>"
+    context.bot.send_photo(chat_id = update.effective_chat.id, caption = text , photo = "https://telegra.ph/file/b50d95b7d42b2f866fcac.jpg", parse_mode=ParseMode.HTML)
     DB.add_user(id)
 
 def games(update , context):
