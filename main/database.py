@@ -70,6 +70,7 @@ def add_user(user_id):
 
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
+    cur.execute(stmt, (user_id,))
     return cur.fetchone()[0]
 
 def add_white( user_id : int , white : int):
