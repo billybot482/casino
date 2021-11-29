@@ -26,7 +26,7 @@ def start(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    user_registered = DB.get_user_value(id, 1)
+    user_registered = DB.get_user_value(id, "COUNT(*)")
 
     if user_registered:
      return
