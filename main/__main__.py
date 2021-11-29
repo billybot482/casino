@@ -315,7 +315,7 @@ def exchange2(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(conn, id, "vip")
+    VIP = DB.get_user_value(id, "vip")
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value( id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
