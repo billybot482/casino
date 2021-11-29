@@ -29,7 +29,7 @@ def start(update , context):
     user_registered = DB.get_user_value(id, 1)
 
     if user_registered:
-	return
+     return
 
     text = f"Welcome <b>{name}</b> to <u><b><i>Casino 482</i></b></u>\n\n" \
            f"We have registered you under our player lists with your below information\n" \
