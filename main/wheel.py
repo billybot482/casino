@@ -10,6 +10,9 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
 colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
 
+MIN_CHIP_AMOUNT = 1
+MAX_CHIP_AMOUNT = 10
+
 def wheel(update , context):
     '''Chat = update.effective_chat
         if update.effective_chat.type != Chat.PRIVATE:
@@ -20,15 +23,15 @@ def wheel(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(conn, id, "vip")
-    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
-    cd["white"] = white = DB.get_user_value(conn, id, "white")
-    cd["red"] = red = DB.get_user_value(conn, id, "red")
-    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
-    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
-    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
-    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
-    cd["black"] = black = DB.get_user_value(conn, id, "black")
+    VIP = DB.get_user_value(id, "vip")
+    cd["worth"] = worth = DB.get_user_value(id, "worth")
+    cd["white"] = white = DB.get_user_value(id, "white")
+    cd["red"] = red = DB.get_user_value(id, "red")
+    cd["orange"] = orange = DB.get_user_value(id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value(id, "yellow")
+    cd["blue"] = blue = DB.get_user_value(id, "blue")
+    cd["purple"] = purple = DB.get_user_value(id, "purple")
+    cd["black"] = black = DB.get_user_value(id, "black")
 
     cd['amount'] = amount = 1
 
@@ -161,11 +164,6 @@ def wheelchangechip(update, context):
     cd["using"] = query.data if query.data in colours else ...
     return wheel(update, context)
 
-
-MIN_CHIP_AMOUNT = 1
-MAX_CHIP_AMOUNT = 10
-
-
 def wheelinc(update, context):
     query = update.callback_query
     cd = context.chat_data
@@ -193,15 +191,15 @@ def wheelplay(update, context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(conn, id, "vip")
-    cd["worth"] = worth = DB.get_user_value(conn, id, "worth")
-    cd["white"] = white = DB.get_user_value(conn, id, "white")
-    cd["red"] = red = DB.get_user_value(conn, id, "red")
-    cd["orange"] = orange = DB.get_user_value(conn, id, "orange")
-    cd["yellow"] = yellow = DB.get_user_value(conn, id, "yellow")
-    cd["blue"] = blue = DB.get_user_value(conn, id, "blue")
-    cd["purple"] = purple = DB.get_user_value(conn, id, "purple")
-    cd["black"] = black = DB.get_user_value(conn, id, "black")
+    VIP = DB.get_user_value(id, "vip")
+    cd["worth"] = worth = DB.get_user_value(id, "worth")
+    cd["white"] = white = DB.get_user_value(id, "white")
+    cd["red"] = red = DB.get_user_value(id, "red")
+    cd["orange"] = orange = DB.get_user_value(id, "orange")
+    cd["yellow"] = yellow = DB.get_user_value(id, "yellow")
+    cd["blue"] = blue = DB.get_user_value(id, "blue")
+    cd["purple"] = purple = DB.get_user_value(id, "purple")
+    cd["black"] = black = DB.get_user_value(id, "black")
 
     req = query.data.split(':')
     logger.info(str(req))
