@@ -61,7 +61,7 @@ def wallet(update , context):
     purple = DB.get_user_value(id, "purple")
     black = DB.get_user_value(id, "black")
 
-    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2500)+(black*15000)
+    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     try:
      update.message.reply_text(f"<u><b>{name}'s Wallet</b></u>\n"
                               f"🎖 VIP : {VIP}\n\n"
