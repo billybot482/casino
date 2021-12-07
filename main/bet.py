@@ -169,7 +169,7 @@ def bet(update, context):
      update.message.reply_text("use format /bet <type of chip> <amount>") 
  '''      
 
-    if type in colour:
+   if type in colour:
      if type == "white":
       if amount <= white:
        if amount >0:
