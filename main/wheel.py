@@ -269,7 +269,7 @@ WHEEL_HANDLER = ConversationHandler(
         states={
             TWO: [CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True),
                   CallbackQueryHandler(wheelcheckodd, pattern="^check$", pass_user_data=True),
-                  CallbackQueryHandler(wheelplay, pattern="^play.+$", pass_user_data=True),
+                  CallbackQueryHandler(wheelplay, pattern="^play$", pass_user_data=True),
                   CallbackQueryHandler(wheelselectchip, pattern="^chip$", pass_user_data=True),
                   CallbackQueryHandler(wheelinc, pattern="^inc$", pass_user_data=True),
                   CallbackQueryHandler(wheeldec, pattern="^dec$", pass_user_data=True)
