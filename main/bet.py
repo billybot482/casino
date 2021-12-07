@@ -45,16 +45,19 @@ def bet(update, context):
  
     if type in colour:
      if type == "white":
-      if amount <= white and amount>0:
-       a = random.randint(1,2)
-       if a == 1:
-        DB.add_white(id , amount)
-        update.message.reply_text(f"Congrats, you won {amount} ⚪ White chip") 
+      if amount <= white:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_white(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} ⚪ White chip") 
+        else:
+         DB.add_white(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of ⚪ White chip") 
        else:
-        DB.add_white(id , -amount)
-        update.message.reply_text(f" Unfortunately you lost {amount} of ⚪ White chip") 
+        update.message.reply_text("Cannot bet negative or 0")
       else:
-       update.message.reply_text("Not enough ⚪ white chip, consider do some /exchange or get some donation\n\n *ps: You cannot bet negative") 
+       update.message.reply_text("Not enough ⚪ white chip, consider do some /exchange or get some donation") 
     else:
      update.message.reply_text("use format /bet <type of chip> <amount>") 
         
