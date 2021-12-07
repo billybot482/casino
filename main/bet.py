@@ -57,7 +57,9 @@ def bet(update, context):
        else:
         update.message.reply_text("Cannot bet negative or 0")
       else:
-       update.message.reply_text("Not enough ⚪ white chip, consider do some /exchange or get some donation") 
+       update.message.reply_text("Not enough ⚪ white chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
     else:
      update.message.reply_text("use format /bet <type of chip> <amount>") 
         
