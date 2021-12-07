@@ -42,7 +42,133 @@ def bet(update, context):
         return -1
     except AttributeError:
         return -1
- 
+
+    if type in colour:
+     if type == "black":
+      if amount <= black:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_black(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} ⚫ Black chip") 
+        else:
+         DB.add_black(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of ⚫ Black chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough ⚫ black chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
+    if type in colour:
+     if type == "purple":
+      if amount <= purple:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_purple(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} 🟣 purple chip") 
+        else:
+         DB.add_purple(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of 🟣 purple chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough 🟣 purple chip , consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
+    if type in colour:
+     if type == "blue":
+      if amount <= blue:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_blue(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} 🔵 blue chip") 
+        else:
+         DB.add_blue(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of 🔵 blue chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough 🔵 blue chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
+    if type in colour:
+     if type == "yellow":
+      if amount <= yellow:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_yellow(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} 🟡 yellow chip") 
+        else:
+         DB.add_yellow(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of 🟡 yellow chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough 🟡 yellow chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
+    if type in colour:
+     if type == "orange":
+      if amount <= orange:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_orange(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} 🟠 orange chip") 
+        else:
+         DB.add_orange(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of 🟠 orange chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough 🟠 orange chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
+    if type in colour:
+     if type == "red":
+      if amount <= red:
+       if amount >0:
+        a = random.randint(1,2)
+        if a == 1:
+         DB.add_red(id , amount)
+         update.message.reply_text(f"Congrats, you won {amount} 🔴 Red chip") 
+        else:
+         DB.add_red(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of 🔴 Red chip") 
+       else:
+        update.message.reply_text("Cannot bet negative or 0")
+      else:
+       update.message.reply_text("Not enough 🔴 red chip, consider do some /exchange or get some donation")
+     else:
+      update.message.reply_text(f"Available option \n{colour}") 
+    else:
+     update.message.reply_text("use format /bet <type of chip> <amount>") 
+        
+
     if type in colour:
      if type == "white":
       if amount <= white:
@@ -62,7 +188,7 @@ def bet(update, context):
       update.message.reply_text(f"Available option \n{colour}") 
     else:
      update.message.reply_text("use format /bet <type of chip> <amount>") 
-        
+    
     
 
 
