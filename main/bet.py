@@ -177,6 +177,9 @@ def bet(update, context):
         if a == 1:
          DB.add_white(id , amount)
          update.message.reply_text(f"Congrats, you won {amount} ⚪ White chip") 
+        else:
+         DB.add_white(id , -amount)
+         update.message.reply_text(f" Unfortunately you lost {amount} of ⚪ White chip") 
      if type == "red":
       if amount <= red:
        if amount >0:
@@ -238,9 +241,6 @@ def bet(update, context):
          DB.add_black(id , -amount)
          update.message.reply_text(f" Unfortunately you lost {amount} of ⚫ Black chip") 
 
-        else:
-         DB.add_white(id , -amount)
-         update.message.reply_text(f" Unfortunately you lost {amount} of ⚪ White chip") 
        else:
         update.message.reply_text("Cannot bet negative or 0")
       else:
