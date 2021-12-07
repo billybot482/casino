@@ -29,6 +29,7 @@ def bet(update, context):
     cd["blue"] = blue = DB.get_user_value(id, "blue")
     cd["purple"] = purple = DB.get_user_value(id, "purple")
     cd["black"] = black = DB.get_user_value(id, "black")
+    print("test") 
     random = random.randint(1,2)
     try:
      type = update.message.text.split()[1]
