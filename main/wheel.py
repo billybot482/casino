@@ -78,7 +78,7 @@ def wheelback(update , context):
     blue = cd['blue']
     purple = cd['purple']
     black = cd['black']
-
+    print("back")
     dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
 
 
@@ -129,6 +129,7 @@ def wheelcheckodd(update , context):
                             "<b>Orange</b> -   4x -      (1/30)\n", reply_markup=reply_markup, parse_mode=ParseMode.HTML)
     return TWO
 def wheelselectchip(update , context):
+    print("select")
     cd = context.chat_data
     query = update.callback_query
     query.answer()
