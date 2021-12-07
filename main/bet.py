@@ -30,7 +30,6 @@ def bet(update, context):
     cd["purple"] = purple = DB.get_user_value(id, "purple")
     cd["black"] = black = DB.get_user_value(id, "black")
     print("test") 
-    random = random.randint(1,2)
     try:
      type = update.message.text.split()[1]
      amount = update.message.text.split()[2]
@@ -47,7 +46,8 @@ def bet(update, context):
     if type in colour:
      if type == "white":
       if amount <= white:
-       if random == 1:
+       a = random.randint(1,2)
+       if a == 1:
         DB.add_white(id , amount)
         update.message.reply_text(f"Congrats, you won {amount} ⚪ White chip") 
        else:
