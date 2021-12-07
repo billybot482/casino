@@ -186,6 +186,7 @@ def wheeldec(update, context):
 
 def wheelplay(update, context):
     cd = context.chat_data
+    print('play')
     query = update.callback_query
     query.answer()
     msg = cd['display']
