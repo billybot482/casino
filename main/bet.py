@@ -7,9 +7,10 @@ from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filter
 from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
+def bet(update, context):
+    
 
 
 
-
-
+BET_HANDLER = CommandHandler('bet', bet)
 dispatcher.add_handler(BET_HANDLER)
