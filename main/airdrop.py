@@ -7,7 +7,12 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMo
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
+
+emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
+
+
 owners = [163494588]
+
 def airdrop(update , context):
     user = update.effective_user.first_name
     msg = update.message
@@ -36,7 +41,7 @@ def airdrop(update , context):
     a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
     
     if id in owners or VIP >1:
-     update.message.reply_text(f"{user} created an airdrop of {units} {type} chip \n\n First one to click claim will receive it",
+     update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
                               reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
      context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
   
@@ -65,7 +70,7 @@ def airdrop2(update , context):
     purple = cd['purple']
     black = cd['black']
     
-    emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
+    
     
     if cd['type'] == 'white':
      DB.add_white(user_id, units)
@@ -89,7 +94,7 @@ def airdrop2(update , context):
      DB.add_black(user_id, units)
     
     
-    query.message.edit_text(f'{name} claimed {units} {type} {emote[{type}]} chip\n\n Congrats 🎊', parse_mode = ParseMode.MARKDOWN_V2)
+    query.message.edit_text(f'{name} claimed {units} {type} {emote[type]} chip\n\n Congrats 🎊', parse_mode = ParseMode.MARKDOWN_V2)
 
     return ConversationHandler.END
   
