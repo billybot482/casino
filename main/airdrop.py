@@ -66,25 +66,25 @@ def airdrop2(update , context):
     
     emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
     
-    if cd['type'] == 'white'
+    if cd['type'] == 'white':
      DB.add_white(user_id, units)
       
-    if cd['type'] == 'red'
+    if cd['type'] == 'red':
      DB.add_red(user_id, units)
       
-    if cd['type'] == 'orange'
+    if cd['type'] == 'orange':
      DB.add_orange(user_id, units)
       
-    if cd['type'] == 'yellow'
+    if cd['type'] == 'yellow':
      DB.add_yellow(user_id, units)
       
-    if cd['type'] == 'blue'
+    if cd['type'] == 'blue':
      DB.add_blue(user_id, units)
       
-    if cd['type'] == 'purple'
+    if cd['type'] == 'purple':
      DB.add_purple(user_id, units)
       
-    if cd['type'] == 'black'
+    if cd['type'] == 'black':
      DB.add_black(user_id, units)
     
     
