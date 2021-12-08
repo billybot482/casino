@@ -36,7 +36,7 @@ def airdrop(update , context):
     a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
     
     if user_id in owners or VIP >1:
-     update.message.reply_text(f"{user} created an airdrop of {units} {type} chip \n\n First one to click claim will receive it"
+     update.message.reply_text(f"{user} created an airdrop of {units} {type} chip \n\n First one to click claim will receive it",
                               reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
      context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
   
