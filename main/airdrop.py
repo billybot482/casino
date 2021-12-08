@@ -7,7 +7,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMo
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
-
+owners = [163494588]
 def airdrop(update , context):
     user = update.effective_user.first_name
     msg = update.message
