@@ -113,12 +113,11 @@ def bet(update, context):
         else:
          DB.add_black(id , -amount)
          update.message.reply_text(f" Unfortunately you lost {amount} of ⚫ Black chip") 
-
        else:
         update.message.reply_text("Cannot bet negative or 0")
       else:
        update.message.reply_text("Not enough chip. consider do some /exchange or get some donation")
-     else:
+     if type not in colour:
       update.message.reply_text(f"Available option \n{colour}") 
     else:
      update.message.reply_text("use format /bet <type of chip> <amount>") 
