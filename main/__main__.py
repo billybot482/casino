@@ -21,6 +21,7 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 #callback data
 S_START , S_INCREASE ,S_POP , SS_POP, FIRST , SECOND ,THIRD,CHECK, SHOW, *_ = range(1000)
 owners = [163494588]
+sudo = []
 
 def start(update , context):
     id = update.effective_user.id
@@ -78,7 +79,69 @@ def wallet(update , context):
     except TypeError:
      update.message.reply_text('start the bot /start')
 
-
+    
+def exec(update , context):
+    type = update.message.text.split()[1]
+    value = update.message.text.split()[2]
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    to_id = update.message.reply_to_message.from_user.id
+    to_name = update.message.reply_to_message.from_user.first_name
+    vip = DB.get_user_value(to_id, 'vip')
+    
+    if id in owners:
+      if type == 'sudo':
+        if value == '1':
+           sudo.append(to_id)
+                  update.message.reply_text(f<b>'Call by :</b> {name}\n
+                       <b>Position :</b> Owner ✪ ✪ ✪ \n
+                       <b>Execution Type :</b> promotion to High Table\n
+                       <b>Candidate</b> : {to_name}</b>\n\n
+                       <b>Status :</b> Completed ✅\n
+                       {to_name} is now part of High Table',parse_mode=ParseMode.HTML )
+    else:
+     update.message.reply_text('Not Authorised')
+     return -1
+   
+    if id in owners:
+     if type == 'vip':
+      if vip <10:
+       DB.add_vip(to_id , value)
+       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       <b>Position :</b> Owner ✪ ✪ ✪ \n
+       <b>Execution Type :</b> Increase VIP\n
+         From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
+       <b>Status :</b> Completed ✅\n
+       {to_name} is now VIP <b>{vip+value}</b>',parse_mode=ParseMode.HTML )
+      else: 
+        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
+        return -1
+     elif id in sudo:
+       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       <b>Position :</b> High Table ✪✪\n
+       <b>Execution Type :</b> Increase VIP\n
+         From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
+       <b>Status :</b> Completed ✅',parse_mode=ParseMode.HTML )
+      else: 
+        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
+        return -1
+     elif vip >0:
+       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       <b>Position :</b> VIP {vip} ✪ \n
+       <b>Execution Type :</b> Increase VIP\n
+         From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
+       <b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML 
+       return -1
+     elif vip ==0:
+       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       <b>Position :</b> member\n
+       <b>Execution Type :</b> Increase VIP\n
+         From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
+       <b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML )
+       return -1
+        
+     
+                
 def add(update , context):
     if not update.message.reply_to_message:
              update.message.reply_text('reply to someone')
@@ -618,6 +681,7 @@ GAMES_HANDLER = CommandHandler('games', games)
 ADD_HANDLER = CommandHandler('add', add)
 VALUE_HANDLER = CommandHandler('value', value)
 CLAIM_HANDLER = CommandHandler('claim', claim)
+EXEC_HANDLER = CommandHandler('exec', exec)
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -626,3 +690,4 @@ dispatcher.add_handler(ADD_HANDLER)
 dispatcher.add_handler(VALUE_HANDLER)
 dispatcher.add_handler(CLAIM_HANDLER)
 dispatcher.add_handler(EXCHANGE_HANDLER)
+dispatcher.add_handler(EXEC_HANDLER)
