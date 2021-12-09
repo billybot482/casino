@@ -9,14 +9,14 @@ from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
-
+colour = ['white', 'red', 'orange', 'yellow','blue', 'purple', 'black']
 
 owners = [163494588]
 
 def airdrop(update , context):
     user = update.effective_user.first_name
     msg = update.message
-    id = update.effective_user.id
+    cd['id'] = id = update.effective_user.id
     query = update.callback_query
     cd = context.chat_data
     cd['VIP'] = VIP = DB.get_user_value(id, "vip")
@@ -37,24 +37,93 @@ def airdrop(update , context):
         [InlineKeyboardButton('claim', callback_data='claim')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-
-    a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
     
-    if id in owners or VIP >1:
-     update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+    if type == 'white':
+       if units <= white:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
                               reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
-     context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
-  
-    else:
-      update.message.reply_text('You must be VIP 3 or above to use this functions')
-    return ONE
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop')
+     if type == 'red':
+       if units <= red:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop') 
+     if type == 'orange':
+       if units <= orange:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop') 
+     if type == 'yellow':
+       if units <= yellow:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop')
+     if type == 'blue':
+       if units <= blue:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop') 
+     if type == 'purple':
+       if units <= purple:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop') 
+     if type == 'black':
+       if units <= black:
+         if id in owners or VIP >1:
+          update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
+                              reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
+          context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+         else:
+         update.message.reply_text('You must be VIP 3 or above to use this functions')
+         return ONE
+        else:
+          update.message.reply_text('Balance not enough to create an airdrop') 
+     if type not in colour:
+        update.message.reply_text(f"Choose from these chips to do airdrop \n\n {colour}")
+
 
 def airdrop2(update , context):
-    user = update.effective_user.first_name
-    id = update.effective_user.id
     query = update.callback_query
     query.answer()
     cd = context.chat_data
+    id = cd['id']
     name = update.callback_query.from_user.first_name
     user_id = update.callback_query.from_user.id
     
@@ -74,24 +143,30 @@ def airdrop2(update , context):
     
     if cd['type'] == 'white':
      DB.add_white(user_id, units)
-      
+     DB.add_white(id, -units) 
     if cd['type'] == 'red':
      DB.add_red(user_id, units)
+     DB.add_red(id, -units)
       
     if cd['type'] == 'orange':
      DB.add_orange(user_id, units)
+     DB.add_orange(id, -units)
       
     if cd['type'] == 'yellow':
      DB.add_yellow(user_id, units)
+     DB.add_yellow(id, -units)
       
     if cd['type'] == 'blue':
      DB.add_blue(user_id, units)
+     DB.add_blue(id, -units)
       
     if cd['type'] == 'purple':
      DB.add_purple(user_id, units)
+     DB.add_purple(id, -units)
       
     if cd['type'] == 'black':
      DB.add_black(user_id, units)
+     DB.add_black(id, -units)
     
     
     query.message.edit_text(f'{name} claimed {units} {type} {emote[type]} chip\n\n Congrats 🎊', parse_mode = ParseMode.MARKDOWN_V2)
