@@ -609,8 +609,8 @@ CallbackQueryHandler(exchange2, pattern='^' + str("black7") + '$'),CallbackQuery
         },
         fallbacks=[],
 
-    allow_reentry=True,
-    per_user=False
+    allow_reentry=False,
+    per_user=True
     )
 START_HANDLER = CommandHandler('start', start)
 WALLET_HANDLER = CommandHandler('wallet', wallet)
