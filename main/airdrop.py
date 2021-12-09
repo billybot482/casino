@@ -49,7 +49,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop')
-     if type == 'red':
+    if type == 'red':
        if units <= red:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -60,7 +60,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop') 
-     if type == 'orange':
+    if type == 'orange':
        if units <= orange:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -71,7 +71,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop') 
-     if type == 'yellow':
+    if type == 'yellow':
        if units <= yellow:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -82,7 +82,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop')
-     if type == 'blue':
+    if type == 'blue':
        if units <= blue:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -93,7 +93,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop') 
-     if type == 'purple':
+    if type == 'purple':
        if units <= purple:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -104,7 +104,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop') 
-     if type == 'black':
+    if type == 'black':
        if units <= black:
          if id in owners or VIP >1:
           update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
@@ -115,7 +115,7 @@ def airdrop(update , context):
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop') 
-     if type not in colour:
+    if type not in colour:
         update.message.reply_text(f"Choose from these chips to do airdrop \n\n {colour}")
 
 
