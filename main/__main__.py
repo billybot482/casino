@@ -93,7 +93,7 @@ def exec(update , context):
       if type == 'sudo':
         if value == '1':
          sudo.append(to_id)
-         update.message.reply_text(f<b>'Call by :</b> {name}\n
+         update.message.reply_text(f'<b>Call by :</b> {name}\n
                        <b>Position :</b> Owner ✪ ✪ ✪ \n
                        <b>Execution Type :</b> promotion to High Table\n
                        <b>Candidate</b> : {to_name}</b>\n\n
@@ -107,7 +107,7 @@ def exec(update , context):
      if type == 'vip':
       if vip <10:
        DB.add_vip(to_id , value)
-       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       update.message.reply_text(f'<b>Call by :</b> {name}\n
        <b>Position :</b> Owner ✪ ✪ ✪ \n
        <b>Execution Type :</b> Increase VIP\n
          From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
@@ -117,7 +117,7 @@ def exec(update , context):
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
         return -1
      elif id in sudo:
-       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       update.message.reply_text(f'<b>Call by :</b> {name}\n
        <b>Position :</b> High Table ✪✪\n
        <b>Execution Type :</b> Increase VIP\n
          From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
@@ -126,14 +126,14 @@ def exec(update , context):
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
         return -1
      elif vip >0:
-       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       update.message.reply_text(f'<b>Call by :</b> {name}\n
        <b>Position :</b> VIP {vip} ✪ \n
        <b>Execution Type :</b> Increase VIP\n
          From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
        <b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML 
        return -1
      elif vip ==0:
-       update.message.reply_text(f<b>'Call by :</b> {name}\n
+       update.message.reply_text(f'<b>Call by :</b> {name}\n
        <b>Position :</b> member\n
        <b>Execution Type :</b> Increase VIP\n
          From VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n
