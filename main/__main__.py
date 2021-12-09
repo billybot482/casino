@@ -106,14 +106,19 @@ def exec(update , context):
       else: 
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
         return -1
+    
      elif id in sudo:
+      if vip<10:
+       DB.add_vip(to_id , value)
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> High Table ✪✪\n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n<b>Status :</b> Completed ✅',parse_mode=ParseMode.HTML )
       else: 
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
         return -1
+    
      elif vip >0:
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> VIP {vip} ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n<b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML 
        return -1
+                                 
      elif vip ==0:
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> member\n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+value}</b>\n\n<b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML )
        return -1
