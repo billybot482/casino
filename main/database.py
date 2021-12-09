@@ -79,7 +79,7 @@ def add_white( user_id : int , white : int):
     conn.commit()
 
 def add_red(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET red = red + %s WHERE user_id %s;"
+    stmt = f"UPDATE Usr SET red = red + %s WHERE user_id = %s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
 
