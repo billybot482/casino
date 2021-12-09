@@ -53,13 +53,13 @@ def wallet(update , context):
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
     worth = DB.get_user_value(id, "worth")
-    white = DB.get_user_value(id, "white")
-    red = DB.get_user_value(id, "red")
-    orange = DB.get_user_value(id, "orange")
-    yellow = DB.get_user_value(id, "yellow")
-    blue = DB.get_user_value(id, "blue")
-    purple = DB.get_user_value(id, "purple")
-    black = DB.get_user_value(id, "black")
+    white = round(DB.get_user_value(id, "white"),4)
+    red = round(DB.get_user_value(id, "red"),4)
+    orange = round(DB.get_user_value(id, "orange"),4)
+    yellow = round(DB.get_user_value(id, "yellow"),4)
+    blue = round(DB.get_user_value(id, "blue"),4)
+    purple = round(DB.get_user_value(id, "purple"),4)
+    black = round(DB.get_user_value(id, "black"),4)
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     try:
