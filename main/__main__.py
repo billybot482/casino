@@ -93,12 +93,7 @@ def exec(update , context):
       if type == 'sudo':
         if value == '1':
          sudo.append(to_id)
-         update.message.reply_text(f'<b>Call by :</b> {name}\n
-                       <b>Position :</b> Owner ✪ ✪ ✪ \n
-                       <b>Execution Type :</b> promotion to High Table\n
-                       <b>Candidate</b> : {to_name}</b>\n\n
-                       <b>Status :</b> Completed ✅\n
-                       {to_name} is now part of High Table',parse_mode=ParseMode.HTML )
+         update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
     else:
      update.message.reply_text('Not Authorised')
      return -1
