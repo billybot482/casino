@@ -319,7 +319,7 @@ def exchange(update , context):
      if type.lower() =='red':
         if units>red:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=red:
+        if units<=red and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup2, parse_mode = ParseMode.HTML)
         if units<0:
             update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
@@ -327,32 +327,42 @@ def exchange(update , context):
      if type.lower() =='orange':
         if units>orange:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=orange:
+        if units<=orange and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup3, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='yellow':
         if units>yellow:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=yellow:
+        if units<=yellow and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup4, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='blue':
         if units>blue:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=blue:
+        if units<=blue and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup5, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='purple':
         if units>purple:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=purple:
+        if units<=purple and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup6, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='black':
         if units>black:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=black:
+        if units<=black and units >0 :
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup7, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
     except IndexError:
         update.message.reply_text("use this format\n\n/exchange <type of chip> <amount>")
 
