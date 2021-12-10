@@ -100,7 +100,7 @@ def exec(update , context):
    
     if id in owners:
      if type == 'vip':
-      if vip <10 and (vip+value)<=10:
+      if vip <10 and (vip+avalue)<=10:
        DB.add_vip(to_id , value)
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now VIP <b>{vip+avalue}</b>',parse_mode=ParseMode.HTML )
       else: 
@@ -116,7 +116,7 @@ def exec(update , context):
     
     elif id in sudo:
      if type == 'vip': 
-      if vip<10 and (vip+value)<=10:
+      if vip<10 and (vip+avalue)<=10:
        DB.add_vip(to_id , value)
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> High Table ✪✪\n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅',parse_mode=ParseMode.HTML )
       else: 
