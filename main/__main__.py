@@ -100,19 +100,27 @@ def exec(update , context):
    
     if id in owners:
      if type == 'vip':
-      if vip <10:
+      if vip <10 and (vip+value)<=10:
        DB.add_vip(to_id , value)
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now VIP <b>{vip+avalue}</b>',parse_mode=ParseMode.HTML )
       else: 
-        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
+        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP\nOr will be Over 10 is you promote this much')
         return -1
+     if type == 'sudo':
+        if value == '1':
+         sudo.append(to_id)
+         update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
+     else:
+      update.message.reply_text('Not Authorised')
+      return -1
     
-     elif id in sudo:
-      if vip<10:
+    elif id in sudo:
+     if type == 'vip': 
+      if vip<10 and (vip+value)<=10:
        DB.add_vip(to_id , value)
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> High Table ✪✪\n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅',parse_mode=ParseMode.HTML )
       else: 
-        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
+        update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP\nOr will be Over 10 is you promote this much')
         return -1
     
      elif vip >0:
