@@ -61,7 +61,6 @@ def wallet(update , context):
     blue = round(DB.get_user_value(id, "blue"),4)
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
-    print(purple)
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     try:
@@ -172,7 +171,6 @@ def exchange(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    VIP = DB.get_user_value(id, "vip")
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
@@ -308,10 +306,11 @@ def exchange(update , context):
      ]
      reply_markup7 = InlineKeyboardMarkup(keyboard7)
 
-
+     print('passed thru here')
      if type.lower() not in colour:
         update.message.reply_text("please type either\n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
      if type.lower() =='white':
+        print('in white')
         if units>white:
             update.message.reply_text('You dont have enough to do this conversion')
         if units<=white:
