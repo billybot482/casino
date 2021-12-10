@@ -31,6 +31,7 @@ def airdrop(update , context):
     
     cd['type'] = type = update.message.text.split()[1]
     cd['units'] = units = update.message.text.split()[2]
+    units = int(units)
     owner = 163494588
 
     keyboard = [
