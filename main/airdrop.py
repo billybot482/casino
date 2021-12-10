@@ -14,11 +14,11 @@ colour = ['white', 'red', 'orange', 'yellow','blue', 'purple', 'black']
 owners = [163494588]
 
 def airdrop(update , context):
+    cd = context.chat_data
     user = update.effective_user.first_name
     msg = update.message
     cd['id'] = id = update.effective_user.id
     query = update.callback_query
-    cd = context.chat_data
     cd['VIP'] = VIP = DB.get_user_value(id, "vip")
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
