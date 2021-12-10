@@ -306,11 +306,9 @@ def exchange(update , context):
      ]
      reply_markup7 = InlineKeyboardMarkup(keyboard7)
 
-     print('passed thru here')
      if type.lower() not in colour:
         update.message.reply_text("please type either\n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
      if type.lower() =='white':
-        print('in white')
         if units>white:
             update.message.reply_text('You dont have enough to do this conversion')
         if units<=white:
@@ -655,7 +653,7 @@ CallbackQueryHandler(exchange2, pattern='^' + str("black7") + '$'),CallbackQuery
         },
         fallbacks=[],
 
-    allow_reentry=False,
+    allow_reentry=True,
     per_user=True
     )
 START_HANDLER = CommandHandler('start', start)
