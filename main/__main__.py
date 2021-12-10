@@ -112,7 +112,7 @@ def exec(update , context):
          update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
      else:
       update.message.reply_text('Not Authorised')
-      return -1
+      
     
     elif id in sudo:
      if type == 'vip': 
@@ -123,11 +123,11 @@ def exec(update , context):
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP\nOr will be Over 10 is you promote this much')
         return -1
     
-     elif vip >0:
+    elif vip >0:
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> VIP {vip} ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML)
        return -1
                                  
-     elif vip ==0:
+    elif vip ==0:
        update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> member\n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Failed ❌',parse_mode=ParseMode.HTML)
        return -1
         
