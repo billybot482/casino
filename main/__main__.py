@@ -311,14 +311,18 @@ def exchange(update , context):
      if type.lower() =='white':
         if units>white:
             update.message.reply_text('You dont have enough to do this conversion')
-        if units<=white:
+        if units<=white and units >0:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup1, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='red':
         if units>red:
             update.message.reply_text('You dont have enough to do this conversion')
         if units<=red:
             update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup2, parse_mode = ParseMode.HTML)
+        if units<0:
+            update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
 
      if type.lower() =='orange':
         if units>orange:
