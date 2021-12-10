@@ -103,7 +103,7 @@ def exec(update , context):
      if type == 'vip':
       if vip <10:
        DB.add_vip(to_id , value)
-       update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now VIP <b>{vip+value}</b>',parse_mode=ParseMode.HTML )
+       update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> Increase VIP\nFrom VIP <b>{vip}</b> to VIP <b>{vip+avalue}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now VIP <b>{vip+avalue}</b>',parse_mode=ParseMode.HTML )
       else: 
         update.message.reply_text('this person is already VIP10 🎖 which is maximum VIP')
         return -1
