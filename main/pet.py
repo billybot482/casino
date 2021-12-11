@@ -18,9 +18,9 @@ def mypet(update , context):
         [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")],
       [InlineKeyboardButton("Previous", callback_data="back"),InlineKeyboardButton("Next", callback_data="next")]
     ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
+   reply_markup = InlineKeyboardMarkup(keyboard)
     
-    update.message.reply_text(f'<b><u>My pet collections<u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>\n/breply_markup=reply_markup, parse_mode=ParseMode.HTML)
+   update.message.reply_text(f'<b><u>My pet collections<u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>\n/breply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
 
 
