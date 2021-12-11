@@ -16,7 +16,7 @@ def mypet(update , context):
    
    keyboard = [
         [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")],
-      [InlineKeyboardButton("Previous", callback_data="back"),InlineKeyboardButton("Next", callback_data="next")
+      [InlineKeyboardButton("Previous", callback_data="back"),InlineKeyboardButton("Next", callback_data="next")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
