@@ -8,8 +8,18 @@ from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 def mypet(update , context):
-   pass
+   cd = context.chat_data
+   query = update.callback_query
+   id = update.effective_user.id
+   name = update.effective_user.first_name
+   username = update.effective_user.name
    
+   keyboard = [
+        [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    
+    update.message.reply_text(f'<b>Quill #0001</breply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
 
 
@@ -21,12 +31,7 @@ def mypet(update , context):
 '''MYPET_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('mypet', mypet, pass_user_data=True)],
         states={
-            TWO: [CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True),
-                  CallbackQueryHandler(wheelcheckodd, pattern="^check$", pass_user_data=True),
-                  CallbackQueryHandler(wheelplay, pattern="^play$", pass_user_data=True),
-                  CallbackQueryHandler(wheelselectchip, pattern="^chip$", pass_user_data=True),
-                  CallbackQueryHandler(wheelinc, pattern="^inc$", pass_user_data=True),
-                  CallbackQueryHandler(wheeldec, pattern="^dec$", pass_user_data=True)
+            TWO: [CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True)
             ],
             THREE: [CallbackQueryHandler(wheelchangechip, pattern="^.+$")]
         },
