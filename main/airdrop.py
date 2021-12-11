@@ -130,6 +130,7 @@ def airdrop2(update , context):
     
     units = cd['units']
     type = cd['type']
+    units = int(units)
     
     VIP = cd['VIP']
     white = cd['white']
