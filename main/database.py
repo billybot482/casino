@@ -108,6 +108,20 @@ def add_black(user_id : int , white : int):
     cur.execute(stmt, (white,user_id))
     conn.commit()
     
+def add_wager(user_id : int , white : int):
+    stmt = f"UPDATE Usr SET wager = wager + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()
+    
+def add_win(user_id : int , white : int):
+    stmt = f"UPDATE Usr SET win = win + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()
+    
+def add_loss(user_id : int , white : int):
+    stmt = f"UPDATE Usr SET loss = loss + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()
 
 def add_vip(user_id : int , vip : int):
     stmt = f"UPDATE Usr SET vip = vip + %s WHERE user_id =%s;"
