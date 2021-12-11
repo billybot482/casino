@@ -8,7 +8,7 @@ from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 def mypet(update , context):
-   
+   pass
    
 
 
