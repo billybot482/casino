@@ -30,7 +30,7 @@ def mypet(update , context):
 
 
 
-MYPET_HANDLER = ConversationHandler(
+'''MYPET_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('mypet', mypet, pass_user_data=True)],
         states={
             TWO: [#CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True)
@@ -39,5 +39,6 @@ MYPET_HANDLER = ConversationHandler(
         fallbacks=[],
         allow_reentry=True,
         per_user=True
-    )
+    )'''
+MYPET_HANDLER = CommandHandler('mypet', mypet)
 dispatcher.add_handler(MYPET_HANDLER)
