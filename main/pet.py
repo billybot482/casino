@@ -18,7 +18,6 @@ def mypet(update , context):
 
 
 
-
 MYPET_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('mypet', mypet, pass_user_data=True)],
         states={
@@ -35,5 +34,4 @@ MYPET_HANDLER = ConversationHandler(
         allow_reentry=True,
         per_user=True
     )
-
 dispatcher.add_handler(MYPET_HANDLER)
