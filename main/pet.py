@@ -15,11 +15,12 @@ def mypet(update , context):
    username = update.effective_user.name
    
    keyboard = [
-        [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")]
+        [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")],
+      [InlineKeyboardButton("Previous", callback_data="back"),InlineKeyboardButton("Next", callback_data="next")
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
-    update.message.reply_text(f'<b>Quill #0001</breply_markup=reply_markup, parse_mode=ParseMode.HTML)
+    update.message.reply_text(f'<b><u>My pet collections<u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>\n/breply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
 
 
@@ -28,15 +29,14 @@ def mypet(update , context):
 
 
 
-'''MYPET_HANDLER = ConversationHandler(
+MYPET_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('mypet', mypet, pass_user_data=True)],
         states={
-            TWO: [CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True)
+            TWO: [#CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True)
             ],
-            THREE: [CallbackQueryHandler(wheelchangechip, pattern="^.+$")]
         },
         fallbacks=[],
         allow_reentry=True,
         per_user=True
     )
-dispatcher.add_handler(MYPET_HANDLER)'''
+dispatcher.add_handler(MYPET_HANDLER)
