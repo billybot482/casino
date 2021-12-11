@@ -183,7 +183,6 @@ def exchange(update , context):
     if cd["queue"].qsize():
         cd["queue"].get().delete()
 
-
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
