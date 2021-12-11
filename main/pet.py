@@ -21,7 +21,7 @@ def mypet(update , context):
     ]
    reply_markup = InlineKeyboardMarkup(keyboard)
     
-   update.message.reply_text(f'<b><u>My pet collections</u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>'reply_markup=reply_markup, parse_mode=ParseMode.HTML)
+   update.message.reply_text(f'<b><u>My pet collections</u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>',reply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
 
 
