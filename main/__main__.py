@@ -5,12 +5,10 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMo
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 import random
 from main import wheel, dispatcher, bet , airdrop
-import json
 import os
 from telegram.ext.dispatcher import run_async
-import time
 from main import database as DB
-import requests
+from queue import Queue
 
 DB_PATH=os.environ['DATABASE_URL']
 DB.init(DB_PATH)
@@ -179,6 +177,14 @@ def exchange(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
+    queue = cd.get("queue", False)
+    cd["queue"] = Queue() if not queue else queue
+
+    if cd["queue"].qsize():
+        cd["queue"].get().delete()
+
+    cd["queue"].push(update.message)
+
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
