@@ -338,13 +338,19 @@ def exchange(update , context):
          [InlineKeyboardButton(f'{ex7black} ⚫', callback_data='black7'), ]
      ]
      reply_markup7 = InlineKeyboardMarkup(keyboard7)
+
+     markups = [reply_markup1, reply_markup2,
+                  reply_markup3, reply_markup4,
+                  reply_markup5, reply_markup6,
+                  reply_markup7]
+
      type = type.lower()
      if type not in colour:
         update.message.reply_text(f"please type either\n\n{colour}")
      if units > cd[type]:
         update.message.reply_text('You dont have enough to do this conversion')
      if units <= cd[type] and units > 0:
-        msg = update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=reply_markup1, parse_mode = ParseMode.HTML)
+        msg = update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=markups[color.index(type)], parse_mode = ParseMode.HTML)
         cd["queue"].put(msg)
      if units < 0:
         update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
