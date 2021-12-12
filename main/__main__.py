@@ -118,6 +118,34 @@ def exec(update , context):
        return -1
         
      
+    
+def statistic(update, context):
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    wager = DB.get_user_value(id , "wager")
+    win = DB.get_user_value(id , "win")
+    loss = DB.get_user_value(id , "loss")
+    VIP = DB.get_user_value(id, "vip")
+    worth = DB.get_user_value(id, "worth")
+    white = round(DB.get_user_value(id, "white"),4)
+    red = round(DB.get_user_value(id, "red"),4)
+    orange = round(DB.get_user_value(id, "orange"),4)
+    yellow = round(DB.get_user_value(id, "yellow"),4)
+    blue = round(DB.get_user_value(id, "blue"),4)
+    purple = round(DB.get_user_value(id, "purple"),4)
+    black = round(DB.get_user_value(id, "black"),4)
+
+    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
+    
+    update.message.reply_text(f'<b><u>statistic of {name}</u></b>\n\n'
+                              f'<b>🎖 VIP  : {vip}</b>\n'
+                              f'<b>★Current assets : {value}</b>'
+                              f'<b>★ Total wagered :</b> {wager}\n'
+                              f'<b>★ Total win : {win}</b>\n'
+                              f'<b>★ Total loss : {loss}</b>\n'
+                              f'<b>★Pet owned : {pet_count}</b>', parse_mode = ParseMode.HTML)
+    
                 
 def add(update , context):
     if not update.message.reply_to_message:
@@ -628,6 +656,7 @@ ADD_HANDLER = CommandHandler('add', add)
 VALUE_HANDLER = CommandHandler('value', value)
 CLAIM_HANDLER = CommandHandler('claim', claim)
 EXEC_HANDLER = CommandHandler('exec', exec)
+STATS_HANDLER = CommandHandler('statistic', statistic)
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -637,3 +666,4 @@ dispatcher.add_handler(VALUE_HANDLER)
 dispatcher.add_handler(CLAIM_HANDLER)
 dispatcher.add_handler(EXCHANGE_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
+dispatcher.add_handler(STATS_HANDLER)
