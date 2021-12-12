@@ -40,14 +40,14 @@ def wheel(update , context):
     value = (cd['white'] * 1) + (cd['red'] * 5) + (cd['orange'] * 25) + (cd['yellow'] * 100) + (cd['blue'] * 500) + (
                 cd['purple'] * 2500) + (cd['black'] * 15000)
 
-    cd["using"] = using = "⚪️ white chip"
+    cd["using"] = using = "white"
 
     keyboard = [
         [InlineKeyboardButton("Check Odd", callback_data="check"),
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text(f"<b><u>Wheel</u></b>\n"
@@ -59,7 +59,7 @@ def wheel(update , context):
                               f"<b>🔵Blue Chip</b> : {blue}\n"
                               f"<b>🟣Purple Chip</b> : {purple}\n"
                               f"<b>⚫Black Chip</b> : {black}\n\n"
-                              f"Chip in use : {using}\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
+                              f"Chip in use : {using} chip\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
                               , reply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
     cd['display'] = context.bot.send_photo(chat_id=update.effective_chat.id,
@@ -85,6 +85,7 @@ def wheelback(update , context):
 
 
     cd["amount"] = amount = 1
+    using = cd["using"]
 
     value = (cd['white'] * 1) + (cd['red'] * 5) + (cd['orange'] * 25) + (cd['yellow'] * 100) + (cd['blue'] * 500) + (
                 cd['purple'] * 2500) + (cd['black'] * 15000)
@@ -97,7 +98,7 @@ def wheelback(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b><u>Wheel</u></b>\n"
@@ -109,7 +110,7 @@ def wheelback(update , context):
                             f"<b>🔵Blue Chip</b> : {blue}\n"
                             f"<b>🟣Purple Chip</b> : {purple}\n"
                             f"<b>⚫Black Chip</b> : {black}\n\n"
-                            f"Chip in use : {using}\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
+                            f"Chip in use : {using} chip\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
                            , reply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
     return TWO
@@ -218,6 +219,7 @@ def wheelplay(update, context):
 
     dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
     cd['amount'] = amount = 1
+    using = cd['using']
 
     value = (cd['white'] * 1) + (cd['red'] * 5) + (cd['orange'] * 25) + (cd['yellow'] * 100) + (cd['blue'] * 500) + (
             cd['purple'] * 2500) + (cd['black'] * 15000)
@@ -234,7 +236,7 @@ def wheelplay(update, context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play:white")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     # u can replace this if else with the suggestion u mentioned in tg
@@ -260,7 +262,7 @@ def wheelplay(update, context):
                             f"<b>🔵Blue Chip</b> : {blue}\n"
                             f"<b>🟣Purple Chip</b> : {purple}\n"
                             f"<b>⚫Black Chip</b> : {black}\n\n"
-                            f"Chip in use : {using}\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
+                            f"Chip in use : {using} chip\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
                             , reply_markup=reply_markup, parse_mode=ParseMode.HTML)
     return TWO
 
