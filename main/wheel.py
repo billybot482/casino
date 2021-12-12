@@ -73,14 +73,14 @@ def wheel(update , context):
     value = (cd['white'] * 1) + (cd['red'] * 5) + (cd['orange'] * 25) + (cd['yellow'] * 100) + (cd['blue'] * 500) + (
                 cd['purple'] * 2500) + (cd['black'] * 15000)
 
-    cd["using"] = using = "white"
+    cd["using"] = using = cd['using'] if cd.get("using", False) else colours[0]
 
     keyboard = [
         [InlineKeyboardButton("Check Odd", callback_data="check"),
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -141,7 +141,7 @@ def wheelback(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b><u>Wheel</u></b>\n"
@@ -282,7 +282,7 @@ def wheelplay(update, context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     # u can replace this if else with the suggestion u mentioned in tg
