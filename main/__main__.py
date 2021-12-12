@@ -140,6 +140,10 @@ def statistic(update, context):
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
     pet_count = 0
+    try:
+        ratio = ((win/loss)/2)-50
+    except ZeroError:
+        ratio = 'play few games first'
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     
@@ -149,7 +153,8 @@ def statistic(update, context):
                               f'<b>★ Total wagered :</b> {wager}\n'
                               f'<b>★ Total win :</b> {win}\n'
                               f'<b>★ Total loss : </b>{loss}\n'
-                              f'<b>★ Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
+                              f'<b>★ Ratio : </b>{ratio}\n\n'
+                              f'<b>💫 Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
     
                 
 def add(update , context):
