@@ -141,9 +141,9 @@ def statistic(update, context):
     black = round(DB.get_user_value(id, "black"),4)
     pet_count = 0
     try:
-        ratio = round(((win/loss)/2),2)
-        winrate = win/(win+loss)*100
-        lossrate = loss/(win+loss)*100
+        ratio = round(((win/loss)/2)*100,2)
+        winrate = round(win/(win+loss)*100,2) 
+        lossrate = round(loss/(win+loss)*100,2)
     except ZeroDivisionError:
         ratio = 'NA'
         winrate = 'NA'
