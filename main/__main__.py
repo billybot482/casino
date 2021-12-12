@@ -153,7 +153,7 @@ def statistic(update, context):
                               f'<b>★ Total wagered :</b> {wager}\n'
                               f'<b>★ Total win :</b> {win}\n'
                               f'<b>★ Total loss : </b>{loss}\n'
-                              f'<b>★ Ratio : </b>{ratio}\n\n'
+                              f'<b>★ Ratio : </b>{ratio}%\n\n'
                               f'<b>💫 Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
     
                 
