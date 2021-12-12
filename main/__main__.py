@@ -130,7 +130,7 @@ def statistic(update, context):
     wager = DB.get_user_value(id , "wager")
     win = DB.get_user_value(id , "win")
     loss = DB.get_user_value(id , "loss")
-    VIP = DB.get_user_value(id, "vip")
+    vip = DB.get_user_value(id, "vip")
     worth = DB.get_user_value(id, "worth")
     white = round(DB.get_user_value(id, "white"),4)
     red = round(DB.get_user_value(id, "red"),4)
