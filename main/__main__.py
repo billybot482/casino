@@ -355,7 +355,7 @@ def exchange(update , context):
      if units > cd[type]:
         update.message.reply_text('You dont have enough to do this conversion')
      if units <= cd[type] and units > 0:
-        msg = update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=markups[color.index(type)], parse_mode = ParseMode.HTML)
+        msg = update.message.reply_text(f'Exchange <b>{units}</b> {type} chip for : \n\n', reply_markup=markups[colour.index(type)], parse_mode = ParseMode.HTML)
         cd["queue"].put(msg)
      if units < 0:
         update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
