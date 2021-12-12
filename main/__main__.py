@@ -145,11 +145,11 @@ def statistic(update, context):
     
     update.message.reply_text(f'<b><u>statistic of {name}</u></b>\n\n'
                               f'<b>🎖 VIP  : {vip}</b>\n'
-                              f'<b>★Current assets : {value}</b>'
+                              f'<b>★Current assets :</b> {value}$ \n'
                               f'<b>★ Total wagered :</b> {wager}\n'
-                              f'<b>★ Total win : {win}</b>\n'
-                              f'<b>★ Total loss : {loss}</b>\n'
-                              f'<b>★Pet owned : {pet_count}</b>', parse_mode = ParseMode.HTML)
+                              f'<b>★ Total win :</b> {win}\n'
+                              f'<b>★ Total loss : </b>{loss}\n'
+                              f'<b>★ Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
     
                 
 def add(update , context):
