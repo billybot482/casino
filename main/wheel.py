@@ -5,6 +5,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
+import random
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
@@ -12,6 +13,39 @@ colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
 
 MIN_CHIP_AMOUNT = 1
 MAX_CHIP_AMOUNT = 10
+
+
+wheely = [
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'grey','mult': 0, 'pic':'https://telegra.ph/file/cd278c95599273c2bf137.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'green','mult': 1.5, 'pic':'https://telegra.ph/file/03356c57ee43e51f23114.jpg'},
+{'colour':'white','mult': 1.7, 'pic':'https://telegra.ph/file/42afd0e0464c05dcd63b2.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'yellow','mult': 2, 'pic':'https://telegra.ph/file/7b937b02e2aeb4af23b5d.jpg'},
+{'colour':'purple','mult': 3, 'pic':'https://telegra.ph/file/f95eb2ebc8726875bf553.jpg'},
+{'colour':'orange','mult': 4, 'pic':'https://telegra.ph/file/9f3c72f5d0a63d7301772.jpg'}]
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +80,7 @@ def wheel(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -107,7 +141,7 @@ def wheelback(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b><u>Wheel</u></b>\n"
@@ -221,7 +255,7 @@ def wheelplay(update, context):
     req = query.data.split(':')
     logger.info(str(req))
     # check if enough chips
-    if cd[cd['using']] <= 0:
+    if cd[req[1]] <= 0:
         query.edit_message_text("not enough chips")
         return
 
@@ -248,7 +282,7 @@ def wheelplay(update, context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data="play")]
+        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     # u can replace this if else with the suggestion u mentioned in tg
