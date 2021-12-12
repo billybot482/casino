@@ -141,7 +141,7 @@ def statistic(update, context):
     black = round(DB.get_user_value(id, "black"),4)
     pet_count = 0
     try:
-        ratio = ((win/loss)/2)-50
+        ratio = round(((win/loss)/2)-50,2)
     except ZeroDivisionError:
         ratio = 'play few games first'
 

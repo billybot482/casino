@@ -46,7 +46,7 @@ def wheel(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
@@ -107,7 +107,7 @@ def wheelback(update , context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b><u>Wheel</u></b>\n"
@@ -221,7 +221,7 @@ def wheelplay(update, context):
     req = query.data.split(':')
     logger.info(str(req))
     # check if enough chips
-    if cd[req[1]] <= 0:
+    if cd[cd['using']] <= 0:
         query.edit_message_text("not enough chips")
         return
 
@@ -248,7 +248,7 @@ def wheelplay(update, context):
          InlineKeyboardButton("change chip", callback_data="chip")],
         [InlineKeyboardButton(" - ", callback_data="minus"), InlineKeyboardButton(f"{amount}", callback_data="amount"),
          InlineKeyboardButton(" + ", callback_data="add")],
-        [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
+        [InlineKeyboardButton("Play", callback_data="play")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     # u can replace this if else with the suggestion u mentioned in tg
@@ -286,7 +286,7 @@ WHEEL_HANDLER = ConversationHandler(
         states={
             TWO: [CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True),
                   CallbackQueryHandler(wheelcheckodd, pattern="^check$", pass_user_data=True),
-                  CallbackQueryHandler(wheelplay, pattern="^play:*$", pass_user_data=True),
+                  CallbackQueryHandler(wheelplay, pattern="^play$", pass_user_data=True),
                   CallbackQueryHandler(wheelselectchip, pattern="^chip$", pass_user_data=True),
                   CallbackQueryHandler(wheelinc, pattern="^inc$", pass_user_data=True),
                   CallbackQueryHandler(wheeldec, pattern="^dec$", pass_user_data=True)
