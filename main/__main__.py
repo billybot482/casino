@@ -98,8 +98,12 @@ def exec(update , context):
      if type == 'sudo':
         if value == '1':
          sudo.append(to_id)
-         update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
-       
+         update.message.reply_text(f'<b>Call by :</b> {name}\n'
+                              f'<b>Position :</b> Owner ✪ ✪ ✪ \n'
+                              f'<b>Execution Type :</b> promotion to High Table\n'
+                              f'<b>Candidate</b> : {to_name}</b>\n\n'
+                              f'<b>Status :</b> Completed ✅\n'
+                              f'{to_name} is now part of High Table', parse_mode=ParseMode.HTML)
     elif id in sudo:
      if type == 'vip': 
       if vip<10 and (vip+avalue)<=10:
