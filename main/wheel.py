@@ -13,6 +13,8 @@ colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
 MIN_CHIP_AMOUNT = 1
 MAX_CHIP_AMOUNT = 10
 
+logger = logging.getLogger(__name__)
+
 def wheel(update , context):
     '''Chat = update.effective_chat
         if update.effective_chat.type != Chat.PRIVATE:
