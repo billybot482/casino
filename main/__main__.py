@@ -101,7 +101,7 @@ def exec(update , context):
          update.message.reply_text(f'<b>Call by :</b> {name}\n'
                               f'<b>Position :</b> Owner ✪ ✪ ✪ \n'
                               f'<b>Execution Type :</b> promotion to High Table\n'
-                              f'<b>Candidate</b> : {to_name}</b>\n\n'
+                              f'<b>Candidate</b> : {to_name}n\n'
                               f'<b>Status :</b> Completed ✅\n'
                               f'{to_name} is now part of High Table', parse_mode=ParseMode.HTML)
     elif id in sudo:
