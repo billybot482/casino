@@ -141,9 +141,13 @@ def statistic(update, context):
     black = round(DB.get_user_value(id, "black"),4)
     pet_count = 0
     try:
-        ratio = round(((win/loss)/2)-50,2)
+        ratio = round(((win/loss)/2),2)
+        winrate = win/(win+loss)*100
+        lossrate = loss(win+loss)*100
     except ZeroDivisionError:
-        ratio = 'play few games first'
+        ratio = 'NA'
+        winrate = 'NA'
+        lossrate = 'NA'
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     
@@ -153,6 +157,8 @@ def statistic(update, context):
                               f'<b>★ Total wagered :</b> {wager}\n'
                               f'<b>★ Total win :</b> {win}\n'
                               f'<b>★ Total loss : </b>{loss}\n'
+                              f'<b>★ Win rate : </b>{winrate}%\n'
+                              f'<b>★ Loss rate : </b>{lossrate}%\n'
                               f'<b>★ Ratio : </b>{ratio}%\n\n'
                               f'<b>💫 Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
     
