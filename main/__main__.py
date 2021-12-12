@@ -139,6 +139,7 @@ def statistic(update, context):
     blue = round(DB.get_user_value(id, "blue"),4)
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
+    pet_count = 0
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
     
