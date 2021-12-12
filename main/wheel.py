@@ -21,10 +21,9 @@ def wheel(update , context):
             update.message.reply_text("play in pm")
             return -1'''
     cd = context.chat_data
-    query = update.callback_query
-    id = update.effective_user.id
-    name = update.effective_user.first_name
-    username = update.effective_user.name
+    id = update.message.from_user.id
+    name = update.message.from_user.first_name
+    username = update.message.from_user.name
     VIP = DB.get_user_value(id, "vip")
     cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
@@ -50,7 +49,12 @@ def wheel(update , context):
         [InlineKeyboardButton("Play", callback_data=f"play:{using}")]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text(f"<b><u>Wheel</u></b>\n"
+
+    if cd.get('wheel_main_message', False):
+        cd['wheel_main_message'].delete()
+        del cd['wheel_main_message']
+
+    cd['wheel_main_message'] = update.message.reply_text(f"<b><u>Wheel</u></b>\n"
                               f"<i>Net Worth</i> : {value}$\n\n"
                               f"<b>⚪️White Chip</b> : {white}\n"
                               f"<b>🔴Red Chip</b> : {red}\n"
@@ -62,7 +66,11 @@ def wheel(update , context):
                               f"Chip in use : {using} chip\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
                               , reply_markup=reply_markup, parse_mode=ParseMode.HTML)
 
-    cd['display'] = context.bot.send_photo(chat_id=update.effective_chat.id,
+    if cd.get('display', False):
+        cd['display'].delete()
+        del cd['display']
+
+    cd['display'] = context.bot.send_photo(chat_id=update.message.chat.id,
                                            photo="https://telegra.ph/file/735959f85badb6b405033.jpg",
                                            caption=
                                            "<b>Spin the Wheel and make some gains!</b>",
@@ -73,6 +81,7 @@ def wheel(update , context):
 def wheelback(update , context):
     cd = context.chat_data
     query = update.callback_query
+    query.answer()
     white = cd['white']
     red = cd['red']
     orange = cd['orange']
@@ -165,8 +174,9 @@ def wheelchangechip(update, context):
     if query.data == "back":
         return
 
-    cd["using"] = query.data if query.data in colours else ...
-    return wheel(update, context)
+    cd["using"] = query.data if query.data in colours else cd["using"]
+    query.message = query.message.reply_to_message
+    return wheel(query, context)
 
 def wheelinc(update, context):
     query = update.callback_query
@@ -177,14 +187,16 @@ def wheelinc(update, context):
 
     query.answer()
     cd["amount"] += 1
-    return wheel(update, context)
+    query.message = query.message.reply_to_message
+    return wheel(query, context)
 
 
 def wheeldec(update, context):
     update.callback_query.answer()
     cd = context.chat_data
     cd["amount"] -= 1 if cd["amount"] > MIN_CHIP_AMOUNT else 0
-    return wheel(update, context)
+    query.message = query.message.reply_to_message
+    return wheel(query, context)
 
 
 def wheelplay(update, context):
@@ -264,6 +276,7 @@ def wheelplay(update, context):
                             f"<b>⚫Black Chip</b> : {black}\n\n"
                             f"Chip in use : {using} chip\nBet amount : {amount}\nBet size : {dict['white'] * amount}$\n\n"
                             , reply_markup=reply_markup, parse_mode=ParseMode.HTML)
+    del cd['display']
     return TWO
 
 
