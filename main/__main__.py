@@ -143,7 +143,7 @@ def statistic(update, context):
     try:
         ratio = round(((win/loss)/2),2)
         winrate = win/(win+loss)*100
-        lossrate = loss(win+loss)*100
+        lossrate = loss/(win+loss)*100
     except ZeroDivisionError:
         ratio = 'NA'
         winrate = 'NA'
