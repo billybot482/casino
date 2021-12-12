@@ -86,15 +86,6 @@ def exec(update , context):
     to_id = update.message.reply_to_message.from_user.id
     to_name = update.message.reply_to_message.from_user.first_name
     vip = DB.get_user_value(to_id, 'vip')
-    
-    if id in owners:
-      if type == 'sudo':
-        if value == '1':
-         sudo.append(to_id)
-         update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
-    else:
-     update.message.reply_text('Not Authorised')
-     return -1
    
     if id in owners:
      if type == 'vip':
@@ -108,10 +99,7 @@ def exec(update , context):
         if value == '1':
          sudo.append(to_id)
          update.message.reply_text(f'<b>Call by :</b> {name}\n<b>Position :</b> Owner ✪ ✪ ✪ \n<b>Execution Type :</b> promotion to High Table\n<b>Candidate</b> : {to_name}</b>\n\n<b>Status :</b> Completed ✅\n{to_name} is now part of High Table',parse_mode=ParseMode.HTML)
-     else:
-      update.message.reply_text('Not Authorised')
-      
-    
+       
     elif id in sudo:
      if type == 'vip': 
       if vip<10 and (vip+avalue)<=10:
