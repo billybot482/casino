@@ -255,7 +255,7 @@ def wheelplay(update, context):
     req = query.data.split(':')
     logger.info(str(req))
     # check if enough chips
-    if cd[req[1]] <= 0:
+    if cd[cd['using']] <= 0:
         query.edit_message_text("not enough chips")
         return
 
@@ -273,7 +273,6 @@ def wheelplay(update, context):
     if update.effective_chat.type != Chat.PRIVATE:
         update.message.reply_text("play in pm")
         return -1'''
-    cd["using"] = using = "⚪️ white chip"
 
     context.bot.delete_message(chat_id=update.effective_chat.id, message_id=msg.message_id)
 
