@@ -142,7 +142,7 @@ def statistic(update, context):
     pet_count = 0
     try:
         ratio = ((win/loss)/2)-50
-    except ZeroError:
+    except ZeroDivisionError:
         ratio = 'play few games first'
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
