@@ -154,7 +154,7 @@ def statistic(update, context):
     update.message.reply_text(f'<b><u>statistic of {name}</u></b>\n\n'
                               f'<b>🎖 VIP  : {vip}</b>\n'
                               f'<b>★ Current assets :</b> {value}$ \n'
-                              f'<b>★ Total wagered :</b> {wager}\n'
+                              f'<b>★ Total wagered :</b> {wager}$\n'
                               f'<b>★ Total win :</b> {win}\n'
                               f'<b>★ Total loss : </b>{loss}\n'
                               f'<b>★ Win rate : </b>{winrate}%\n'
