@@ -21,11 +21,19 @@ def setup():
                   blue real,
                   purple real,
                   black real,
+                  rbwhite real,
+                  rbred real,
+                  rborange real,
+                  rbyellow real,
+                  rbblue real,
+                  rbpurple real,
+                  rbblack real,
                   wager real ,
                   worth integer ,
                   win integer ,
                   loss integer,
-                  vip integer
+                  vip integer,
+                  rakeback real,
             );
     """)
     conn.commit()
@@ -48,7 +56,7 @@ def setup():
     conn.commit()
 
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , wager, worth , win , loss , vip)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager, worth , win , loss , vip, rakeback)
   VALUES (
   %s,
   100,
@@ -59,7 +67,15 @@ def add_user(user_id):
   0,
   0,
   0,
-  100,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
   0,
   0,
   0
@@ -127,3 +143,58 @@ def add_vip(user_id : int , vip : int):
     stmt = f"UPDATE Usr SET vip = vip + %s WHERE user_id =%s;"
     cur.execute(stmt, (vip,user_id))
     conn.commit()
+    
+def add_rbwhite( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbwhite = rbwhite + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()    
+    
+def add_rbred( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbred = rbred + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()    
+     
+def add_rborange( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rborange = rborange + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()    
+    
+def add_rbyellow( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbyellow = rbyellow + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()  
+    
+def add_rbblue( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbblue = rbblue + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()  
+    
+def add_rbpurple( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbpurple = rbpurple + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()  
+    
+def add_rbblack( user_id : int , white : int):
+    stmt = f"UPDATE Usr SET rbblack = rbblack + %s WHERE user_id =%s;"
+    cur.execute(stmt, (white,user_id))
+    conn.commit()  
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
