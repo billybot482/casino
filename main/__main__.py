@@ -45,7 +45,90 @@ def value(update , context):
            "🔴 red chip : 5$\n🟠 orange chip : 25$\n🟡 yellow chip : 100$\n🔵 blue chip : 500$" \
            "\n🟣 purple chip : 2000$\n⚫️ black chip : 15000$"
     context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
+    
+def rakeback(update, context):
+    cd = context.chat_data
+    query = update.callback_query
+    id = update.effective_user.id
+    cd['id'] = id
+    name = update.effective_user.first_name
+    cd['white'] = white = round(DB.get_user_value(id, "rbwhite"),4)
+    cd['red'] =  red = round(DB.get_user_value(id, "rbred"),4)
+    cd['orange'] = orange = round(DB.get_user_value(id, "rborange"),4)
+    cd['yellow'] = yellow = round(DB.get_user_value(id, "rbyellow"),4)
+    cd['blue'] = blue = round(DB.get_user_value(id, "rbblue"),4)
+    cd['purple'] = purple = round(DB.get_user_value(id, "rbpurple"),4)
+    cd['black'] = black = round(DB.get_user_value(id, "rbblack"),4)
+    value = (rbwhite*1)+(rbred*5)+(rborange*25)+(rbyellow*100)+(rbblue*500)+(rbpurple*2000)+(rbblack*15000)
+    
+    keyboard = [
+         [InlineKeyboardButton('claim', callback_data='claim'),InlineKeyboardButton('cancel', callback_data='cancel')]
+     ]
+     reply_markup = InlineKeyboardMarkup(keyboard)
 
+    try:
+     update.message.reply_text(f"<u><b>{name}'s Rakeback account</b></u>\n"
+                              f"🎖 VIP : {VIP}\n\n"
+                              f"<b>⚪️White Chip</b> : {rbwhite}\n"
+                              f"<b>🔴Red Chip</b> : {rbred}\n"
+                              f"<b>🟠Orange Chip</b> : {rborange}\n"
+                              f"<b>🟡Yellow Chip</b> : {rbyellow}\n"
+                              f"<b>🔵Blue Chip</b> : {rbblue}\n"
+                              f"<b>🟣Purple Chip</b> : {rbpurple}\n"
+                              f"<b>⚫Black Chip</b> : {rbblack}\n\n"
+                              f"<i>Total worth Worth</i> : {value}$\n"
+                              f"click claim below to claim all rakeback to your main wallet or cancel if you do not wish to claim it",
+                              parse_mode=ParseMode.HTML, reply_markup = reply_markup)
+    except TypeError:
+     update.message.reply_text('start the bot /start')
+    
+    return FOUR
+
+def rakeback3(update , context):
+    cd = context.chat_data
+    query = update.callback_query
+    query.edit_message_text('closed')
+    return ConversationHandler.END
+    
+
+def rakeback2(update , context):
+    cd = context.chat_data
+    query = update.callback_query
+    id = cd['id']
+    white = cd['white']
+    red = cd['red']
+    orange = cd['orange']
+    yellow = cd['yellow']
+    blue = cd['blue']
+    purple = cd['purple']
+    black = cd['black']
+    
+    query.edit_message_text('rakeback has been added to your main wallet')
+    DB.add_white(id , white)
+    DB.add_rbwhite(id , -white)
+    
+    DB.add_red(id , red)
+    DB.add_rbred(id , -red)
+    
+    DB.add_orange(id , orange)
+    DB.add_rborange(id , -orange)
+    
+    DB.add_yellow(id , yellow)
+    DB.add_rbyellow(id , -yellow)
+    
+    DB.add_blue(id , blue)
+    DB.add_rbblue(id , -blue)
+    
+    DB.add_purple(id , purple)
+    DB.add_rbpurple(id , -purple)
+    
+    DB.add_black(id , black)
+    DB.add_rbblack(id , -black)
+    
+    return ConversationHandler.END
+    
+    
+   
 def wallet(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
@@ -671,6 +754,21 @@ CallbackQueryHandler(exchange2, pattern='^' + str("black7") + '$'),CallbackQuery
     allow_reentry=True,
     per_user=True
     )
+
+RAKEBACK_HANDLER = ConversationHandler(
+        entry_points=[CommandHandler('rakeback', rakeback)],
+        states={
+            FOUR: [CallbackQueryHandler(rakeback2, pattern='^' + str("claim") + '$'),
+                   CallbackQueryHandler(rakeback3, pattern='^' + str("cancel") + '$'),
+            ],
+        },
+        fallbacks=[],
+
+    allow_reentry=True,
+    per_user=True
+    )
+
+
 START_HANDLER = CommandHandler('start', start)
 WALLET_HANDLER = CommandHandler('wallet', wallet)
 GAMES_HANDLER = CommandHandler('games', games)
@@ -689,3 +787,9 @@ dispatcher.add_handler(CLAIM_HANDLER)
 dispatcher.add_handler(EXCHANGE_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
+dispatcher.add_handler(RAKEBACK_HANDLER)
+
+
+
+
+
