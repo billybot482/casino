@@ -64,7 +64,7 @@ def rakeback(update, context):
     keyboard = [
          [InlineKeyboardButton('claim', callback_data='claim'),InlineKeyboardButton('cancel', callback_data='cancel')]
      ]
-     reply_markup = InlineKeyboardMarkup(keyboard)
+    reply_markup = InlineKeyboardMarkup(keyboard)
 
     try:
      update.message.reply_text(f"<u><b>{name}'s Rakeback account</b></u>\n"
