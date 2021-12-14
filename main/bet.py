@@ -67,7 +67,7 @@ def bet(update, context):
        if amount >0:
         a = random.randint(1,2)
         if a == 1:
-         DB.add_red(id , amount)\
+         DB.add_red(id , amount)
          DB.add_red(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*5)
