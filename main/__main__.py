@@ -60,7 +60,7 @@ def rakeback(update, context):
     cd['blue'] = rbblue = round(DB.get_user_value(id, "rbblue"),4)
     cd['purple'] = rbpurple = round(DB.get_user_value(id, "rbpurple"),4)
     cd['black'] = rbblack = round(DB.get_user_value(id, "rbblack"),4)
-    value = (rbwhite*1)+(rbred*5)+(rborange*25)+(rbyellow*100)+(rbblue*500)+(rbpurple*2000)+(rbblack*15000)
+    value = round((rbwhite*1)+(rbred*5)+(rborange*25)+(rbyellow*100)+(rbblue*500)+(rbpurple*2000)+(rbblack*15000),4)
     
     keyboard = [
          [InlineKeyboardButton('claim', callback_data='claim'),InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -144,7 +144,7 @@ def wallet(update , context):
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
 
-    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
+    value = round((white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000),4)
     try:
      update.message.reply_text(f"<u><b>{name}'s Wallet</b></u>\n"
                               f"🎖 VIP : {VIP}\n\n"
