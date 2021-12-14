@@ -33,7 +33,7 @@ def setup():
                   win integer ,
                   loss integer,
                   vip integer,
-                  rakeback real,
+                  rakeback real
             );
     """)
     conn.commit()
