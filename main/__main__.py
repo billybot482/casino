@@ -61,6 +61,8 @@ def rakeback(update, context):
     cd['purple'] = rbpurple = round(DB.get_user_value(id, "rbpurple"),4)
     cd['black'] = rbblack = round(DB.get_user_value(id, "rbblack"),4)
     value = round((rbwhite*1)+(rbred*5)+(rborange*25)+(rbyellow*100)+(rbblue*500)+(rbpurple*2000)+(rbblack*15000),4)
+    vip = int(VIP)
+    mult = ((vip+1)/10)+(0.2*vip)
     
     keyboard = [
          [InlineKeyboardButton('claim', callback_data='claim'),InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -69,7 +71,8 @@ def rakeback(update, context):
 
     try:
      update.message.reply_text(f"<u><b>{name}'s Rakeback account</b></u>\n"
-                              f"🎖 VIP : {VIP}\n\n"
+                              f"🎖 VIP : {VIP}\n"
+                              f"Rakeback percent : {mult}%\n\n"
                               f"<b>⚪️White Chip</b> : {rbwhite}\n"
                               f"<b>🔴Red Chip</b> : {rbred}\n"
                               f"<b>🟠Orange Chip</b> : {rborange}\n"
