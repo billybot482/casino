@@ -50,6 +50,7 @@ def rakeback(update, context):
     cd = context.chat_data
     query = update.callback_query
     id = update.effective_user.id
+    VIP = DB.get_user_value(id, "vip")
     cd['id'] = id
     name = update.effective_user.first_name
     cd['white'] = rbwhite = round(DB.get_user_value(id, "rbwhite"),4)
