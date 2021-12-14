@@ -29,7 +29,10 @@ def bet(update, context):
     cd["blue"] = blue = DB.get_user_value(id, "blue")
     cd["purple"] = purple = DB.get_user_value(id, "purple")
     cd["black"] = black = DB.get_user_value(id, "black")
-    print("test2") 
+    vip = int(VIP)
+    mult = ((vip+1)/10)+(vip*0.2)
+    
+    
     try:
      type = update.message.text.split()[1]
      amount = update.message.text.split()[2]
@@ -49,11 +52,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_white(id , amount)
+         DB.add_white(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount)
          update.message.reply_text(f"Congrats, you won {amount} ⚪ White chip") 
         else:
          DB.add_white(id , -amount)
+         DB.add_white(id , amount*mult)
          DB.add_wager(id , amount)
          DB.add_loss(id, 1)
          update.message.reply_text(f" Unfortunately you lost {amount} of ⚪ White chip") 
@@ -62,12 +67,14 @@ def bet(update, context):
        if amount >0:
         a = random.randint(1,2)
         if a == 1:
-         DB.add_red(id , amount)
+         DB.add_red(id , amount)\
+         DB.add_red(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*5)
          update.message.reply_text(f"Congrats, you won {amount} 🔴 Red chip") 
         else:
          DB.add_red(id , -amount)
+         DB.add_red(id , amount*mult)
          DB.add_wager(id , amount*5)
          DB.add_loss(id, 1)
          update.message.reply_text(f" Unfortunately you lost {amount} of 🔴 Red chip") 
@@ -77,11 +84,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_orange(id , amount) 
+         DB.add_orange(id , amount*mult) 
          DB.add_win(id, 1)
          DB.add_wager(id , amount*25)
          update.message.reply_text(f"Congrats, you won {amount} 🟠 orange chip") 
         else:
          DB.add_orange(id , -amount)
+         DB.add_orange(id , amount*mult) 
          DB.add_loss(id, 1)
          DB.add_wager(id , amount*25)
          update.message.reply_text(f" Unfortunately you lost {amount} of 🟠 orange chip") 
@@ -91,11 +100,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_yellow(id , amount)
+         DB.add_yellow(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*100)
          update.message.reply_text(f"Congrats, you won {amount} 🟡 yellow chip") 
         else:
          DB.add_yellow(id , -amount)
+         DB.add_yellow(id , amount*mult)
          DB.add_loss(id, 1)
          DB.add_wager(id , amount*100)
          update.message.reply_text(f" Unfortunately you lost {amount} of 🟡 yellow chip") 
@@ -105,11 +116,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_blue(id , amount)
+         DB.add_blue(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*500)
          update.message.reply_text(f"Congrats, you won {amount} 🔵 blue chip") 
         else:
          DB.add_blue(id , -amount)
+         DB.add_blue(id , amount*mult)
          DB.add_loss(id, 1)
          DB.add_wager(id , amount*500)
          update.message.reply_text(f" Unfortunately you lost {amount} of 🔵 blue chip") 
@@ -119,11 +132,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_purple(id , amount)
+         DB.add_purple(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*2000)
          update.message.reply_text(f"Congrats, you won {amount} 🟣 purple chip") 
         else:
          DB.add_purple(id , -amount)
+         DB.add_purple(id , amount*mult)
          DB.add_loss(id, 1)
          DB.add_wager(id , amount*2000)
          update.message.reply_text(f" Unfortunately you lost {amount} of 🟣 purple chip") 
@@ -133,11 +148,13 @@ def bet(update, context):
         a = random.randint(1,2)
         if a == 1:
          DB.add_black(id , amount)
+         DB.add_black(id , amount*mult)
          DB.add_win(id, 1)
          DB.add_wager(id , amount*15000)
          update.message.reply_text(f"Congrats, you won {amount} ⚫ Black chip") 
         else:
          DB.add_black(id , -amount)
+         DB.add_black(id , amount*mult)
          DB.add_loss(id, 1)
          DB.add_wager(id , amount*15000)
          update.message.reply_text(f" Unfortunately you lost {amount} of ⚫ Black chip") 
