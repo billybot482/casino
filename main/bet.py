@@ -30,7 +30,7 @@ def bet(update, context):
     cd["purple"] = purple = DB.get_user_value(id, "purple")
     cd["black"] = black = DB.get_user_value(id, "black")
     vip = int(VIP)
-    mult = ((vip+1)/10)+(vip*0.2)
+    mult = (((vip+1)/10)+(vip*0.2))/100
     
     
     try:
