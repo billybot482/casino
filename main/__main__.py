@@ -52,13 +52,13 @@ def rakeback(update, context):
     id = update.effective_user.id
     cd['id'] = id
     name = update.effective_user.first_name
-    cd['white'] = white = round(DB.get_user_value(id, "rbwhite"),4)
-    cd['red'] =  red = round(DB.get_user_value(id, "rbred"),4)
-    cd['orange'] = orange = round(DB.get_user_value(id, "rborange"),4)
-    cd['yellow'] = yellow = round(DB.get_user_value(id, "rbyellow"),4)
-    cd['blue'] = blue = round(DB.get_user_value(id, "rbblue"),4)
-    cd['purple'] = purple = round(DB.get_user_value(id, "rbpurple"),4)
-    cd['black'] = black = round(DB.get_user_value(id, "rbblack"),4)
+    cd['white'] = rbwhite = round(DB.get_user_value(id, "rbwhite"),4)
+    cd['red'] =  rbred = round(DB.get_user_value(id, "rbred"),4)
+    cd['orange'] = rborange = round(DB.get_user_value(id, "rborange"),4)
+    cd['yellow'] = rbyellow = round(DB.get_user_value(id, "rbyellow"),4)
+    cd['blue'] = rbblue = round(DB.get_user_value(id, "rbblue"),4)
+    cd['purple'] = rbpurple = round(DB.get_user_value(id, "rbpurple"),4)
+    cd['black'] = rbblack = round(DB.get_user_value(id, "rbblack"),4)
     value = (rbwhite*1)+(rbred*5)+(rborange*25)+(rbyellow*100)+(rbblue*500)+(rbpurple*2000)+(rbblack*15000)
     
     keyboard = [
