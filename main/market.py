@@ -9,6 +9,7 @@ from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 def market(update, context):
+    id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
