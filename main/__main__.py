@@ -270,7 +270,7 @@ def gift(update , context):
         DB.add_yellow(user_id , 30) 
         DB.add_blue(user_id , 10)
         update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips") 
-     else:
+    else:
         update.message.reply_text('Not authorised')
 
         
