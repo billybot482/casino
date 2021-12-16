@@ -29,7 +29,7 @@ def blackmarket(update, context):
     id = update.effective_user.id
     vip = DB.get_user_value(id,"vip")
     if vip>5:
-     update.message.reply_text("This is black market🕋") 
+     update.message.reply_text("This is black market🕋\n\nA place for rare items") 
     else:
      update.message.reply_text("Kids are not allowed in black market🕋") 
     
