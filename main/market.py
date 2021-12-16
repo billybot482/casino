@@ -25,7 +25,7 @@ def blackmarket(update, context):
 
 
 MARKET_HANDLER = CommandHandler('market', market)
-dispatcher.add_handler(BET_HANDLER)
+dispatcher.add_handler(MARKET_HANDLER)
 
 BLACK_HANDLER = CommandHandler('blackmarket', blackmarket)
 dispatcher.add_handler(BLACK_HANDLER)
