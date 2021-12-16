@@ -1,4 +1,5 @@
 import logging
+import enum
 from main import dispatcher 
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
