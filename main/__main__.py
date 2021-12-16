@@ -250,6 +250,30 @@ def statistic(update, context):
                               f'<b>💫 Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
     
                 
+def gift(update , context):
+    if not update.message.reply_to_message:
+             update.message.reply_text('reply to someone')
+             return
+    type = update.message.text.split()[1]
+    units = update.message.text.split()[2]
+    user_name = update.message.from_user.first_name
+    to = update.message.reply_to_message.from_user.first_name
+    user_id = update.message.reply_to_message.from_user.id
+    id = update.message.from_user.id
+
+    a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
+    msg = int(units)
+    if id in owners:
+        DB.add_white(user_id , 100)
+        DB.add_red(user_id , 100))
+        DB.add_orange(user_id , 50)
+        DB.add_yellow(user_id , 30
+        DB.add_blue(user_id , 10)
+     else:
+        update.message.reply_text('Not authorised')
+
+        
+        
 def add(update , context):
     if not update.message.reply_to_message:
              update.message.reply_text('reply to someone')
@@ -781,6 +805,7 @@ VALUE_HANDLER = CommandHandler('value', value)
 CLAIM_HANDLER = CommandHandler('claim', claim)
 EXEC_HANDLER = CommandHandler('exec', exec)
 STATS_HANDLER = CommandHandler('statistic', statistic)
+GIFT_HANDLER = CommandHandler('gift',gift)                      
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -792,6 +817,7 @@ dispatcher.add_handler(EXCHANGE_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(RAKEBACK_HANDLER)
+dispatcher.add_handler(GIFT_HANDLER)                  
 
 
 
