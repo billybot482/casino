@@ -254,8 +254,6 @@ def gift(update , context):
     if not update.message.reply_to_message:
              update.message.reply_text('reply to someone')
              return
-    type = update.message.text.split()[1]
-    units = update.message.text.split()[2]
     user_name = update.message.from_user.first_name
     to = update.message.reply_to_message.from_user.first_name
     user_id = update.message.reply_to_message.from_user.id
