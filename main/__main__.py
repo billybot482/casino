@@ -258,9 +258,6 @@ def gift(update , context):
     to = update.message.reply_to_message.from_user.first_name
     user_id = update.message.reply_to_message.from_user.id
     id = update.message.from_user.id
-
-    a = context.bot.get_chat_member(chat_id=update.effective_chat.id, user_id=update.effective_user.id).status
-    msg = int(units)
     if id in owners:
         DB.add_white(user_id , 100)
         DB.add_red(user_id , 100)
