@@ -51,8 +51,10 @@ def janken(update: Update, context: CallbackContext):
        update.message.reply_text(f'<b>{name}</b> created a rock paper scissor game\n\n'
                               f'<b>Type of chip :</b> {type}\n\n'
                               f'<b>Amount :</b> {amount}', reply_markup = reply_markup , parse_mode = ParseMode.HTML)
-      n+=1                    
-    return FIRST
+      n+=1   
+        
+    print('entry done')
+    return ONE
     
 def rules(update: Update, context: CallbackContext):
     cd = context.chat_data
@@ -111,7 +113,7 @@ def play(update: Update, context: CallbackContext):
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
              f"*{f}* make your decision\n", reply_markup=reply_markup,parse_mode = ParseMode.MARKDOWN_V2
     )
-    return FIRST
+    return ONE
 
 def first(update: Update, context: CallbackContext):
     cd = context.chat_data
@@ -147,7 +149,7 @@ def first(update: Update, context: CallbackContext):
     if tid == 652962567:
      context.bot.send_message(chat_id=652962567, text=f'{f} choose : {query.data}')
     print('player 1 choose : '+str(cd['choice1'])+ ',id : ' + str(update.callback_query.from_user.id))
-    return SECOND
+    return TWO
 
 def res(update: Update, context: CallbackContext):
     cd = context.chat_data
@@ -232,7 +234,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
           
-        return FIRST  
+        return ONE
      
     elif cd['choice1'] == 'rock' and cd['choice2'] == 'scissor':
         cd['fromhp'] -= 0
@@ -270,7 +272,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
 
-        return FIRST
+        return ONE
 
     elif cd['choice1'] == 'scissor' and cd['choice2'] == 'rock':
         cd['fromhp'] -= 1
@@ -308,7 +310,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
 
-        return FIRST
+        return ONE
 
     elif cd['choice1'] == 'rock' and cd['choice2'] == 'paper':
         cd['fromhp'] -= 1
@@ -346,7 +348,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
 
-        return FIRST
+        return ONE
 
     elif cd['choice1'] == 'paper' and cd['choice2'] == 'rock':
         cd['fromhp'] -= 0
@@ -383,7 +385,7 @@ def res(update: Update, context: CallbackContext):
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
-        return FIRST
+        return ONE
 
     elif cd['choice1'] == 'paper' and cd['choice2'] == 'scissor':
         cd['fromhp'] -= 1
@@ -421,7 +423,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
 
-        return FIRST
+        return ONE
 
     elif cd['choice1'] == 'scissor' and cd['choice2'] == 'paper':
         cd['fromhp'] -= 0
@@ -459,7 +461,7 @@ def res(update: Update, context: CallbackContext):
                                         f" Draw , cost has been returned to respective wallet!!\n")
           return ConversationHandler.END
 
-        return FIRST
+        return ONE
       
 janken_handler = ConversationHandler(
         entry_points=[CommandHandler('janken', janken)],
