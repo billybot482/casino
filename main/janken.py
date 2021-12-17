@@ -71,6 +71,7 @@ def play(update: Update, context: CallbackContext):
     cd['to_id'] = toid =update.callback_query.from_user.id
     cd['to_name'] = toname = update.callback_query.from_user.first_name
     
+    print(toid)
     
     f = cd['fighter']
     id = cd['fighterid']
@@ -101,8 +102,10 @@ def play(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     for i in range(7):
-     if type == cc[n] and amount<dd[n]:
+     if type == cc[n] and amount<dd[n]: #check if challenger have enough balance
         query.answer('Balance not enough to play this game')
+        print(cc[n])
+        print(dd[n])
         n +=1
         return None
      else:
