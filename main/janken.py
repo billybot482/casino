@@ -218,7 +218,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -228,7 +228,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -256,7 +256,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -266,7 +266,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -294,7 +294,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -304,7 +304,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -332,7 +332,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -342,7 +342,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -370,7 +370,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -380,7 +380,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -407,7 +407,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -417,7 +417,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
@@ -445,7 +445,7 @@ def res(update: Update, context: CallbackContext):
                   tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
-                                        f'{f} won {amount} {type} chip\n')
+                                        f'{f} won {amount*2} {type} chip\n')
                  n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
@@ -455,7 +455,7 @@ def res(update: Update, context: CallbackContext):
                   floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
-                                        f'{t} won {amount} {type} chip\n')  
+                                        f'{t} won {amount*2} {type} chip\n')  
                  n+=1
           else:
                 
