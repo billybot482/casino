@@ -41,8 +41,8 @@ def janken(update: Update, context: CallbackContext):
     keyboard = [
         [
             InlineKeyboardButton("Play", callback_data=str('play')),
-            InlineKeyboardButton("Rules", callback_data=str('rules'))],
-        ],
+            InlineKeyboardButton("Rules", callback_data=str('rules'))]
+        ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     for i in range(7):
