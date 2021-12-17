@@ -49,7 +49,7 @@ def janken(update: Update, context: CallbackContext):
     
     for i in range(7):
      if type in colour:
-      if type  == cc[1] and amount <=dd[1]
+      if type  == cc[1] and amount <=dd[1]:
        update.message.reply_text(f'<b>{name}</b> created a rock paper scissor game\n\n'
                               f'<b>Type of chip :</b> {type}\n\n'
                               f'<b>Amount :</b> {amount}', reply_markup = reply_marlup , parse_mode = ParseMode.HTML)
