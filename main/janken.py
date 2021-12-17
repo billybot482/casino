@@ -74,8 +74,8 @@ def play(update: Update, context: CallbackContext):
     print(toid)
     
     f = cd['fighter']
-    id = cd['fighterid']
-    toid =cd['to_id']
+    fid = cd['fighterid']
+    tid =cd['to_id']
     t =cd['to_name']
     type = cd['type']
     amount = cd['amount']
@@ -108,7 +108,7 @@ def play(update: Update, context: CallbackContext):
         print(dd[n])
         n +=1
         return None
-     else:
+     if type == cc[n] and amount<dd[n] and fid !=tid:
       query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
