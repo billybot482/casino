@@ -5,7 +5,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMo
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 import random
 
-updater = Updater(token='2134036370:AAEaD6NWEI_UVLMmButZcOIrZuiG7WoXK5g', use_context=True)
+updater = Updater(token='2134036370:AAEgiT_547RZTOikApjzdaD1saWBwdOjOK8', use_context=True)
 dispatcher = updater.dispatcher
 
 
