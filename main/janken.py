@@ -59,9 +59,7 @@ def janken(update: Update, context: CallbackContext):
 def rules(update: Update, context: CallbackContext):
     cd = context.chat_data
     f = cd['fighter']
-    t = cd['to']
     fid = cd['fighterid']
-    tid = cd['toid']
    
     query = update.callback_query
     query.answer('1.Rocks beats scissor , scissor beats paper , paper beats rock', show_alert = True)
