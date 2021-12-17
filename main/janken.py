@@ -102,7 +102,7 @@ def play(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     for i in range(7):
-     if type == cc[n] and amount<dd[n]: #check if challenger have enough balance
+     if type == cc[n] and amount>=dd[n]: #check if challenger have enough balance dd is challenger's amount
         query.answer('Balance not enough to play this game')
         print(cc[n])
         print(dd[n])
