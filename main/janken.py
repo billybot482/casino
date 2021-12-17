@@ -207,7 +207,7 @@ def res(update: Update, context: CallbackContext):
                                 f"_*Round : {cd['round']}*_\n"
              f"❤{f} : {cd['fromhp']}\n❤{t} : {cd['tohp']}\n\n"
              f"*{f}*Make you decision\n"
-                                f'{t}', parse_mode=ParseMode.MARKDOWN_V2, reply_markup= reply_markup3)
+                                f'{t}', parse_mode=ParseMode.MARKDOWN_V2, reply_markup= reply_markup)
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
