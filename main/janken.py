@@ -37,7 +37,7 @@ def janken(update: Update, context: CallbackContext):
     
     amount = int(amount)
     cd['amount'] = amount
-    cd['type '] = type
+    cd['type'] = type
     keyboard = [
         [
             InlineKeyboardButton("Play", callback_data=str('play')),
