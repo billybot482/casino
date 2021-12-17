@@ -42,8 +42,8 @@ def janken(update: Update, context: CallbackContext):
     cd['type '] = type
     keyboard = [
         [
-            InlineKeyboardButton("Play", callback_data=str('play'),
-            InlineKeyboardButton("Rules", callback_data=str('rules')],
+            InlineKeyboardButton("Play", callback_data=str('play')),
+            InlineKeyboardButton("Rules", callback_data=str('rules'))],
         ],
     reply_markup = InlineKeyboardMarkup(keyboard)
     
