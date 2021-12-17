@@ -177,12 +177,12 @@ def res(update: Update, context: CallbackContext):
     
     keyboard = [
         [
-            InlineKeyboardButton("✊", callback_data=str('rock')),
-            InlineKeyboardButton("✋", callback_data=str('paper')),
-            InlineKeyboardButton("✌️", callback_data=str('scissor'))
+            InlineKeyboardButton("✊ ", callback_data=str('rock')),
+            InlineKeyboardButton("✋ ", callback_data=str('paper')),
+            InlineKeyboardButton("✌️ ", callback_data=str('scissor'))
         ]
     ]
-    reply_markup3 = InlineKeyboardMarkup(keyboard)
+    reply_markup = InlineKeyboardMarkup(keyboard)
     if update.callback_query.from_user.id != tid:
         query.answer('player 2 not ur turn')
         return None
