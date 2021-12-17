@@ -48,9 +48,9 @@ def janken(update: Update, context: CallbackContext):
     for i in range(7):
      if type in colour:
       if type  == cc[n] and amount <=dd[n]:
-       update.message.reply_text(f'<b>{name}</b> created a rock paper scissor game\n\n'
-                              f'<b>Type of chip :</b> {type}\n\n'
-                              f'<b>Amount :</b> {amount}', reply_markup = reply_markup , parse_mode = ParseMode.HTML)
+       update.message.reply_text(f'*{name}* created a rock paper scissor game\n\n'
+                              f'*Type of chip :* {type}\n\n'
+                              f'*Amount :* {amount}', reply_markup = reply_markup , parse_mode = ParseMode.MARKDOWN_V2)
       n+=1   
         
     print('entry done')
@@ -138,7 +138,8 @@ def first(update: Update, context: CallbackContext):
         query.answer('player 2 not ur turn')
         print(f'callback userid is {update.callback_query.from_user.id} and fid is {fid}')
         return None
-    query.edit_message_text(
+    if update.callback_query.from_user.id == fid:
+     query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
              f"*{t}* Make your decision\n", reply_markup=reply_markup2, parse_mode = ParseMode.MARKDOWN_V2
