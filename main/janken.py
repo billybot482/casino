@@ -356,7 +356,7 @@ def res(update: Update, context: CallbackContext):
              f"*{f}*Make you decision\n"
                                 , parse_mode=ParseMode.MARKDOWN_V2,reply_markup= reply_markup)
 
-       if cd['fromhp'] == 0 or cd['tohp'] == 0:
+        if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
                  if type == cc[1]:
