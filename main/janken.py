@@ -62,6 +62,7 @@ def rules(update: Update, context: CallbackContext):
     t = cd['to']
     fid = cd['fighterid']
     tid = cd['toid']
+   
     query = update.callback_query
     query.answer('1.Rocks beats scissor , scissor beats paper , paper beats rock', show_alert = True)
     return None
@@ -69,6 +70,9 @@ def rules(update: Update, context: CallbackContext):
 def play(update: Update, context: CallbackContext):
     cd = context.chat_data
     query = update.callback_query
+    cd['to_id'] = toid =update.callback_query.from_user.id
+    cd['to_name'] = toname = update.callback_query.from_user.first_name
+    
     
     f = cd['fighter']
     id = cd['fighterid']
