@@ -136,6 +136,7 @@ def first(update: Update, context: CallbackContext):
     reply_markup2 = InlineKeyboardMarkup(keyboard)
     if update.callback_query.from_user.id != fid:
         query.answer('player 2 not ur turn')
+        print(f'callback userid is {update.callback_query.from_user.id} and fid is {fid}')
         return None
     query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
