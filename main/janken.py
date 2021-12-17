@@ -15,8 +15,6 @@ def janken(update: Update, context: CallbackContext):
     
     cd['fighter'] = name = update.effective_user.first_name
     cd['fighterid'] = fid = update.effective_user.id
-    cd['to_id'] = toid =update.callback_query.from_user.id
-    cd['to_name'] = toname = update.callback_query.from_user.first_name
     
     cd['round'] = 1
     cd['fromhp'] = 3
