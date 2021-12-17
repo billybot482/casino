@@ -732,17 +732,21 @@ def claim(update , context):
     purple = DB.get_user_value( id, "purple")
     black = DB.get_user_value( id, "black")
     value = (white * 1) + (red * 5) + (orange * 25) + (yellow * 100) + (blue * 500) + (purple * 2500) + (black * 15000)
-    if value <=200:
+    claimed = DB.get_user_value(id, "claimed")
+    if value <=200 and not claimed:
      if white <=100:
-        DB.add_white( id , 100)
+        DB.set_user_value(id, "claimed", True)
+        DB.add_white(id , 100)
         update.message.reply_text('You received 100 ⚪️ white chip ')
      else:
         update.message.reply_text('Your white chip should be less than 100 to claim this')
     else:
      update.message.reply_text("You cannot claim free chips if your wallet balance is more than 200$")
 
-    
-    
+def claim_reset(update, context):
+    DB.reset_daily_claims()
+    print("claim_reset(): claim columns set to 0")
+
 EXCHANGE_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('exchange', exchange)],
         states={

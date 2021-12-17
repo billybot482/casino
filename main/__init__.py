@@ -3,6 +3,7 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
+import datetime
 import random
 
 updater = Updater(token='2134036370:AAEgiT_547RZTOikApjzdaD1saWBwdOjOK8', use_context=True)
@@ -14,4 +15,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger()
 
+from main import __main__.claim_reset
+updater.job_queue.run_daily(claim_reset, datetime.time(0,0,0))
+
 updater.start_polling(drop_pending_updates = True)
+
