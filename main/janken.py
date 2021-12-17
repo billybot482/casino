@@ -47,7 +47,7 @@ def janken(update: Update, context: CallbackContext):
     
     for i in range(7):
      if type in colour:
-      if type  == cc[1] and amount <=dd[1]:
+      if type  == cc[n] and amount <=dd[n]:
        update.message.reply_text(f'<b>{name}</b> created a rock paper scissor game\n\n'
                               f'<b>Type of chip :</b> {type}\n\n'
                               f'<b>Amount :</b> {amount}', reply_markup = reply_markup , parse_mode = ParseMode.HTML)
@@ -101,7 +101,7 @@ def play(update: Update, context: CallbackContext):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     for i in range(7):
-     if type == cc[1] and amount<dd[1]:
+     if type == cc[n] and amount<dd[n]:
         query.answer('Balance not enough to play this game')
         n +=1
         return None
@@ -209,9 +209,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -219,9 +219,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -247,9 +247,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -257,9 +257,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -285,9 +285,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -295,9 +295,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -323,9 +323,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -333,9 +333,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -361,9 +361,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -371,9 +371,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -398,9 +398,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -408,9 +408,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
@@ -436,9 +436,9 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                 if type == cc[1]:
-                  fwin[1]
-                  tloss[1]
+                 if type == cc[n]:
+                  fwin[n]
+                  tloss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount} {type} chip\n')
@@ -446,9 +446,9 @@ def res(update: Update, context: CallbackContext):
                 
           elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
-                 if type == cc[1]:
-                  twin[1]
-                  floss[1]
+                 if type == cc[n]:
+                  twin[n]
+                  floss[n]
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount} {type} chip\n')  
