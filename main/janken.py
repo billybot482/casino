@@ -64,7 +64,7 @@ def rules(update: Update, context: CallbackContext):
     tid = cd['toid']
     query = update.callback_query
     query.answer('1.Rocks beats scissor , scissor beats paper , paper beats rock', show_alert = True)
-     return None
+    return None
 
 def play(update: Update, context: CallbackContext):
     cd = context.chat_data
