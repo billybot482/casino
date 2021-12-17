@@ -140,8 +140,7 @@ def first(update: Update, context: CallbackContext):
     query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
-             f"*{t}* choose one elemental\n"
-             f"*{t}* 选一个攻击属性", reply_markup=reply_markup2, parse_mode = ParseMode.MARKDOWN_V2
+             f"*{t}* Make your decision\n", reply_markup=reply_markup2, parse_mode = ParseMode.MARKDOWN_V2
     )
     cd['round']+=1
     cd['choice1'] = query.data
@@ -158,9 +157,9 @@ def res(update: Update, context: CallbackContext):
     query.answer()
     cd['choice2'] = query.data
     f = cd['fighter']
-    t = cd['to']
+    t = cd['to_name']
     fid = cd['fighterid']
-    tid = cd['toid']
+    tid = cd['to_id']
     fchose = cd['choice1']
     tchose = cd['choice2']
     
