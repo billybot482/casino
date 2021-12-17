@@ -50,7 +50,7 @@ def janken(update: Update, context: CallbackContext):
       if type  == cc[1] and amount <=dd[1]:
        update.message.reply_text(f'<b>{name}</b> created a rock paper scissor game\n\n'
                               f'<b>Type of chip :</b> {type}\n\n'
-                              f'<b>Amount :</b> {amount}', reply_markup = reply_marlup , parse_mode = ParseMode.HTML)
+                              f'<b>Amount :</b> {amount}', reply_markup = reply_markup , parse_mode = ParseMode.HTML)
       n+=1                    
     return FIRST
     
