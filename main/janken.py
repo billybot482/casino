@@ -106,7 +106,7 @@ def play(update: Update, context: CallbackContext):
         query.answer('Balance not enough to play this game')
         print(cc[n])
         print(dd[n])
-        n +=1
+     n +=1
         return None
      if type == cc[n] and amount<dd[n] and fid !=tid:
       query.edit_message_text(
