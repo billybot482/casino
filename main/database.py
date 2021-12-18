@@ -100,9 +100,9 @@ def get_user_value(user_id: int, items: str):
 
 def set_user_value(user_id: int, item: str, value: Any):
     stmt = f"""UPDATE Usr
-                SET {item} = ?
-                WHERE user_id = ?"""
-    cur.execute(stmt, (value, battle_id))
+                SET {item} = %s
+                WHERE user_id = %s"""
+    cur.execute(stmt, (value, user_id))
     conn.commit()
 
 
