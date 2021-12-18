@@ -743,7 +743,7 @@ def claim(update , context):
     else:
      update.message.reply_text("You cannot claim free chips if your wallet balance is more than 200$")
 
-def claim_reset(update, context):
+def claim_reset(context):
     DB.reset_daily_claims()
     print("claim_reset(): claim columns set to 0")
 
