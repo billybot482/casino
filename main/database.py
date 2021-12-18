@@ -1,4 +1,5 @@
-from main.__main__ import calculate_worth
+
+from main.cash import calculate_worth
 from typing import *
 import os
 import psycopg2
