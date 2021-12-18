@@ -82,7 +82,7 @@ def add_user(user_id):
   0,
   0,
   0,
-  0
+  false
 );"""
   cur.execute(stmt, (user_id,))
   conn.commit()
