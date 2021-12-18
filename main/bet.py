@@ -12,9 +12,9 @@ colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
 
 def bet(update, context):
     Chat = update.effective_chat
-        if update.effective_chat.type != Chat.PRIVATE:
-            update.message.reply_text("play in pm")
-            return -1
+    if update.effective_chat.type != Chat.PRIVATE:
+       update.message.reply_text("play in pm")
+       return -1
     cd = context.chat_data
     query = update.callback_query
     id = update.effective_user.id
