@@ -4,7 +4,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 import random
-from main import wheel, dispatcher, bet , airdrop, pet, market, janken
+from main import wheel, dispatcher, bet , airdrop, pet, market, janken, cash
 import os
 from telegram.ext.dispatcher import run_async
 from main import database as DB
@@ -45,7 +45,7 @@ def value(update , context):
            "🔴 red chip : 5$\n🟠 orange chip : 25$\n🟡 yellow chip : 100$\n🔵 blue chip : 500$" \
            "\n🟣 purple chip : 2000$\n⚫️ black chip : 15000$"
     context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
-    
+ 
 def rakeback(update, context):
     cd = context.chat_data
     query = update.callback_query
@@ -130,15 +130,16 @@ def rakeback2(update , context):
     DB.add_rbblack(id , -black)
     
     return ConversationHandler.END
-    
-    
+
+def calculate_worth(white=0, red=0, orange=0, yellow=0, blue=0, purple=0, black=0):
+    return round((white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000),4)
+
    
 def wallet(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
-    worth = DB.get_user_value(id, "worth")
     white = round(DB.get_user_value(id, "white"),4)
     red = round(DB.get_user_value(id, "red"),4)
     orange = round(DB.get_user_value(id, "orange"),4)
@@ -147,7 +148,7 @@ def wallet(update , context):
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
 
-    value = round((white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000),4)
+    value = calculate_worth(white, red, orange, yellow, blue, purple, black)
     try:
      update.message.reply_text(f"<u><b>{name}'s Wallet</b></u>\n"
                               f"🎖 VIP : {VIP}\n\n"
@@ -218,7 +219,6 @@ def statistic(update, context):
     win = DB.get_user_value(id , "win")
     loss = DB.get_user_value(id , "loss")
     vip = DB.get_user_value(id, "vip")
-    worth = DB.get_user_value(id, "worth")
     white = round(DB.get_user_value(id, "white"),4)
     red = round(DB.get_user_value(id, "red"),4)
     orange = round(DB.get_user_value(id, "orange"),4)
@@ -264,7 +264,7 @@ def gift(update , context):
         DB.add_orange(user_id , 50)
         DB.add_yellow(user_id , 30) 
         DB.add_blue(user_id , 10)
-        update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips") 
+        update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips.") 
     else:
         update.message.reply_text('Not authorised')
 
@@ -322,7 +322,6 @@ def swap(update , context):
     if cd["queue"].qsize():
         cd["queue"].get().delete()
 
-    cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
     cd["orange"] = orange = DB.get_user_value(id, "orange")
@@ -483,7 +482,6 @@ def exchange2(update , context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
-    cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value( id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
     cd["orange"] = orange = DB.get_user_value(id, "orange")
@@ -723,7 +721,6 @@ def claim(update , context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
-    worth = DB.get_user_value(id, "worth")
     white = DB.get_user_value( id, "white")
     red = DB.get_user_value(id, "red")
     orange = DB.get_user_value( id, "orange")
@@ -732,18 +729,20 @@ def claim(update , context):
     purple = DB.get_user_value( id, "purple")
     black = DB.get_user_value( id, "black")
     value = (white * 1) + (red * 5) + (orange * 25) + (yellow * 100) + (blue * 500) + (purple * 2500) + (black * 15000)
+    average = DB.get_average_cash()
     claimed = DB.get_user_value(id, "claimed")
-    if value <=200 and not claimed:
-     if white <=100:
+    if not claimed:
+        update.message.reply_text("You already claimed today's bonus , come back tommorow")
+        return
+    if value < average:
+        claim_amount = average // 10
+        DB.add_white(id, claim_amount)
         DB.set_user_value(id, "claimed", True)
-        DB.add_white(id , 100)
-        update.message.reply_text('You received 100 ⚪️ white chip ')
-     else:
-        update.message.reply_text('Your white chip should be less than 100 to claim this')
+        update.message.reply_text(f"You received {claim_amount} ⚪️ white chip")
     else:
-     update.message.reply_text("You cannot claim free chips if your wallet balance is more than 200$")
+     update.message.reply_text(f"You cannot claim free chips if your wallet balance is equal or more than average ({average}$)")
 
-def claim_reset(update, context):
+def claim_reset(context):
     DB.reset_daily_claims()
     print("claim_reset(): claim columns set to 0")
 

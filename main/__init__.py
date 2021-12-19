@@ -15,8 +15,11 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger()
 
-from main import __main__.claim_reset
-updater.job_queue.run_daily(claim_reset, datetime.time(0,0,0))
+from main.__main__ import claim_reset
+updater.job_queue.run_daily(claim_reset,
+			    datetime.time(0,0,0),
+			    context=None,
+			    name="claim_reset")
 
 updater.start_polling(drop_pending_updates = True)
 

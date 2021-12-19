@@ -1,3 +1,5 @@
+
+from main.cash import calculate_worth
 from typing import *
 import os
 import psycopg2
@@ -31,7 +33,6 @@ def setup():
                   rbpurple real,
                   rbblack real,
                   wager real ,
-                  worth integer ,
                   win integer ,
                   loss integer,
                   vip integer,
@@ -68,7 +69,7 @@ def setup():
     conn.commit()
 
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager, worth , win , loss , vip, rakeback, claimed)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed)
   VALUES (
   %s,
   100,
@@ -90,8 +91,7 @@ def add_user(user_id):
   0,
   0,
   0,
-  0,
-  0
+  false
 );"""
   cur.execute(stmt, (user_id,))
   conn.commit()
@@ -119,6 +119,17 @@ def reset_daily_claims():
     cur.execute(stmt)
     conn.commit()
 
+def add_stock(name , symbol , price, supply):
+    stmt = "UPDATE Stocks SET price = %s WHERE name = %name;"
+    cur.execute(stmt,(name , symbol ,price , supply))
+    conn.commit()
+    
+def get_stock():
+    stmt = f"SELECT {name} FROM Stocks;"
+    cur.execute(stmt)
+    return cur.fetchall()
+    
+    
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
     cur.execute(stmt, (user_id,))
@@ -126,9 +137,9 @@ def get_user_value(user_id: int, items: str):
 
 def set_user_value(user_id: int, item: str, value: Any):
     stmt = f"""UPDATE Usr
-                SET {item} = ?
-                WHERE user_id = ?"""
-    cur.execute(stmt, (value, battle_id))
+                SET {item} = %s
+                WHERE user_id = %s"""
+    cur.execute(stmt, (value, user_id))
     conn.commit()
 
 
@@ -221,4 +232,15 @@ def add_rbblack( user_id : int , white : int):
     stmt = f"UPDATE Usr SET rbblack = rbblack + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
     conn.commit()
+
+def get_average_cash() -> float:
+    stmt = "SELECT white, red, orange, yellow, blue, purple, black FROM Usr"
+    cur.execute(stmt)
+    chips = cur.fetchall()
+    stmt = "SELECT COUNT(*) FROM Usr"
+    cur.execute(stmt)
+    n = cur.fetchone()[0]
+    total_worth = sum(map(lambda l: calculate_worth(*l), chips))
+    avg_worth = total_worth / n
+    return avg_worth
 

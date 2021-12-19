@@ -213,6 +213,7 @@ def wheelchangechip(update, context):
     return wheel(query, context)
 
 def wheelinc(update, context):
+    print('increment')
     query = update.callback_query
     cd = context.chat_data
     if cd['amount'] >= MAX_CHIP_AMOUNT:
@@ -226,6 +227,7 @@ def wheelinc(update, context):
 
 
 def wheeldec(update, context):
+    print('decrement')
     update.callback_query.answer()
     cd = context.chat_data
     cd["amount"] -= 1 if cd["amount"] > MIN_CHIP_AMOUNT else 0

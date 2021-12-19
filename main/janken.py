@@ -107,7 +107,7 @@ def play(update: Update, context: CallbackContext):
         print(cc[n])
         print(dd[n])
      n +=1
-        return None
+     return None
      if type == cc[n] and amount<dd[n] and fid !=tid:
       query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
