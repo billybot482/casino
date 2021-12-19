@@ -310,7 +310,7 @@ def add(update , context):
          return -1
 
         
-def exchange(update , context):
+def swap(update , context):
     cd = context.chat_data
     query = update.callback_query
     id = update.effective_user.id
@@ -747,8 +747,8 @@ def claim_reset(update, context):
     DB.reset_daily_claims()
     print("claim_reset(): claim columns set to 0")
 
-EXCHANGE_HANDLER = ConversationHandler(
-        entry_points=[CommandHandler('exchange', exchange)],
+SWAP_HANDLER = ConversationHandler(
+        entry_points=[CommandHandler('swap', swap)],
         states={
             THREE: [CallbackQueryHandler(exchange2, pattern='^' + str("white") + '$'),
 CallbackQueryHandler(exchange2, pattern='^' + str("red") + '$'),CallbackQueryHandler(exchange2, pattern='^' + str("red4") + '$'),
@@ -813,7 +813,7 @@ dispatcher.add_handler(GAMES_HANDLER)
 dispatcher.add_handler(ADD_HANDLER)
 dispatcher.add_handler(VALUE_HANDLER)
 dispatcher.add_handler(CLAIM_HANDLER)
-dispatcher.add_handler(EXCHANGE_HANDLER)
+dispatcher.add_handler(SWAP_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(RAKEBACK_HANDLER)
