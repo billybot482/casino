@@ -36,7 +36,7 @@ def stock(update , context):
                                 f'Double check if all the info are correct before pressing confirm\n', reply_markup=reply_markup , parse_mode = ParseMode.HTML)
     else:
       update.message.reply_text('Not authorised')
-    
+    return ONE
     
 def stock1(update , context):
     cd = context.chat_data
