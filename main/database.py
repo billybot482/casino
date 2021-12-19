@@ -120,7 +120,7 @@ def reset_daily_claims():
     conn.commit()
 
 def get_stock():
-    stmt = f"SELECT {name} FROM Stocks;"
+    stmt = f"SELECT name FROM Stocks;"
     cur.execute(stmt)
     return cur.fetchall()
     
