@@ -62,8 +62,8 @@ def setup():
                     (
                           name TEXT,
                           symbol TEXT,
-                          price UNSIGNED real,
-                          supply UNSIGNED real
+                          price UNSIGNED REAL,
+                          supply UNSIGNED REAL
                     )
             """)
     conn.commit()
