@@ -239,7 +239,7 @@ def get_average_cash() -> float:
     chips = cur.fetchall()
     stmt = "SELECT COUNT(*) FROM Usr"
     cur.execute(stmt)
-    n = cur.fetchone()
+    n = cur.fetchone()[0]
     total_worth = sum(map(lambda l: calculate_worth(*l), chips))
     avg_worth = total_worth / n
     return avg_worth
