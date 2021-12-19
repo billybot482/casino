@@ -58,6 +58,17 @@ def setup():
                     )
             """)
     conn.commit()
+    
+    cur.execute("""CREATE TABLE IF NOT EXISTS Stocks
+                    (
+                          name TEXT,
+                          symbol TEXT,
+                          price UNSIGNED INT,
+                          supply UNSIGNED INT
+
+                    )
+            """)
+    conn.commit()
 
 def add_user(user_id):
   stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed)
@@ -93,6 +104,17 @@ def reset_daily_claims():
     cur.execute(stmt)
     conn.commit()
 
+def add_stock(name , symbol , price, supply):
+    stmt = "UPDATE Stocks SET price = %s WHERE name = %name;"
+    cur.execute(stmt,(name , symbol ,price , supply))
+    conn.commit()
+    
+def get_stock(name):
+    stmt = f"SELECT {name} FROM Stocks;"
+    cur.execute(stmt)
+    return cur.fetchall()
+    
+    
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
     cur.execute(stmt, (user_id,))
