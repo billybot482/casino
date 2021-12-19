@@ -60,14 +60,25 @@ def stock2(update , context):
     
     
 def exchange(update ,context):
+    price = DB.get_price()
     all_stock = DB.get_stock() 
-   
-  
+    n = 1
+    b = "" 
+    o = [] 
+    for k in price:
+     for p in k:
+      o.append(p)
+    
+    for i in all_stock:
+     for j in i:
+      b+="<b>str(j)</b>"+" - "+"<b>str(o[n-1])</b>"+"$\n"
+     n+=1
+     
   
     update.message.reply_text(f'<u>Welcome to exchange</u>\n\n'
-                              f'{all_stock}'
-                              f''
-                              f'', parse_mode = ParseMode.HTML)
+                              f'{b}\n\n'
+                              f'<i>current market price may change due to demand and supply.</i>'
+                              f'\n<i>set order base on your judgement</i>', parse_mode = ParseMode.HTML)
 
     
 
