@@ -65,10 +65,9 @@ def exchange(update ,context):
   
   
     update.message.reply_text(f'<u>Welcome to exchange</u>\n\n'
-                              f''
+                              f'{all_stock}'
                               f''
                               f'', parse_mode = ParseMode.HTML)
-    pass
 
     
 
