@@ -119,11 +119,6 @@ def reset_daily_claims():
     cur.execute(stmt)
     conn.commit()
 
-def add_stock(name , symbol , price, supply):
-    stmt = "UPDATE Stocks SET price = %s WHERE name = %name;"
-    cur.execute(stmt,(name , symbol ,price , supply))
-    conn.commit()
-    
 def get_stock():
     stmt = f"SELECT {name} FROM Stocks;"
     cur.execute(stmt)
