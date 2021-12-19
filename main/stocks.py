@@ -42,7 +42,8 @@ def stock1(update , context):
     cd = context.chat_data
     query = update.callback_query
     query.answer()
-    query.edit_message_text('cancelled')
+    if update.callback_query.from_user.id in owners:
+     query.edit_message_text('cancelled')
     
 def stock2(update , context):
     cd = context.chat_data
@@ -103,7 +104,7 @@ STOCK_HANDLER = ConversationHandler(
         states={
             ONE: [
                 CallbackQueryHandler(stock2, pattern='^' + str('confirm') + '$'),
-              CallbackQueryHandler(stock1, pattern='^' + str('cancel') + '$')
+                CallbackQueryHandler(stock1, pattern='^' + str('cancel') + '$')
 
             ],
         },
