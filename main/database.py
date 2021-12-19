@@ -123,7 +123,23 @@ def get_stock():
     stmt = f"SELECT name FROM Stocks;"
     cur.execute(stmt)
     return cur.fetchall()
-    
+
+def get_price():
+    stmt = f"SELECT price FROM Stocks;"
+    cur.execute(stmt)
+    return cur.fetchall()
+
+def get_symbol():
+    stmt = f"SELECT symbol FROM Stocks;"
+    cur.execute(stmt)
+    return cur.fetchall()
+
+def get_supply():
+    stmt = f"SELECT supply FROM Stocks;"
+    cur.execute(stmt)
+    return cur.fetchall()
+
+
     
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
