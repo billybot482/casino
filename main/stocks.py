@@ -82,8 +82,15 @@ def exchange(update ,context):
 
     
 
+def p(update, context):
+    pick = update.message_text.split()[1] 
+    name = DB.get_stock_value(pick,"name")
+    price = DB.get_stock_value(pick,"price") 
+    supply = DB.get_stock_value(pick, "supply") 
 
-
+    update.message.reply_text(f'Name : {name}\n'
+                              f'Price : {price}\n'
+                              f'Supply : {supply}') 
 
 
 
@@ -126,11 +133,13 @@ STOCK_HANDLER = ConversationHandler(
 
 
 EXCHANGE_HANDLER = CommandHandler("exchange",exchange)
+P_HANDLER = CommandHandler("p",p)
 
 
 
 dispatcher.add_handler(STOCK_HANDLER)
 dispatcher.add_handler(EXCHANGE_HANDLER)
+dispatcher.add_handler(P_HANDLER)
 
 
 
