@@ -98,7 +98,7 @@ def add_user(user_id):
   return conn
 
 
-def add_stock(name , symbol , price):
+def add_stock(name , symbol , price, supply):
   stmt = """INSERT INTO Stocks (name , symbol , price, supply)
   VALUES (
   %s,
@@ -106,7 +106,7 @@ def add_stock(name , symbol , price):
   %s,
   %s
 );"""
-  cur.execute(stmt,(name,symbol , price,supply))
+  cur.execute(stmt,(name,symbol,price,supply))
   conn.commit()
   return conn
 
