@@ -97,8 +97,7 @@ def exchange(update ,context):
 
 
 
-
-stock_handler = ConversationHandler(
+STOCK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('stock', stock)],
         states={
             ONE: [
