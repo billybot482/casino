@@ -61,7 +61,8 @@ def setup():
                     (
                           name TEXT,
                           symbol TEXT,
-                          price UNSIGNED INT
+                          price UNSIGNED INT,
+                          supply UNSIGNED INT
                     )
             """)
     conn.commit()
@@ -98,13 +99,14 @@ def add_user(user_id):
 
 
 def add_stock(name , symbol , price):
-  stmt = """INSERT INTO Stocks (name , symbol , price)
+  stmt = """INSERT INTO Stocks (name , symbol , price, supply)
   VALUES (
+  %s,
   %s,
   %s,
   %s
 );"""
-  cur.execute(stmt,(name,symbol , price))
+  cur.execute(stmt,(name,symbol , price,supply))
   conn.commit()
   return conn
 
