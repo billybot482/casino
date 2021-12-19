@@ -139,8 +139,12 @@ def get_supply():
     cur.execute(stmt)
     return cur.fetchall()
 
-
+def get_stock_value(symbol, items):
+    stmt = f"SELECT {items} FROM Stocks WHERE symbol =%s;"
+    cur.execute(stmt,(symbol,))
+    return cur.fetchone()[0] 
     
+
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
     cur.execute(stmt, (user_id,))
