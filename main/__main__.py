@@ -731,7 +731,7 @@ def claim(update , context):
     value = (white * 1) + (red * 5) + (orange * 25) + (yellow * 100) + (blue * 500) + (purple * 2500) + (black * 15000)
     average = DB.get_average_cash()
     claimed = DB.get_user_value(id, "claimed")
-    if not claimed:
+    if claimed:
         update.message.reply_text("You already claimed today's bonus , come back tommorow")
         return
     if value < average:
