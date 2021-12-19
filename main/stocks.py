@@ -71,7 +71,7 @@ def exchange(update ,context):
     
     for i in all_stock:
      for j in i:
-      b+="<b>str(j)</b>"+" - "+"<b>str(o[n-1])</b>"+"$\n"
+      b+=<b>str(j)</b>+" - "+<b>str(o[n-1])</b>+"$\n"
      n+=1
      
   
