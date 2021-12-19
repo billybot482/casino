@@ -41,6 +41,7 @@ def stock(update , context):
 def stock1(update , context):
     cd = context.chat_data
     query = update.callback_query
+    query.answer()
     query.edit_message_text('cancelled')
     
 def stock2(update , context):
