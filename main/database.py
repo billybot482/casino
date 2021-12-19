@@ -124,7 +124,7 @@ def add_stock(name , symbol , price, supply):
     cur.execute(stmt,(name , symbol ,price , supply))
     conn.commit()
     
-def get_stock(name):
+def get_stock():
     stmt = f"SELECT {name} FROM Stocks;"
     cur.execute(stmt)
     return cur.fetchall()
