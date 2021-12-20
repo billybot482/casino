@@ -910,6 +910,7 @@ EXEC_HANDLER = CommandHandler('exec', exec)
 STATS_HANDLER = CommandHandler('statistic', statistic)
 GIFT_HANDLER = CommandHandler('gift',gift)  
 SYSTEM_HANDLER = CommandHandler('system',system) 
+TIP_HANDLER = CommandHandler('tip',tip) 
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -923,6 +924,7 @@ dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(RAKEBACK_HANDLER)
 dispatcher.add_handler(GIFT_HANDLER)
 dispatcher.add_handler(SYSTEM_HANDLER)
+dispatcher.add_handler(TIP_HANDLER)
 
 
 
