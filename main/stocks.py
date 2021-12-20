@@ -108,11 +108,11 @@ def p(update, context):
 
     update.message.reply_text(f'<b>{name}</b>\n'
                               f'<b>• {pick}</b>\n'
-                              f'<code>{price}</code>\n\n'
+                              f'<code>{price} $ </code>\n\n'
                               f'<code>24Hr % change : 26.61% </code> 💹\n'
                               f'<code>Circulating supply: {supply}</code>\n'
-                              f'<code>Total Supply: {supply}</code>\n\n'
-                              f'<code>Market Cap: {b}</code>\n\n'
+                              f'<code>Total Supply: {supply}</code>\n'
+                              f'<code>Market Cap ┃ {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
 
 
