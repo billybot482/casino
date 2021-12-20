@@ -180,7 +180,7 @@ def system(update , context):
             
     tt = w+r+o+y+b+p+bbb        
     
-    update.message.reply_text(f'<b><u>system data</u></b>\n┃'
+    update.message.reply_text(f'<b><u>system data</u></b>\n┃    ┃\n┃'
                               f'<b>┗━Total chips in circulations</b>\n'
                               f'<b>┃    ⚪️White </b>: {w}\n'
                               f'<b>┃    🔴Red</b>: {r}\n'
@@ -188,12 +188,12 @@ def system(update , context):
                               f'<b>┃    🟡Yellow</b>: {y}\n'
                               f'<b>┃    🔵Blue</b>: {b}\n'
                               f'<b>┃    🟣Purple</b>: {p}\n'
-                              f'<b>┃    ⚫Black</b>: {bbb}\n\n'
-                              f'<b>┗━Total members : {len(member)}</b>\n'
-                              f'<b>┗━Total circulating value: {tt}$</b>\n'
-                              f'<b>┗━Total stock : {stock}</b>\n'
-                              f'<b>┗━Total game played :{ww+ll}</b>\n'
-                              f'<b>┗━Total pet in game: Na</b>', parse_mode = ParseMode.HTML)
+                              f'<b>┃    ⚫Black</b>: {bbb}\n┃\n'
+                              f'<b>┗Total members : {len(member)}</b>\n'
+                              f'<b>┗Total circulating value: {tt}$</b>\n'
+                              f'<b>┗Total stock : {stock}</b>\n'
+                              f'<b>┗Total game played :{ww+ll}</b>\n'
+                              f'<b>┗Total pet in game: Na</b>', parse_mode = ParseMode.HTML)
     
   
 def wallet(update , context):
