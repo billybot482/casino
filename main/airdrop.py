@@ -20,7 +20,6 @@ def airdrop(update , context):
     cd['id'] = id = update.effective_user.id
     query = update.callback_query
     cd['VIP'] = VIP = DB.get_user_value(id, "vip")
-    cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
     cd["orange"] = orange = DB.get_user_value(id, "orange")
