@@ -329,7 +329,39 @@ def gift(update , context):
     else:
         update.message.reply_text('Not authorised')
 
-        
+def tip(update , context):
+    if not update.message.reply_to_message:
+             update.message.reply_text('reply in order to tip someone')
+             return
+    id = update.effective_user.id
+    name = update.effective_user.first_name
+    username = update.effective_user.name
+    update.message.reply_to_message.from_user.first_name
+    VIP = DB.get_user_value(id, "vip")
+    white = round(DB.get_user_value(id, "white"),4)
+    red = round(DB.get_user_value(id, "red"),4)
+    orange = round(DB.get_user_value(id, "orange"),4)
+    yellow = round(DB.get_user_value(id, "yellow"),4)
+    blue = round(DB.get_user_value(id, "blue"),4)
+    purple = round(DB.get_user_value(id, "purple"),4)
+    black = round(DB.get_user_value(id, "black"),4)
+    
+    type = update.message.text.split()[1]
+    units = update.message.text.split()[2]
+    units = int(units)
+    
+    n =1 
+    cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    
+    for i in range(7):
+     if type == cc[n] and units<=dd[n]:
+        update.message.reply_text(f'')
+    
+    
+    
+    
+    
         
 def add(update , context):
     if not update.message.reply_to_message:
