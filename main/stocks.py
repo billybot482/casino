@@ -88,13 +88,31 @@ def p(update, context):
     name = DB.get_stock_value(pick,"name")
     price = DB.get_stock_value(pick,"price") 
     supply = DB.get_stock_value(pick, "supply")
+    
+    cap = supply*price
+    b = ""
+    
+    if cap >=1000 and cap <1000000:
+        b+= str(cap/1000)+"K"
+    if cap >=1000000 and cap <1000000000:
+        b+= str(cap/1000000)+"M"
+    if cap >=1000000000 and cap < 1000000000000:
+        b+= str(cap/1000000000)+"B"
+    if cap >=1000000000000 and cap < 1000000000000000:
+        b+= str(cap/1000000000000)+"T"
+    if cap >=1000000000000000 and cap <1000000000000000000:
+        b+= str(cap/1000000000000000)+"Qd"
+    if cap >=1000000000000000000 and cap < 1000000000000000000000:
+        b+= str(cap/1000000000000000000)+"Qn"
+    
 
     update.message.reply_text(f'<b>{name}</b>\n'
-                              f'<b>• {pick}</b>\n\n'
+                              f'<b>• {pick}</b>\n'
                               f'<code>{price}</code>\n\n'
-                              f'<code>24Hr change : 26.61% </code>\n\n'
+                              f'<code>24Hr % change : 26.61% </code> 💹\n'
                               f'<code>Circulating supply: {supply}</code>\n'
                               f'<code>Total Supply: {supply}</code>\n\n'
+                              f'<code>Market Cap: {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
 
 
