@@ -367,13 +367,13 @@ def tip(update , context):
     for i in range(7):
      if type == cc[n] and amount<=dd[n]:
         print(cc[n])
+        print(ee[n])
         ee[n]
         ff[n]
         update.message.reply_text(f'{name} tipped {amount} {cc[n]} chip to {to}')
         
      if type == cc[n] and amount>=dd[n]:
         update.message.reply_text('Balance not enough')
-    
      n+=1
     
     
