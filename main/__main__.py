@@ -180,7 +180,7 @@ def system(update , context):
             
     tt = w+r+o+y+b+p+bbb        
     
-    update.message.reply_text(f'<b><u>system data</u></b>\n┃    ┃\n┃'
+    update.message.reply_text(f'<b><u>system data</u></b>\n'
                               f'<b>┗━Total chips in circulations</b>\n'
                               f'<b>┃    ⚪️White </b>: {w}\n'
                               f'<b>┃    🔴Red</b>: {r}\n'
