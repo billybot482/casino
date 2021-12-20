@@ -84,7 +84,7 @@ def exchange(update ,context):
 
 def p(update, context):
     print('enter')
-    pick = update.message_text.split()[1] 
+    pick = update.message.text.split()[1]
     pick = pick.upper()
     print(pick)
     name = DB.get_stock_value(pick,"name")
