@@ -83,7 +83,9 @@ def exchange(update ,context):
     
 
 def p(update, context):
+    
     pick = update.message_text.split()[1] 
+    pick = pick.upper()
     name = DB.get_stock_value(pick,"name")
     price = DB.get_stock_value(pick,"price") 
     supply = DB.get_stock_value(pick, "supply") 
