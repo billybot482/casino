@@ -355,7 +355,7 @@ def tip(update , context):
     amount = int(amount)
     if amount <1:
         update.message.reply_text("Cant be 0 or negative")
-    amount = int(units)
+    amount = int(amount)
     
     n =1 
     cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
