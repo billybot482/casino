@@ -351,10 +351,12 @@ def tip(update , context):
     type = update.message.text.split()[1]
     if type not in colour:
         update.message.reply_text("type must be either \n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
+        return -1
     amount = update.message.text.split()[2]
     amount = int(amount)
     if amount <1:
         update.message.reply_text("Cant be 0 or negative")
+        return -1
     amount = int(amount)
     
     n =1 
@@ -365,10 +367,10 @@ def tip(update , context):
     for i in range(7):
      if type == cc[n] and amount<=dd[n]:
         print(cc[n])
-        update.message.reply_text(f'{name} tipped {amount} {cc[n]} chip to {to}')
         ee[n]
         ff[n]
-        return -1
+        update.message.reply_text(f'{name} tipped {amount} {cc[n]} chip to {to}')
+        
      if type == cc[n] and amount>=dd[n]:
         update.message.reply_text('Balance not enough')
     
