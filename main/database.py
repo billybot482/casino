@@ -144,6 +144,10 @@ def get_stock_value(symbol, items):
     cur.execute(stmt,(symbol,))
     return cur.fetchone()[0] 
     
+def get_all_value(items: str):
+    stmt = f"SELECT {items} FROM Usr;"
+    cur.execute(stmt)
+    return cur.fetchall()
 
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
