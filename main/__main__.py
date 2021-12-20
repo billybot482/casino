@@ -533,7 +533,7 @@ def swap(update , context):
      if units < 0:
         update.message.reply_text('You cannot exchange negative , make sure it is larger than 1')
     except IndexError:
-        update.message.reply_text("use this format\n\n/exchange <type of chip> <amount>")
+        update.message.reply_text("use this format\n\n/swap <type of chip> <amount>")
     return THREE
 
 def exchange2(update , context):
