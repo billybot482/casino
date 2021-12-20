@@ -352,6 +352,7 @@ def tip(update , context):
     if type not in colour:
         update.message.reply_text("type must be either \n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
     amount = update.message.text.split()[2]
+    amount = int(amount)
     if amount <1:
         update.message.reply_text("Cant be 0 or negative")
     amount = int(units)
