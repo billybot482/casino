@@ -83,17 +83,19 @@ def exchange(update ,context):
     
 
 def p(update, context):
-    print('enter')
     pick = update.message.text.split()[1]
     pick = pick.upper()
-    print(pick)
     name = DB.get_stock_value(pick,"name")
     price = DB.get_stock_value(pick,"price") 
-    supply = DB.get_stock_value(pick, "supply") 
+    supply = DB.get_stock_value(pick, "supply")
 
-    update.message.reply_text(f'Name : {name}\n'
-                              f'Price : {price}\n'
-                              f'Supply : {supply}') 
+    update.message.reply_text(f'<b>{name}</b>\n'
+                              f'<b>• {pick}</b>\n\n'
+                              f'<code>{price}</code>\n\n'
+                              f'<code>24Hr change : 26.61% </code>\n\n'
+                              f'<code>Circulating supply: {supply}</code>\n'
+                              f'<code>Total Supply: {supply}</code>\n\n'
+                              f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
 
 
 
