@@ -134,7 +134,68 @@ def rakeback2(update , context):
 def calculate_worth(white=0, red=0, orange=0, yellow=0, blue=0, purple=0, black=0):
     return round((white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000),4)
 
-   
+def system(update , context):
+    member = DB.get_all_value("user_id")
+    w,r,o,y,b,p,bbb=0,0,0,0,0,0,0
+    ww,ll = 0,0
+    white = DB.get_all_value("white")
+    red = DB.get_all_value("red")
+    orange = DB.get_all_value("orange")
+    yellow = DB.get_all_value("yellow")
+    blue = DB.get_all_value("blue")
+    purple = DB.get_all_value("purple")
+    black = DB.get_all_value("black")
+    win = DB.get_all_value("win")
+    loss = DB.get_all_value("loss")
+    stock = DB.get_stock()
+    stock = len(stock)
+    
+    for aa in white:
+        for bb in aa:
+            w+=int(bb)
+    for aa in red:
+        for bb in aa:
+            r+=int(bb)
+    for aa in orange:
+        for bb in aa:
+            o+=int(bb)
+    for aa in yellow:
+        for bb in aa:
+            y+=int(bb)
+    for aa in blue:
+        for bb in aa:
+            b+=int(bb)
+    for aa in purple:
+        for bb in aa:
+            p+=int(bb)
+    for aa in black:
+        for bb in aa:
+            bbb+=int(bb)
+    for aa in win:
+        for bb in aa:
+            ww+=int(bb)
+    for aa in loss:
+        for bb in aa:
+            ll+=int(bb)
+            
+    tt = w+r+o+y+b+p+bbb        
+    
+    update.message.reply_text(f'<b>║system data</b>\n║'
+                              f'<b>╚Total chips in circulations</b>\n'
+                              f'<b>║   ⚪️White </b>: {w}\n'
+                              f'<b>║   🔴Red</b>: {r}\n'
+                              f'<b>║   🟠Orange</b>: {o}\n'
+                              f'<b>║   🟡Yellow</b>: {y}\n'
+                              f'<b>║   🔵Blue</b>: {b}\n'
+                              f'<b>║   🟣Purple</b>: {p}\n'
+                              f'<b>║   ⚫Black</b>: {bbb}\n\n'
+                              f'<b>╚Total members : </b>{len(member)}\n║'
+                              f'<b>╚Total circulating money:{tt}</b>\n║'
+                              f'<b>╚Total stock : </b>{stock}\n║'
+                              f'<b>╚Total game played :</b>{ww+ll}\n║'
+                              f'<b>╚Total pet in game:</b> Na', parse_mode = ParseMode.HTML)
+    
+  
 def wallet(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
@@ -804,7 +865,8 @@ VALUE_HANDLER = CommandHandler('value', value)
 CLAIM_HANDLER = CommandHandler('claim', claim)
 EXEC_HANDLER = CommandHandler('exec', exec)
 STATS_HANDLER = CommandHandler('statistic', statistic)
-GIFT_HANDLER = CommandHandler('gift',gift)                      
+GIFT_HANDLER = CommandHandler('gift',gift)  
+SYSTEM_HANDLER = CommandHandler('system',system) 
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -816,7 +878,8 @@ dispatcher.add_handler(SWAP_HANDLER)
 dispatcher.add_handler(EXEC_HANDLER)
 dispatcher.add_handler(STATS_HANDLER)
 dispatcher.add_handler(RAKEBACK_HANDLER)
-dispatcher.add_handler(GIFT_HANDLER)                  
+dispatcher.add_handler(GIFT_HANDLER)
+dispatcher.add_handler(SYSTEM_HANDLER)
 
 
 
