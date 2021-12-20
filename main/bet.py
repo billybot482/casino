@@ -21,7 +21,6 @@ def bet(update, context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
-    cd["worth"] = worth = DB.get_user_value(id, "worth")
     cd["white"] = white = DB.get_user_value(id, "white")
     cd["red"] = red = DB.get_user_value(id, "red")
     cd["orange"] = orange = DB.get_user_value(id, "orange")
