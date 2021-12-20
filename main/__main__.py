@@ -20,6 +20,7 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 S_START , S_INCREASE ,S_POP , SS_POP, FIRST , SECOND ,THIRD,CHECK, SHOW, *_ = range(1000)
 owners = [163494588]
 sudo = []
+colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
 
 def start(update , context):
     id = update.effective_user.id
@@ -336,7 +337,8 @@ def tip(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
     username = update.effective_user.name
-    update.message.reply_to_message.from_user.first_name
+    to = update.message.reply_to_message.from_user.first_name
+    toid = update.message.reply_to_message.from_user.id
     VIP = DB.get_user_value(id, "vip")
     white = round(DB.get_user_value(id, "white"),4)
     red = round(DB.get_user_value(id, "red"),4)
@@ -347,17 +349,26 @@ def tip(update , context):
     black = round(DB.get_user_value(id, "black"),4)
     
     type = update.message.text.split()[1]
-    units = update.message.text.split()[2]
-    units = int(units)
+    if type not in colour:
+        update.message.reply_text("type must be either \n\n['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']")
+    amount = update.message.text.split()[2]
+    if amount <1:
+        update.message.reply_text("Cant be 0 or negative")
+    amount = int(units)
     
     n =1 
     cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
     dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
-    
+    ee =  {1: DB.add_white(id,-amount), 2: DB.add_red(id,-amount), 3: DB.add_orange(id,-amount), 4: DB.add_yellow(id,-amount), 5: DB.add_blue(id,-amount), 6:DB.add_purple(id,-amount), 7:DB.add_black(id,-amount)}
+    ff = {1: DB.add_white(toid,amount), 2: DB.add_red(toid,amount), 3: DB.add_orange(toid,amount), 4: DB.add_yellow(toid,amount), 5: DB.add_blue(toid,amount), 6:DB.add_purple(toid,amount), 7:DB.add_black(toid,amount)}
     for i in range(7):
-     if type == cc[n] and units<=dd[n]:
-        update.message.reply_text(f'')
-    
+     if type == cc[n] and amount<=dd[n]:
+        update.message.reply_text(f'{name} tipped {amount} {cc[n]} chip to {to}')
+        ee[n]
+        ff[n]
+     n+=1
+     if type == cc[n] and amount>=dd[n]:
+        update.message.reply_text('Balance not enough')
     
     
     
