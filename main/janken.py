@@ -104,7 +104,7 @@ def play(update: Update, context: CallbackContext):
     for i in range(7):
      if type == cc[n] and amount>=dd[n]: #check if challenger have enough balance dd is challenger's amount
         query.answer('Balance not enough to play this game')
-     n +=1
+     
      if type == cc[n] and amount<dd[n]:
       if fid!=tid:      
        query.edit_message_text(
@@ -112,6 +112,7 @@ def play(update: Update, context: CallbackContext):
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
              f"*{f}* make your decision\n", reply_markup=reply_markup,parse_mode = ParseMode.MARKDOWN_V2
     )
+     n +=1
     return ONE
 
 def first(update: Update, context: CallbackContext):
