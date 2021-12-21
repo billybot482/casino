@@ -179,7 +179,7 @@ def system(update , context):
         for bb in aa:
             ll+=int(bb)
             
-    tt = w+r+o+y+b+p+bbb        
+    tt = (w*1)+(r*5)+(o*25)+(y*100)+(b*500)+(p*2000)+(bbb*15000)       
     
     update.message.reply_text(f'<b><u>system data</u></b>\n'
                               f'<b>┗━Total chips in circulations</b>\n'
