@@ -13,17 +13,18 @@ colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
 
 
 def dice(update , context):
+    print('entry')
     id = update.message.from_user.id
     name = update.message.from_user.first_name
     username = update.message.from_user.name
     VIP = DB.get_user_value(id, "vip")
-    cd["white"] = white = DB.get_user_value(id, "white")
-    cd["red"] = red = DB.get_user_value(id, "red")
-    cd["orange"] = orange = DB.get_user_value(id, "orange")
-    cd["yellow"] = yellow = DB.get_user_value(id, "yellow")
-    cd["blue"] = blue = DB.get_user_value(id, "blue")
-    cd["purple"] = purple = DB.get_user_value(id, "purple")
-    cd["black"] = black = DB.get_user_value(id, "black")
+    white = DB.get_user_value(id, "white")
+    red = DB.get_user_value(id, "red")
+    orange = DB.get_user_value(id, "orange")
+    yellow = DB.get_user_value(id, "yellow")
+    blue = DB.get_user_value(id, "blue")
+    purple = DB.get_user_value(id, "purple")
+    black = DB.get_user_value(id, "black")
     mult = 0
     type = update.message.text.split()[1]
     amount = update.message.text.split()[2]
@@ -47,7 +48,7 @@ def dice(update , context):
     if a == 6:
      mult +=2.5
      
-     
+    print('random generated') 
     if type == 'white'
      if amount <= white:
       update.message.reply_text(f'<b>Dice game classic</b>\n\n'
