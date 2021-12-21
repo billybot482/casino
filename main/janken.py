@@ -20,6 +20,7 @@ def janken(update: Update, context: CallbackContext):
     cd['fromhp'] = 3
     cd['tohp'] = 3
     
+    cd['fvip'] = fvip = DB.get_user_value(fid,'vip')
     
     white = round(DB.get_user_value(fid, "white"),4)
     red = round(DB.get_user_value(fid, "red"),4)
@@ -70,7 +71,7 @@ def play(update: Update, context: CallbackContext):
     query = update.callback_query
     cd['to_id'] = toid =update.callback_query.from_user.id
     cd['to_name'] = toname = update.callback_query.from_user.first_name
-    
+    cd['tvip'] = tvip = DB.get_user_value(tid , 'vip')
     print(toid)
     
     f = cd['fighter']
@@ -163,13 +164,17 @@ def res(update: Update, context: CallbackContext):
     tid = cd['to_id']
     fchose = cd['choice1']
     tchose = cd['choice2']
+    fvip = cd['fvip']
+    tvip = cd['tvip']
     
+    fmult = (((fvip+1)/10)+(fvip*0.2))/100
+    tmult = = (((tvip+1)/10)+(tvip*0.2))/100
     type = cd['type']
     amount =cd['amount']
     
-    '''n =1 
+    n =1 
     cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
-    #dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    '''#dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     fwin = {1: DB.add_white(fid,amount*2), 2: DB.add_red(fid,amount*2), 3: DB.add_orange(fid,amount*2), 4: DB.add_yellow(fid,amount*2), 5: DB.add_blue(fid,amount*2), 6:DB.add_purple(fid,amount*2), 7:DB.add_black(fid,amount*2)} 
     twin = {1: DB.add_white(tid,amount*2), 2: DB.add_red(tid,amount*2), 3: DB.add_orange(tid,amount*2), 4: DB.add_yellow(tid,amount*2), 5: DB.add_blue(tid,amount*2), 6:DB.add_purple(tid,amount*2), 7:DB.add_black(tid,amount*2)} 
     floss = {1: DB.add_white(fid,-amount), 2: DB.add_red(fid,-amount), 3: DB.add_orange(fid,-amount), 4: DB.add_yellow(fid,-amount), 5: DB.add_blue(fid,-amount), 6:DB.add_purple(fid,-amount), 7:DB.add_black(fid,-amount)} 
@@ -211,91 +216,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+            for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')                
+                n+=1
+                              
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:        
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
@@ -315,92 +265,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:
                 
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
@@ -420,98 +314,36 @@ def res(update: Update, context: CallbackContext):
                                 , parse_mode=ParseMode.MARKDOWN_V2,reply_markup= reply_markup)
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
-          if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+          for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f"{t} win !!\n"
+                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-          else:
-                
-                query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f" Draw , cost has been returned to respective wallet!!\n")
-          return ConversationHandler.END
+                n+=1
 
         return ONE
 
@@ -527,92 +359,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f"{t} win !!\n"
+                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:
                 
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
@@ -633,92 +409,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f"{t} win !!\n"
+                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:
                 
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
@@ -738,92 +458,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f"{t} win !!\n"
+                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-               if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+               for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-               if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-               if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:
                 
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
@@ -844,92 +508,36 @@ def res(update: Update, context: CallbackContext):
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
-                if type == 'white':
-                    DB.add_white(fid , amount)
-                    DB.add_white(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , amount)
-                    DB.add_red(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , amount)
-                    DB.add_orange(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , amount)
-                    DB.add_yellow(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , amount)
-                    DB.add_blue(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , amount)
-                    DB.add_purple(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , amount)
-                    DB.add_black(tid , -amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{f} win !!\n"
-                                        f'{f} won {amount*2} {type} chip\n')
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f"{t} win !!\n"
+                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
                 
           elif cd['tohp'] > cd['fromhp']:
-                if type == 'white':
-                    DB.add_white(fid , -amount)
-                    DB.add_white(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                for i in range(7):
+                if type == cc[n]:
+                 DB.add_chip(fid, type , amount)
+                 DB.sub_chip(tid , type, amount)
+                 DB.add_win(fid , 1)
+                 DB.add_loss(tid , 1)
+                 DB.add_wager(tid, amount)
+                 DB.add_wager(fid , amount)
+                 DB.add_rbchip(fid, fmult*amount)
+                 DB.add_rbchip(tid, tmult*amount)
+                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-                if type == 'red':
-                    DB.add_red(fid , -amount)
-                    DB.add_red(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-                if type == 'orange':
-                    DB.add_orange(fid , -amount)
-                    DB.add_orange(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-                if type == 'yellow':
-                    DB.add_yellow(fid , -amount)
-                    DB.add_yellow(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-                if type == 'blue':
-                    DB.add_blue(fid , -amount)
-                    DB.add_blue(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-                if type == 'purple':
-                    DB.add_purple(fid , -amount)
-                    DB.add_purple(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
-                if type == 'black':
-                    DB.add_black(fid , -amount)
-                    DB.add_black(tid , amount)
-                    query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f"{t} win !!\n"
-                                        f'{t} won {amount*2} {type} chip\n')
+                n+=1
           else:
                 
                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
