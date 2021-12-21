@@ -162,41 +162,15 @@ def set_user_value(user_id: int, item: str, value: Any):
     conn.commit()
 
 
-def add_white( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET white = white + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
+def add_chip(user_id, item, amount):
+  stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE id = %s;"
+  cur.exec(stmt, (amount, user_id))
+  conn.commit()
 
-def add_red(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET red = red + %s WHERE user_id = %s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
+def sub_chip(user_id, item, amount):
+  add_item(user_id, item, -amount)
 
-def add_orange(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET orange = orange + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
 
-def add_yellow(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET yellow = yellow + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
-
-def add_blue( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET blue = blue + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
-
-def add_purple(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET purple = purple + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
-
-def add_black(user_id : int , white : int):
-    stmt = f"UPDATE Usr SET black = black + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
-    
 def add_wager(user_id : int , white : int):
     stmt = f"UPDATE Usr SET wager = wager + %s WHERE user_id =%s;"
     cur.execute(stmt, (white,user_id))
@@ -217,40 +191,14 @@ def add_vip(user_id : int , vip : int):
     cur.execute(stmt, (vip,user_id))
     conn.commit()
     
-def add_rbwhite( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbwhite = rbwhite + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()    
-    
-def add_rbred( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbred = rbred + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()    
-     
-def add_rborange( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rborange = rborange + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()    
-    
-def add_rbyellow( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbyellow = rbyellow + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()  
-    
-def add_rbblue( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbblue = rbblue + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()  
-    
-def add_rbpurple( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbpurple = rbpurple + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()  
-    
-def add_rbblack( user_id : int , white : int):
-    stmt = f"UPDATE Usr SET rbblack = rbblack + %s WHERE user_id =%s;"
-    cur.execute(stmt, (white,user_id))
-    conn.commit()
+def add_rbchip(user_id, item, amount):
+   stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE id = %s;"
+   cur.exec(stmt, (amount, user_id))
+   conn.commit()
+
+def sub_rbchip(user_id, item, amount):
+   add_rbchip(user_id, item, -amount)
+ 
 
 def get_average_cash() -> float:
     stmt = "SELECT white, red, orange, yellow, blue, purple, black FROM Usr"
