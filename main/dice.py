@@ -63,7 +63,7 @@ def dice(update , context):
     if type == 'red':
      if amount <= red:
       update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -74,7 +74,7 @@ def dice(update , context):
     if type == 'orange':
      if amount <= orange:
       update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -85,7 +85,7 @@ def dice(update , context):
     if type == 'yellow':
      if amount <= yellow:
       update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -96,7 +96,7 @@ def dice(update , context):
      if type == 'blue':
       if amount <= blue:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -107,7 +107,7 @@ def dice(update , context):
      if type == 'purple':
       if amount <= purple:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -118,7 +118,7 @@ def dice(update , context):
      if type == 'black':
       if amount <= black:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
