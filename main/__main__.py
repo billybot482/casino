@@ -22,7 +22,7 @@ owners = [163494588]
 sudo = []
 colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
     
-c = [white , red ,orange , yellow , blue , purple , black]
+c = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
 def start(update , context):
     id = update.effective_user.id
     name = update.effective_user.first_name
