@@ -108,6 +108,10 @@ def rakeback2(update , context):
     purple = cd['purple']
     black = cd['black']
     
+    if update.callback_query.from_user.id != id:
+        query.answer('Not authorised , not yours')
+        return none
+    
     query.edit_message_text('rakeback has been added to your main wallet')
     DB.add_white(id , white)
     DB.add_rbwhite(id , -white)
