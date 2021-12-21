@@ -168,7 +168,7 @@ def res(update: Update, context: CallbackContext):
     tvip = cd['tvip']
     
     fmult = (((fvip+1)/10)+(fvip*0.2))/100
-    tmult = = (((tvip+1)/10)+(tvip*0.2))/100
+    tmult = (((tvip+1)/10)+(tvip*0.2))/100
     type = cd['type']
     amount =cd['amount']
     
