@@ -93,7 +93,7 @@ def dice(update , context):
       DB.add_yellow(id, mult*amount)
      else:
       update.message.reply_text('Balance not enough')
-     if type == 'blue':
+    if type == 'blue':
       if amount <= blue:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
                               f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
@@ -104,7 +104,7 @@ def dice(update , context):
        DB.add_blue(id, mult*amount)
       else:
        update.message.reply_text('Balance not enough')
-     if type == 'purple':
+    if type == 'purple':
       if amount <= purple:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
                               f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
@@ -115,7 +115,7 @@ def dice(update , context):
        DB.add_purple(id, mult*amount) 
       else:
        update.message.reply_text('Balance not enough')
-     if type == 'black':
+    if type == 'black':
       if amount <= black:
        update.message.reply_text(f'<b>Dice game classic</b>\n\n'
                               f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
