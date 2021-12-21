@@ -115,7 +115,7 @@ def rakeback2(update , context):
         query.answer('Not authorised , not yours')
         return none
     
-    query.edit_message_text('rakeback has been added to your main wallet')\
+    query.edit_message_text('rakeback has been added to your main wallet')
     n = 1
     m = 1
     for i in colour:
