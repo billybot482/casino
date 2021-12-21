@@ -10,7 +10,7 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
 colour = ['white', 'red', 'orange', 'yellow','blue', 'purple', 'black']
-colours = [white, red, orange, yellow,blue, purple, black]
+colours = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
 owners = [163494588]
 
 def airdrop(update , context):
