@@ -30,7 +30,7 @@ def dice(update , context):
     amount = update.message.text.split()[2]
     amount = int(amount)
     
-    vip = int(VIP)
+    vip = int(vip)
     multy = (((vip+1)/10)+(vip*0.2))/100
     if amount <=0:
      update.message.reply_text('Cant be 0 or lower')
