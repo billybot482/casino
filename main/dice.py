@@ -52,7 +52,7 @@ def dice(update , context):
     if type == 'white':
      if amount <= white:
       update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'🎲1:0x\n🎲2:0x\n🎲3:1x\n🎲4:1.5x\n🎲5:2x\n🎲6:2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
