@@ -105,8 +105,9 @@ def play(update: Update, context: CallbackContext):
      if type == cc[n] and amount>=dd[n]: #check if challenger have enough balance dd is challenger's amount
         query.answer('Balance not enough to play this game')
      n +=1
-     if type == cc[n] and amount<dd[n] and fid !=tid:
-      query.edit_message_text(
+     if type == cc[n] and amount<dd[n]:
+      if fid!=tid:      
+       query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
              f"{f}❤ : {cd['fromhp']}\n{t}❤ : {cd['tohp']}\n\n"
              f"*{f}* make your decision\n", reply_markup=reply_markup,parse_mode = ParseMode.MARKDOWN_V2
