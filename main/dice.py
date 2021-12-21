@@ -10,7 +10,7 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 dict = {'white': 1, 'red': 5, 'orange': 25, 'yellow': 100, 'blue': 500, 'purple': 2000, 'black': 15000}
 colours = ["white", "red", "orange", "yellow", "blue", "purple", "black"]
-c = [white , red , orange,yellow , blue , purple , black]
+c = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
 rb = ["rbwhite", "rbred", "rborange", "rbyellow", "rbblue", "rbpurple", "rbblack"]
 
 def dice(update , context):
