@@ -56,8 +56,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_white(id , -amount)
-                              DB.add_white(id, mult*amount)
+      DB.add_white(id , -amount)
+      DB.add_white(id, mult*amount)
      else:
       update.message.reply_text('Balance not enough')
     if type == 'red':
@@ -67,8 +67,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_red(id , -amount)
-                              DB.add_red(id, mult*amount) 
+      DB.add_red(id , -amount)
+      DB.add_red(id, mult*amount) 
      else:
       update.message.reply_text('Balance not enough')                         
     if type == 'orange':
@@ -78,8 +78,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_orange(id , -amount)
-                              DB.add_orange(id, mult*amount)
+      DB.add_orange(id , -amount)
+      DB.add_orange(id, mult*amount)
      else:
       update.message.reply_text('Balance not enough')
     if type == 'yellow':
@@ -89,8 +89,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_yellow(id , -amount)
-                              DB.add_yellow(id, mult*amount)
+       DB.add_yellow(id , -amount)
+       DB.add_yellow(id, mult*amount)
       else:
       update.message.reply_text('Balance not enough')
      if type == 'blue':
@@ -100,8 +100,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_blue(id , -amount)
-                              DB.add_blue(id, mult*amount)
+       DB.add_blue(id , -amount)
+       DB.add_blue(id, mult*amount)
       else:
       update.message.reply_text('Balance not enough')
      if type == 'purple':
@@ -111,8 +111,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_purple(id , -amount)
-                              DB.add_purple(id, mult*amount) 
+       DB.add_purple(id , -amount)
+       DB.add_purple(id, mult*amount) 
       else:
       update.message.reply_text('Balance not enough')
      if type == 'black':
@@ -122,8 +122,8 @@ def dice(update , context):
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
-                              DB.add_black(id , -amount)
-                              DB.add_black(id, mult*amount)
+       DB.add_black(id , -amount)
+       DB.add_black(id, mult*amount)
 
 
 
