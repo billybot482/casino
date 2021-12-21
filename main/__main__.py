@@ -817,7 +817,7 @@ def claim(update , context):
         return
     if value < average:
         claim_amount = average // 10
-        DB.add_white(id, claim_amount)
+        DB.add_chip(id, 'white', claim_amount)
         DB.set_user_value(id, "claimed", True)
         update.message.reply_text(f"You received {claim_amount} ⚪️ white chip")
     else:
