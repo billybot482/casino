@@ -360,16 +360,16 @@ def res(update: Update, context: CallbackContext):
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
           if cd['fromhp'] > cd['tohp']:
                 for i in range(7):
-                if type == cc[n]:
-                 DB.add_chip(fid, type , amount)
-                 DB.sub_chip(tid , type, amount)
-                 DB.add_win(fid , 1)
-                 DB.add_loss(tid , 1)
-                 DB.add_wager(tid, amount)
-                 DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
-                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                 if type == cc[n]:
+                  DB.add_chip(fid, type , amount)
+                  DB.sub_chip(tid , type, amount)
+                  DB.add_win(fid , 1)
+                  DB.add_loss(tid , 1)
+                  DB.add_wager(tid, amount)
+                  DB.add_wager(fid , amount)
+                  DB.add_rbchip(fid, fmult*amount)
+                  DB.add_rbchip(tid, tmult*amount)
+                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
