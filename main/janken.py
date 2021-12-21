@@ -104,10 +104,7 @@ def play(update: Update, context: CallbackContext):
     for i in range(7):
      if type == cc[n] and amount>=dd[n]: #check if challenger have enough balance dd is challenger's amount
         query.answer('Balance not enough to play this game')
-        print(cc[n])
-        print(dd[n])
      n +=1
-     return None
      if type == cc[n] and amount<dd[n] and fid !=tid:
       query.edit_message_text(
         text=f"_*Round : {cd['round']}*_\n\n"
