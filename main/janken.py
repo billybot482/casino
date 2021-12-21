@@ -329,7 +329,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-          elif cd['tohp'] > cd['fromhp']:
+        elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -374,7 +374,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-          elif cd['tohp'] > cd['fromhp']:
+        elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -424,7 +424,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-          elif cd['tohp'] > cd['fromhp']:
+        elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -473,7 +473,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-          elif cd['tohp'] > cd['fromhp']:
+        elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -523,7 +523,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-          elif cd['tohp'] > cd['fromhp']:
+        elif cd['tohp'] > cd['fromhp']:
                 for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
