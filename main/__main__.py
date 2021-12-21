@@ -359,22 +359,9 @@ def tip(update , context):
         return -1
     amount = int(amount)
     
-    n =1 
-    cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
-    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
-    ee =  {1: DB.add_white(id,-amount), 2: DB.add_red(id,-amount), 3: DB.add_orange(id,-amount), 4: DB.add_yellow(id,-amount), 5: DB.add_blue(id,-amount), 6:DB.add_purple(id,-amount), 7:DB.add_black(id,-amount)}
-    ff = {1: DB.add_white(toid,amount), 2: DB.add_red(toid,amount), 3: DB.add_orange(toid,amount), 4: DB.add_yellow(toid,amount), 5: DB.add_blue(toid,amount), 6:DB.add_purple(toid,amount), 7:DB.add_black(toid,amount)}
-    for i in range(7):
-     if type == cc[n] and amount<=dd[n]:
-        print(cc[n])
-        print(ee[n])
-        ee[n]
-        ff[n]
-        update.message.reply_text(f'{name} tipped {amount} {cc[n]} chip to {to}')
-        
-     if type == cc[n] and amount>=dd[n]:
-        update.message.reply_text('Balance not enough')
-     n+=1
+    if type == 'white' and amount <= white:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_white(id, amount)
     
     
         
