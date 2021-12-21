@@ -359,9 +359,55 @@ def tip(update , context):
         return -1
     amount = int(amount)
     
-    if type == 'white' and amount <= white:
+    if type == 'white':
+      if amount<=white:
         update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
-        DB.add_white(id, amount)
+        DB.add_white(id, -amount)
+        DB.add_white(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'red':
+      if amount<=red:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_red(id, -amount)
+        DB.add_red(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'orange':
+      if amount<=orange:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_orange(id, -amount)
+        DB.add_orange(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'yellow':
+      if amount<=yellow:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_yellow(id, -amount)
+        DB.add_yellow(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'blue':
+      if amount<=blue:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_blue(id, -amount)
+        DB.add_blue(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'purple':
+      if amount<=purple:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_purple(id, -amount)
+        DB.add_purple(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
+    if type == 'black':
+      if amount<=black:
+        update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+        DB.add_black(id, -amount)
+        DB.add_black(toid, amount)
+      else:
+        update.message.reply_text('Balance not enough')
     
     
         
