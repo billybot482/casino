@@ -393,7 +393,7 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
                 n+=1
-          return ConversationHandler.END
+               
 
         return ONE
 
@@ -444,7 +444,7 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
                 n+=1
-          return ConversationHandler.END
+          
         return ONE
 
     elif cd['choice1'] == 'paper' and cd['choice2'] == 'scissor':
@@ -494,7 +494,7 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
                 n+=1
-          return ConversationHandler.END
+         
 
         return ONE
 
@@ -545,7 +545,7 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
                 n+=1   
-          return ConversationHandler.END
+       
 
         return ONE
       
