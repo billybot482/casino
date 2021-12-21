@@ -10,7 +10,7 @@ ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 emote = {'white':'⚪️', 'red':'🔴', 'orange':'🟠', 'yellow': '🟡', 'blue':'🔵', 'purple': '🟣', 'black':'⚫️'}
 colour = ['white', 'red', 'orange', 'yellow','blue', 'purple', 'black']
-colours = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
+
 owners = [163494588]
 
 def airdrop(update , context):
@@ -27,6 +27,7 @@ def airdrop(update , context):
     cd["blue"] = blue = DB.get_user_value(id, "blue")
     cd["purple"] = purple = DB.get_user_value(id, "purple")
     cd["black"] = black = DB.get_user_value(id, "black")
+    colours = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
     
     cd['type'] = type = update.message.text.split()[1]
     cd['units'] = units = update.message.text.split()[2]
