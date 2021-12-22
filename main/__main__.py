@@ -315,13 +315,20 @@ def gift(update , context):
     to = update.message.reply_to_message.from_user.first_name
     user_id = update.message.reply_to_message.from_user.id
     id = update.message.from_user.id
+    colour = ["white,"red", "orange", "yellow", "blue", "purple", "black"] 
     if id in owners:
-        DB.add_white(user_id , 100)
-        DB.add_red(user_id , 100)
-        DB.add_orange(user_id , 50)
-        DB.add_yellow(user_id , 30) 
-        DB.add_blue(user_id , 10)
-        update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips.") 
+        for i in colour:
+         if i == "black" or i =="purple":
+          DB.add_chip(user_id,i,0)
+         if i == "blue":
+          DB.add_chip(user_id,i,10)
+         if i == "yellow":
+          DB.add_chip(user_id,i,30)
+         if i == "orange":
+          DB.add_chip(user_id,i,50)
+         else:
+          DB.add_chip(user_id,i,100)
+       update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips.") 
     else:
         update.message.reply_text('Not authorised')
 
