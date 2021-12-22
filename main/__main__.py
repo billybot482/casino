@@ -318,7 +318,7 @@ def gift(update , context):
     colour = ["white" ,"red", "orange", "yellow", "blue", "purple", "black"] 
     if id in owners:
      update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips.") 
-        for i in colour:
+     for i in colour:
          if i == "black" or i =="purple":
           DB.add_chip(user_id,i,0)
          if i == "blue":
