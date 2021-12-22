@@ -315,7 +315,7 @@ def gift(update , context):
     to = update.message.reply_to_message.from_user.first_name
     user_id = update.message.reply_to_message.from_user.id
     id = update.message.from_user.id
-    colour = ["white,"red", "orange", "yellow", "blue", "purple", "black"] 
+    colour = ["white" ,"red", "orange", "yellow", "blue", "purple", "black"] 
     if id in owners:
         for i in colour:
          if i == "black" or i =="purple":
