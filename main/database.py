@@ -163,7 +163,7 @@ def set_user_value(user_id: int, item: str, value: Any):
 
 
 def add_chip(user_id, item, amount):
-  stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE id = %s;"
+  stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE user_id = %s;"
   cur.execute(stmt, (amount, user_id))
   conn.commit()
 
@@ -192,7 +192,7 @@ def add_vip(user_id : int , vip : int):
     conn.commit()
     
 def add_rbchip(user_id, item, amount):
-   stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE id = %s;"
+   stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE user_id = %s;"
    cur.execute(stmt, (amount, user_id))
    conn.commit()
 
