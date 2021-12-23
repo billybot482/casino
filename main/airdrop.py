@@ -40,7 +40,7 @@ def airdrop(update , context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     for i in colour:
-       if unit <= colours[n]:  
+       if units <= colours[n]:  
          if type == i:
             if id in owners or VIP>1:
               update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
