@@ -31,7 +31,7 @@ def stock(update , context):
     if id in owners:
       update.message.reply_text(f'<b>Name :</b> {name}\n'
                                 f'<b>symbol:</b> {symbol}\n'
-                                f'<b>price:</b> {price}\n'
+                                f'<b>price:</b> {price} $\n'
                                 f'<b>supply:</b> {supply}\n\n'
                                 f'Double check if all the info are correct before pressing confirm\n', reply_markup=reply_markup , parse_mode = ParseMode.HTML)
     else:
