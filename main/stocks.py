@@ -8,7 +8,7 @@ from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filter
 from main import database as DB
 
 ONE , TWO , THREE , FOUR , *_ = range(1000)
-owners = [163494588]
+owners = [163494588,935241907]
 
 def stock(update , context):
     cd = context.chat_data
@@ -115,7 +115,16 @@ def p(update, context):
                               f'<code>Market Cap ┃ {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
 
+def buy(update , context):
+    type = update.message.text.split()[1]
+    amount = update.message.text.split()[2]
+    price = update.message.text.split()[3]
 
+
+def sell(update , context):
+    type = update.message.text.split()[1]
+    amount = update.message.text.split()[2]
+    price = update.message.text.split()[3]
 
 
 
@@ -157,12 +166,15 @@ STOCK_HANDLER = ConversationHandler(
 
 EXCHANGE_HANDLER = CommandHandler("exchange",exchange)
 P_HANDLER = CommandHandler("p",p)
-
+BUY_HANDLER = CommandHandler("buy",buy)
+SELL_HANDLER = CommandHandler("sell",sell)
 
 
 dispatcher.add_handler(STOCK_HANDLER)
 dispatcher.add_handler(EXCHANGE_HANDLER)
 dispatcher.add_handler(P_HANDLER)
+dispatcher.add_handler(BUY_HANDLER)
+dispatcher.add_handler(SELL_HANDLER)
 
 
 
