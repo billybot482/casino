@@ -168,7 +168,7 @@ def add_chip(user_id, item, amount):
   conn.commit()
 
 def sub_chip(user_id, item, amount):
-  add_item(user_id, item, -amount)
+  add_chip(user_id, item, -amount)
 
 
 def add_wager(user_id : int , white : int):
