@@ -349,7 +349,8 @@ def tip(update , context):
     blue = round(DB.get_user_value(id, "blue"),4)
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
-    
+    vip = int(VIP) 
+    fees = 2-(vip/5)
     c = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
     type = update.message.text.split()[1]
     if type not in colour:
@@ -361,13 +362,17 @@ def tip(update , context):
         update.message.reply_text("Cant be 0 or negative")
         return -1
     amount = int(amount)
+    fee = round((amount*fees)/100,4)
     n=1
     for i in colour:
         if type == i:
-            if amount<= c[n]:
-              update.message.reply_text(f'{name} tipped {amount} {type} chip to {to}')
+            if (amount+fee)<= c[n]:
+              update.message.reply_text(f'<b>{name}</b> tipped {amount} {type} chip to <b>{to}</b>\n\nTipping fees : {fees}%\n<b>Fees :</b> {fee} {type} chip', parse_mode=ParseMode.HTML)
               DB.add_chip(toid , i, amount)
               DB.sub_chip(id , i , amount)
+              DB.sub_chip(id, i, fee)
+            else:
+              update.message.reply_text("Balance not enough") 
         n+=1
     
         
