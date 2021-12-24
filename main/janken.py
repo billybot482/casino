@@ -224,8 +224,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type, fmult*amount)
+                 DB.add_rbchip(tid, type, tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount*2} {type} chip\n')
@@ -240,8 +240,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type, fmult*amount)
+                 DB.add_rbchip(tid, type, tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -273,8 +273,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid, type, fmult*amount)
+                  DB.add_rbchip(tid,type,  tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{f} win !!\n"
                                         f'{f} won {amount*2} {type} chip\n')
@@ -289,8 +289,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type, fmult*amount)
+                 DB.add_rbchip(tid, type, tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -322,8 +322,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type, fmult*amount)
+                 DB.add_rbchip(tid, type, tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -338,8 +338,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type, fmult*amount)
+                 DB.add_rbchip(tid,  type, tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -367,8 +367,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid,type, fmult*amount)
+                  DB.add_rbchip(tid, type,tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -383,8 +383,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type,fmult*amount)
+                 DB.add_rbchip(tid, type,tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -417,8 +417,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid,type, fmult*amount)
+                  DB.add_rbchip(tid, type,tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -433,8 +433,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid,type, fmult*amount)
+                 DB.add_rbchip(tid, type,tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -467,8 +467,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid,type, fmult*amount)
+                  DB.add_rbchip(tid,type, tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -483,8 +483,8 @@ def res(update: Update, context: CallbackContext):
                  DB.add_loss(tid , 1)
                  DB.add_wager(tid, amount)
                  DB.add_wager(fid , amount)
-                 DB.add_rbchip(fid, fmult*amount)
-                 DB.add_rbchip(tid, tmult*amount)
+                 DB.add_rbchip(fid, type,fmult*amount)
+                 DB.add_rbchip(tid, type,tmult*amount)
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -518,8 +518,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid,type, fmult*amount)
+                  DB.add_rbchip(tid,type, tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
@@ -534,8 +534,8 @@ def res(update: Update, context: CallbackContext):
                   DB.add_loss(tid , 1)
                   DB.add_wager(tid, amount)
                   DB.add_wager(fid , amount)
-                  DB.add_rbchip(fid, fmult*amount)
-                  DB.add_rbchip(tid, tmult*amount)
+                  DB.add_rbchip(fid,type, fmult*amount)
+                  DB.add_rbchip(tid,type, tmult*amount)
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
