@@ -344,6 +344,9 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
+        else:
+         query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f" Draw , cost has been returned to respective wallet!!\n") 
 
         return ONE
 
@@ -388,11 +391,11 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-                
-                else:
-                 query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
-                                        f" Draw , cost has been returned to respective wallet!!\n")
                 n+=1
+        else:
+         query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+                                        f" Draw , cost has been returned to respective wallet!!\n")
+                
                
 
         return ONE
@@ -438,12 +441,12 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-                
-                else:
+               n+=1
+        else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
-                n+=1
+                
           
         return ONE
 
@@ -488,12 +491,12 @@ def res(update: Update, context: CallbackContext):
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-                
-                else:
+               n+=1
+        else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
-                n+=1
+                
          
 
         return ONE
@@ -539,12 +542,12 @@ def res(update: Update, context: CallbackContext):
                   query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
-                
-                else:
+                n+=1 
+        else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
-                n+=1   
+                  
        
 
         return ONE
