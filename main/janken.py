@@ -71,12 +71,12 @@ def play(update: Update, context: CallbackContext):
     query = update.callback_query
     cd['to_id'] = toid =update.callback_query.from_user.id
     cd['to_name'] = toname = update.callback_query.from_user.first_name
+    tid =cd['to_id']
     cd['tvip'] = tvip = DB.get_user_value(tid , 'vip')
     print(toid)
     
     f = cd['fighter']
     fid = cd['fighterid']
-    tid =cd['to_id']
     t =cd['to_name']
     type = cd['type']
     amount = cd['amount']
@@ -164,7 +164,7 @@ def res(update: Update, context: CallbackContext):
     tid = cd['to_id']
     fchose = cd['choice1']
     tchose = cd['choice2']
-    fvip = cd['fvip']
+    fvip = cd['fvip'] 
     tvip = cd['tvip']
     
     fmult = (((fvip+1)/10)+(fvip*0.2))/100
