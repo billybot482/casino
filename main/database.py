@@ -74,6 +74,7 @@ def setup():
                           symbol TEXT,
                           price real,
                           supply real,
+                          orderId int
                           
                           
                     )
