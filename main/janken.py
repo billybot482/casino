@@ -314,7 +314,8 @@ def res(update: Update, context: CallbackContext):
                                 , parse_mode=ParseMode.MARKDOWN_V2,reply_markup= reply_markup)
 
         if cd['fromhp'] == 0 or cd['tohp'] == 0:
-          for i in range(7):
+          if cd['fromhp'] > cd['tohp']:
+           for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
                  DB.sub_chip(tid , type, amount)
@@ -329,7 +330,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-        elif cd['tohp'] > cd['fromhp']:
+          elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -344,8 +345,8 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
-        else:
-         query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+          else:
+           query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n") 
 
         return ONE
@@ -377,7 +378,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-        elif cd['tohp'] > cd['fromhp']:
+          elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -392,8 +393,8 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
-        else:
-         query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
+          else:
+           query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
                 
                
@@ -427,7 +428,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-        elif cd['tohp'] > cd['fromhp']:
+          elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -442,7 +443,7 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                n+=1
-        else:
+          else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
@@ -477,7 +478,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-        elif cd['tohp'] > cd['fromhp']:
+          elif cd['tohp'] > cd['fromhp']:
                for i in range(7):
                 if type == cc[n]:
                  DB.add_chip(fid, type , amount)
@@ -492,7 +493,7 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                n+=1
-        else:
+          else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
@@ -528,7 +529,7 @@ def res(update: Update, context: CallbackContext):
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1
                 
-        elif cd['tohp'] > cd['fromhp']:
+          elif cd['tohp'] > cd['fromhp']:
                 for i in range(7):
                  if type == cc[n]:
                   DB.add_chip(fid, type , amount)
@@ -543,7 +544,7 @@ def res(update: Update, context: CallbackContext):
                                         f"{t} win !!\n"
                                         f'{t} won {amount*2} {type} chip\n')
                 n+=1 
-        else:
+          else:
                 
                  query.message.edit_text(f"{f} ❤️Hp : {cd['fromhp']}\n{t} ❤️Hp: {cd['tohp']}\n\n"
                                         f" Draw , cost has been returned to respective wallet!!\n")
