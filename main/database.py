@@ -63,7 +63,19 @@ def setup():
                           name TEXT,
                           symbol TEXT,
                           price real,
-                          supply real
+                          supply real,
+                          savedPrice real
+                    )
+            """)
+    conn.commit()
+    cur.execute("""CREATE TABLE IF NOT EXISTS Order
+                    (  
+                          user_id int not null primary key,
+                          symbol TEXT,
+                          price real,
+                          supply real,
+                          
+                          
                     )
             """)
     conn.commit()
