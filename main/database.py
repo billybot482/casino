@@ -75,8 +75,6 @@ def setup():
                           price real,
                           supply real,
                           orderId int
-                          
-                          
                     )
             """)
     conn.commit()
