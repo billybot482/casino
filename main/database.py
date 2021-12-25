@@ -148,8 +148,8 @@ def get_stock():
     cur.execute(stmt)
     return cur.fetchall()
 
-def get_price():
-    stmt = f"SELECT price FROM Stocks;"
+def get_liquid():
+    stmt = f"SELECT liquid FROM Stocks;"
     cur.execute(stmt)
     return cur.fetchall()
 
