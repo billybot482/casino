@@ -62,7 +62,7 @@ def setup():
                     (
                           name TEXT,
                           symbol TEXT,
-                          price real,
+                          liquid real,
                           supply real,
                           savedPrice real
                     )
