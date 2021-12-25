@@ -88,7 +88,8 @@ def p(update, context):
     name = DB.get_stock_value(pick,"name")
     price = DB.get_stock_value(pick,"price") 
     supply = DB.get_stock_value(pick, "supply")
-    
+    print(name)
+    print(price)
     cap = supply*price
     b = ""
     
@@ -119,6 +120,20 @@ def buy(update , context):
     type = update.message.text.split()[1]
     amount = update.message.text.split()[2]
     price = update.message.text.split()[3]
+    name = DB.get_stock_value(pick,"symbol")
+    price = DB.get_stock_value(pick,"price") 
+    supply = DB.get_stock_value(pick, "supply")
+    
+    
+    '''for i in name:
+     if type == not in i:'''
+        
+    
+    
+    
+    
+    
+    
 
 
 def sell(update , context):
