@@ -116,7 +116,7 @@ def p(update, context):
                               f'<code>Total Supply: {supply}</code>\n'
                               f'<code>Market Cap ┃ {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
-      except TypeError:
+    except TypeError:
         update.message.reply_text('Stocks not found!\n\ntype /p <symbol of stock>')
 
 def buy(update , context):
