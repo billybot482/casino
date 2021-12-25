@@ -294,7 +294,27 @@ def statistic(update, context):
         lossrate = 'NA'
 
     value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
-    
+    if wager>50000 and vip<1:
+     DB.add_vip(id , 1)
+    if wager>500000 and vip<2:
+     DB.add_vip(id , 1)
+    if wager>2000000 and vip<3:
+     DB.add_vip(id , 1)
+    if wager>5000000 and vip<4:
+     DB.add_vip(id , 1)
+    if wager>10000000 and vip<5:
+     DB.add_vip(id , 1)
+    if wager>250000000 and vip<6:
+     DB.add_vip(id , 1)
+    if wager>1000000000 and vip<7:
+     DB.add_vip(id , 1)
+    if wager>2500000000 and vip<8:
+     DB.add_vip(id , 1)
+    if wager>5000000000 and vip<9:
+     DB.add_vip(id , 1)
+    if wager>10000000000 and vip<10:
+     DB.add_vip(id , 1)
+
     update.message.reply_text(f'<b><u>statistic of {name}</u></b>\n\n'
                               f'<b>🎖 VIP  : {vip}</b>\n'
                               f'<b>★ Current assets :</b> {value}$ \n'
