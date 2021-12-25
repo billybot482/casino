@@ -46,11 +46,11 @@ def bet(update, context):
         return -1
     except AttributeError:
         return -1
-    
+    print('hi')
     for i in colour:
       if type in colour:
         if type == i:
-          if amount <c[n]:
+          if amount <=c[n]:
             if amount >0:
               a = random.randint(1,2)
               if a ==1:
