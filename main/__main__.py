@@ -46,7 +46,11 @@ def value(update , context):
            "🔴 red chip : 5$\n🟠 orange chip : 25$\n🟡 yellow chip : 100$\n🔵 blue chip : 500$" \
            "\n🟣 purple chip : 2000$\n⚫️ black chip : 15000$"
     context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
- 
+    
+def vip(update, context):
+    text = 'Wager\nㅤ\nVip 0 - 0 \nVip 1 - 50000\nVip2 - 500000\nVip3 - 2000000\nVip4 - 5000000\nVip5 - 10000000\nVip6 - 250000000\nVip7 - 1000000000\nVip8 - 2500000000\nVip9 - 5000000000\nVip10 - 10000000000' 
+    update.message.reply_text(text)
+
 def rakeback(update, context):
     cd = context.chat_data
     query = update.callback_query
@@ -921,6 +925,7 @@ STATS_HANDLER = CommandHandler('statistic', statistic)
 GIFT_HANDLER = CommandHandler('gift',gift)  
 SYSTEM_HANDLER = CommandHandler('system',system) 
 TIP_HANDLER = CommandHandler('tip',tip) 
+VIP_HANDLER = CommandHandler('vip',vip) 
 
 dispatcher.add_handler(START_HANDLER)
 dispatcher.add_handler(WALLET_HANDLER)
@@ -935,6 +940,7 @@ dispatcher.add_handler(RAKEBACK_HANDLER)
 dispatcher.add_handler(GIFT_HANDLER)
 dispatcher.add_handler(SYSTEM_HANDLER)
 dispatcher.add_handler(TIP_HANDLER)
+dispatcher.add_handler(VIP_HANDLER)
 
 
 
