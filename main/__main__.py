@@ -655,160 +655,160 @@ def exchange2(update , context):
         DB.add_chip(id , 'yellow', yellow) # add
     if query.data == 'white2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white2} white chip')
-        DB.sub_chip(id , 'red',  red) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'red',  red2) # minus
+        DB.add_chip(id , 'white', white2) # add
     if query.data == 'red2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red2} red chip')
-        DB.sub_chip(id , 'red',  red) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'red',  red2) # minus
+        DB.add_chip(id , 'red', red2) # add
     if query.data == 'orange2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
-        DB.sub_chip(id , 'red',  red) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'red',  red2) # minus
+        DB.add_chip(id , 'orange', orange2) # add
     if query.data == 'yellow2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow2} yellow chip')
-        DB.sub_chip(id , 'red',  red) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'red',  red2) # minus
+        DB.add_chip(id , 'yellow', yellow2) # add
     if query.data == 'blue2':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue2} blue chip')
-        DB.sub_chip(id , 'red',  red) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'red',  red2) # minus
+        DB.add_chip(id , 'blue', blue2) # add
     if query.data == 'white3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white3} white chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'orange',  orange3) # minus
+        DB.add_chip(id , 'white', white3) # add
     if query.data == 'red3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red3} red chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'orange',  orange3) # minus
+        DB.add_chip(id , 'red', red3) # add
     if query.data == 'orange3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange2} orange chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'orange',  orange3) # minus
+        DB.add_chip(id , 'orange', orange3) # add
     if query.data == 'yellow3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow3} yellow chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'orange',  orange3) # minus
+        DB.add_chip(id , 'yellow', yellow3) # add
     if query.data == 'blue3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue3} blue chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'orange',  orange3) # minus
+        DB.add_chip(id , 'blue', blue3) # add
     if query.data == 'purple3':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple3} purple chip')
-        DB.sub_chip(id , 'orange',  orange) # minus
+        DB.sub_chip(id , 'orange',  orange3) # minus
         DB.add_chip(id , 'purple', purple) # add
     if query.data == 'white4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white4} white chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'white', white4) # add
     if query.data == 'red4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red4} red chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'red', red4) # add
     if query.data == 'orange4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange4} orange chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'orange', orange4) # add
     if query.data == 'yellow4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow4} yellow chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'yellow', yellow4) # add
     if query.data == 'blue4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue4} blue chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'blue', blue4) # add
     if query.data == 'purple4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple4} purple chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'purple', purple) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'purple', purple4) # add
     if query.data == 'black4':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black4} black chip')
-        DB.sub_chip(id , 'yellow',  yellow) # minus
-        DB.add_chip(id , 'black', black) # add
+        DB.sub_chip(id , 'yellow',  yellow4) # minus
+        DB.add_chip(id , 'black', black4) # add
     if query.data == 'white5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white5} black chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'white', white5) # add
     if query.data == 'red5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red5} red chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'red', red5) # add
     if query.data == 'orange5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange5} orange chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'orange', orange5) # add
     if query.data == 'yellow5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow5} yellow chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'yellow', yellow5) # add
     if query.data == 'blue5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue5} blue chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'blue', blue5) # add
     if query.data == 'purple5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple5} purple chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'purple', purple) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'purple', purple5) # add
     if query.data == 'black5':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black5} black chip')
-        DB.sub_chip(id , 'blue',  blue) # minus
-        DB.add_chip(id , 'black', black) # add
+        DB.sub_chip(id , 'blue',  blue5) # minus
+        DB.add_chip(id , 'black', black5) # add
     if query.data == 'white6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white6} white chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'white', white6) # add
     if query.data == 'red6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red6} red chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'red', red6) # add
     if query.data == 'orange6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange6} orange chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'orange', orange6) # add
     if query.data == 'yellow6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow6} yellow chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'yellow', yellow6) # add
     if query.data == 'blue6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue6} blue chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'blue', blue6) # add
     if query.data == 'purple6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple6} purple chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'purple', purple) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'purple', purple6) # add
     if query.data == 'black6':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black6} black chip')
-        DB.sub_chip(id , 'purple',  purple) # minus
-        DB.add_chip(id , 'black', black) # add
+        DB.sub_chip(id , 'purple',  purple6) # minus
+        DB.add_chip(id , 'black', black6) # add
     if query.data == 'white7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {white7} white chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'white', white) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'white', white7) # add
     if query.data == 'red7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {red7} red chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'red', red) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'red', red7) # add
     if query.data == 'orange7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {orange7} orange chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'orange', orange) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'orange', orange7) # add
     if query.data == 'yellow7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {yellow7} yellow chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'yellow', yellow) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'yellow', yellow7) # add
     if query.data == 'blue7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {blue7} blue chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'blue', blue) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'blue', blue7) # add
     if query.data == 'purple7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {purple7} purple chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'purple', purple) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'purple', purple7) # add
     if query.data == 'black7':
         query.edit_message_text(f'Successfully exchanged {units} {type} chip to {black7} black chip')
-        DB.sub_chip(id , 'black',  black) # minus
-        DB.add_chip(id , 'black', black) # add
+        DB.sub_chip(id , 'black',  black7) # minus
+        DB.add_chip(id , 'black', black7) # add
 
 def claim(update , context):
     id = update.effective_user.id
