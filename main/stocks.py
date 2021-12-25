@@ -16,8 +16,8 @@ def stock(update , context):
     id = update.effective_user.id
     cd['name'] = name = update.message.text.split()[1]
     cd['symbol'] = symbol = update.message.text.split()[2]
-    cd['liquid'] = liquid = update.message.text.split()[3]
-    cd['supply'] = supply = update.message.text.split()[4]
+    cd['liquid'] = liquid = int(update.message.text.split()[3])
+    cd['supply'] = supply = int(update.message.text.split()[4])
     
     keyboard = [
         [
