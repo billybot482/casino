@@ -48,8 +48,7 @@ def value(update , context):
     context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
     
 def vip(update, context):
-    text = 'Wager\nㅤ\nVip 0 - 0 \nVip 1 - 50000\nVip2 - 500000\nVip3 - 2000000\nVip4 - 5000000\nVip5 - 10000000\nVip6 - 250000000\nVip7 - 1000000000\nVip8 - 2500000000\nVip9 - 5000000000\nVip10 - 10000000000' 
-    update.message.reply_text(text)
+    text = 'Wagering Table\nㅤ\n🎖 Vip 0 - 0 \n🎖 Vip 1 - 50000\n🎖 Vip2 - 500000\n🎖 Vip3 - 2000000\n🎖 Vip4 - 5000000\n🎖 Vip5 - 10000000\n🎖 Vip6 - 250000000\n🎖 Vip7 - 1000000000\n🎖 Vip8 - 2500000000\n🎖 Vip9 - 5000000000\n🎖 Vip10 - 10000000000'    update.message.reply_text(text)
 
 def rakeback(update, context):
     cd = context.chat_data
