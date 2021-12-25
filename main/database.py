@@ -121,6 +121,19 @@ def add_stock(name , symbol , price, supply):
   conn.commit()
   return conn
 
+def add_order(name , symbol , price, supply):
+  stmt = """INSERT INTO Order (user_id , symbol , price, supply , orderId)
+  VALUES (
+  %s,
+  %s,
+  %s,
+  %s,
+  %s
+);"""
+  cur.execute(stmt,(user_id ,symbol,price,supply, orderId))
+  conn.commit()
+  return conn
+
 def update_price(price , name):
     stmt = "UPDATE Stocks SET price = %s WHERE name = %s;"
     cur.execute(stmt,(price , name))
