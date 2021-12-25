@@ -50,7 +50,7 @@ def bet(update, context):
     for i in colour:
       if type in colour:
         if type == i:
-          if amount <=c[n]:
+          if amount <c[n]:
             if amount >0:
               a = random.randint(1,2)
               if a ==1:
