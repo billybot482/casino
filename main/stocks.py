@@ -85,29 +85,30 @@ def exchange(update ,context):
 def p(update, context):
     pick = update.message.text.split()[1]
     pick = pick.upper()
-    name = DB.get_stock_value(pick,"name")
-    price = DB.get_stock_value(pick,"price") 
-    supply = DB.get_stock_value(pick, "supply")
-    print(name)
-    print(price)
-    cap = supply*price
-    b = ""
+    try:
+     name = DB.get_stock_value(pick,"name")
+     price = DB.get_stock_value(pick,"price") 
+     supply = DB.get_stock_value(pick, "supply")
+     print(name)
+     print(price)
+     cap = supply*price
+     b = ""
     
-    if cap >=1000 and cap <1000000:
+     if cap >=1000 and cap <1000000:
         b+= str(cap/1000)+"K"
-    if cap >=1000000 and cap <1000000000:
+     if cap >=1000000 and cap <1000000000:
         b+= str(cap/1000000)+"M"
-    if cap >=1000000000 and cap < 1000000000000:
+     if cap >=1000000000 and cap < 1000000000000:
         b+= str(cap/1000000000)+"B"
-    if cap >=1000000000000 and cap < 1000000000000000:
+     if cap >=1000000000000 and cap < 1000000000000000:
         b+= str(cap/1000000000000)+"T"
-    if cap >=1000000000000000 and cap <1000000000000000000:
+     if cap >=1000000000000000 and cap <1000000000000000000:
         b+= str(cap/1000000000000000)+"Qd"
-    if cap >=1000000000000000000 and cap < 1000000000000000000000:
+     if cap >=1000000000000000000 and cap < 1000000000000000000000:
         b+= str(cap/1000000000000000000)+"Qn"
     
 
-    update.message.reply_text(f'<b>{name}</b>\n'
+     update.message.reply_text(f'<b>{name}</b>\n'
                               f'<b>• {pick}</b>\n'
                               f'<code>{price} $ </code>\n\n'
                               f'<code>24Hr % change : 26.61% </code> 💹\n'
@@ -115,6 +116,8 @@ def p(update, context):
                               f'<code>Total Supply: {supply}</code>\n'
                               f'<code>Market Cap ┃ {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
+      except TypeError:
+        update.message.reply_text('Stocks not found!\n\ntype /p <symbol of stock>')
 
 def buy(update , context):
     type = update.message.text.split()[1]
