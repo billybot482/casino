@@ -60,12 +60,12 @@ def stock2(update , context):
     
     
 def exchange(update ,context):
-    price = DB.get_price()
+    liquid = DB.get_liquid()
     all_stock = DB.get_stock() 
     n = 1
     b = "" 
     o = [] 
-    for k in price:
+    for k in liquid:
      for p in k:
       o.append(p)
     
