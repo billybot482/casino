@@ -74,7 +74,7 @@ def exchange(update ,context):
     
     for k in liquid:
      for p in k:
-      o.append(p/v[m])
+      o.append(p/v[m-1])
     m+=1
     for i in all_stock:
      for j in i:
