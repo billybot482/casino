@@ -87,25 +87,39 @@ def p(update, context):
     pick = pick.upper()
     try:
      name = DB.get_stock_value(pick,"name")
-     price = DB.get_stock_value(pick,"price") 
+     liquid = DB.get_stock_value(pick,"liquid") 
      supply = DB.get_stock_value(pick, "supply")
      print(name)
      print(price)
+     price =  liquid/supply
      cap = supply*price
      b = ""
-    
+     c = ""
      if cap >=1000 and cap <1000000:
-        b+= str(cap/1000)+"K"
+        b+= str(round(cap/1000),2)+"K"
      if cap >=1000000 and cap <1000000000:
-        b+= str(cap/1000000)+"M"
+        b+= str(round(cap/1000000),2)+"M"
      if cap >=1000000000 and cap < 1000000000000:
-        b+= str(cap/1000000000)+"B"
+        b+= str(round(cap/1000000000),2)+"B"
      if cap >=1000000000000 and cap < 1000000000000000:
-        b+= str(cap/1000000000000)+"T"
+        b+= str(round(cap/1000000000000),2)+"T"
      if cap >=1000000000000000 and cap <1000000000000000000:
-        b+= str(cap/1000000000000000)+"Qd"
+        b+= str(round(cap/1000000000000000),2)+"Qd"
      if cap >=1000000000000000000 and cap < 1000000000000000000000:
-        b+= str(cap/1000000000000000000)+"Qn"
+        b+= str(round(cap/1000000000000000000),2)+"Qn"
+        
+     if liquid >=1000 and cap <1000000:
+        c+= str(round(liquid/1000),2)+"K"
+     if liquid >=1000000 and cap <1000000000:
+        c+= str(round(liquid/1000000),2)+"M"
+     if liquid >=1000000000 and cap < 1000000000000:
+        c+= str(round(liquid/1000000000),2)+"B"
+     if liquid >=1000000000000 and cap < 1000000000000000:
+        c+= str(round(liquid/1000000000000),2)+"T"
+     if liquid >=1000000000000000 and cap <1000000000000000000:
+        c+= str(round(liquid/1000000000000000),2)+"Qd"
+     if liquid >=1000000000000000000 and cap < 1000000000000000000000:
+        c+= str(round(liquid/1000000000000000000),2)+"Qn"
     
 
      update.message.reply_text(f'<b>{name}</b>\n'
@@ -114,6 +128,7 @@ def p(update, context):
                               f'<code>24Hr % change : 26.61% </code> 💹\n'
                               f'<code>Circulating supply: {supply}</code>\n'
                               f'<code>Total Supply: {supply}</code>\n'
+                              f'<code>Liquidity: {c}</code>$\n' 
                               f'<code>Market Cap ┃ {b}</code>\n\n'
                               f'ADVERTISMENT HERE',parse_mode = ParseMode.HTML) 
     except TypeError:
@@ -121,10 +136,9 @@ def p(update, context):
 
 def buy(update , context):
     type = update.message.text.split()[1]
-    amount = update.message.text.split()[2]
-    price = update.message.text.split()[3]
+    spend = update.message.text.split()[2]
     name = DB.get_stock_value(pick,"symbol")
-    price = DB.get_stock_value(pick,"price") 
+    liquid = DB.get_stock_value(pick,"liquid") 
     supply = DB.get_stock_value(pick, "supply")
     
     
