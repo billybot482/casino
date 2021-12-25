@@ -64,7 +64,7 @@ def dice(update , context):
               DB.add_chip(id, i , mult*amount)
               DB.sub_chip(id, i , amount)
               DB.add_wager(id , amount)
-              DB.add_rbchip(id , i ,rb[n])
+              DB.add_rbchip(id , i ,mult*amount*multy)
             
             else:
              update.message.reply_text('Balance not enough')
