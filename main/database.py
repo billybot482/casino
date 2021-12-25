@@ -68,12 +68,12 @@ def setup():
                     )
             """)
     conn.commit()
-    cur.execute("""CREATE TABLE IF NOT EXISTS Order
+    cur.execute("""CREATE TABLE IF NOT EXISTS Orders
                     (  
-                          userId int not null primary key,
-                          Symbol TEXT,
-                          Price real,
-                          Supply real,
+                          user_id int,
+                          symbol TEXT,
+                          price real,
+                          supply real,
                           orderId int
                     )
             """)
