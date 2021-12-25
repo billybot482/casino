@@ -62,13 +62,20 @@ def stock2(update , context):
 def exchange(update ,context):
     liquid = DB.get_liquid()
     all_stock = DB.get_stock() 
+    supply = DB.get_supply()
     n = 1
+    m = 1 
     b = "" 
     o = [] 
+    v = []
+    for aa in supply:
+       for bb in aa:
+        v.append(bb)
+    
     for k in liquid:
      for p in k:
-      o.append(p)
-    
+      o.append(p/v[m])
+    m+=1
     for i in all_stock:
      for j in i:
       b+=str(j)+ " - " +str(o[n-1])+"$"+"\n"
