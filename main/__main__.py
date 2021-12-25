@@ -327,6 +327,8 @@ def gift(update , context):
           DB.add_chip(user_id,i,30)
          if i == "orange":
           DB.add_chip(user_id,i,50)
+         if i == "red":
+          DB.add_chip(user_id,i,100)
          else:
           DB.add_chip(user_id,i,0)
     else:
