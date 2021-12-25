@@ -63,7 +63,9 @@ def dice(update , context):
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
               DB.add_chip(id, i , mult*amount)
               DB.sub_chip(id, i , amount)
+              print("before") 
               DB.add_wager(id , amount*dict[colours[n-1]])
+              print("after") 
               DB.add_rbchip(id , i ,mult*amount*multy)
             
             else:
