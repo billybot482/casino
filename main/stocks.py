@@ -16,7 +16,7 @@ def stock(update , context):
     id = update.effective_user.id
     cd['name'] = name = update.message.text.split()[1]
     cd['symbol'] = symbol = update.message.text.split()[2]
-    cd['price'] = price = update.message.text.split()[3]
+    cd['liquid'] = liquid = update.message.text.split()[3]
     cd['supply'] = supply = update.message.text.split()[4]
     
     keyboard = [
@@ -31,7 +31,7 @@ def stock(update , context):
     if id in owners:
       update.message.reply_text(f'<b>Name :</b> {name}\n'
                                 f'<b>symbol:</b> {symbol}\n'
-                                f'<b>price:</b> {price} $\n'
+                                f'<b>price:</b> {liquid/supply} $\n'
                                 f'<b>supply:</b> {supply}\n\n'
                                 f'Double check if all the info are correct before pressing confirm\n', reply_markup=reply_markup , parse_mode = ParseMode.HTML)
     else:
@@ -50,12 +50,12 @@ def stock2(update , context):
     query = update.callback_query
     name = cd['name']
     symbol = cd['symbol']
-    price = cd['price']
+    liquid = cd['liquid']
     supply = cd['supply']
     if update.callback_query.from_user.id not in owners:
       query.answer('not authorised')
     else:
-      DB.add_stock(name , symbol , price , supply)
+      DB.add_stock(name , symbol , liquid, supply)
       query.edit_message_text(f'{name} is now tradeable stocks in exchange')
     
     
