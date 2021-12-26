@@ -32,7 +32,7 @@ def bet(update, context):
     c = {1:white, 2:red, 3:orange, 4:yellow, 5:blue, 6:purple, 7:black}
     vip = int(VIP)
     mult = (((vip+1)/10)+(vip*0.2))/100
-    n =1
+    n = 0
     
     try:
      type = update.message.text.split()[1]
