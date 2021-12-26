@@ -68,6 +68,10 @@ def dice(update , context):
               print("after") 
               DB.add_rbchip(id , i ,mult*amount*multy)
               print('rb done')
+              if a>3:
+               DB.add_win(id,1)
+              else:
+               DB.add_loss(id,1)
             
             else:
              update.message.reply_text('Balance not enough')
