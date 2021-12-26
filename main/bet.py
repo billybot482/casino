@@ -59,14 +59,14 @@ def bet(update, context):
                 DB.add_win(id , 1)
                 DB.add_wager(id, amount*values[colour[n-1]])
                 update.message.reply_text(f"Congrats, you won {amount} {type} chip") 
-              n+=1
+                n+=1
               else:
                 DB.sub_chip(id , i , amount)
                 DB.add_rbchip(id ,rb[n-1] , mult*amount)
                 DB.add_loss(id , 1)
                 DB.add_wager(id, amount*values[colour[n-1]])
                 update.message.reply_text(f" Unfortunately you lost {amount} of {type} chip") 
-              n+=1
+                n+=1
             else:
              update.message.reply_text("Cannot bet negative or 0")
           else:
