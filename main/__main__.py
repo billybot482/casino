@@ -120,8 +120,8 @@ def rakeback2(update , context):
         return none
     
     query.edit_message_text('rakeback has been added to your main wallet')
-    n = 1
-    m = 1
+    n = 0
+    m = 0
     for i in colour:
        DB.sub_rbchip(id , i , c[n])
        n+=1
