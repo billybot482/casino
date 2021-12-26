@@ -12,10 +12,10 @@ colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
 rb = ['rbwhite', 'rbred', 'rborange', 'rbyellow', 'rbblue', 'rbpurple', 'rbblack']
 
 def bet(update, context):
-    Chat = update.effective_chat
+    '''Chat = update.effective_chat
     if update.effective_chat.type != Chat.PRIVATE:
        update.message.reply_text("play in pm")
-       return -1
+       return -1'''
     cd = context.chat_data
     query = update.callback_query
     id = update.effective_user.id
@@ -55,15 +55,15 @@ def bet(update, context):
               a = random.randint(1,2)
               if a ==1:
                 DB.add_chip(id , i , amount)
-                DB.add_rbchip(id ,rb[n] , mult*amount)
+                DB.add_rbchip(id ,rb[n-1] , mult*amount)
                 DB.add_win(id , 1)
-                DB.add_wager(id, amount)
+                DB.add_wager(id, amount*values[colour[n-1]])
                 update.message.reply_text(f"Congrats, you won {amount} {type} chip") 
               else:
                 DB.sub_chip(id , i , amount)
-                DB.add_rbchip(id ,rb[n] , mult*amount)
+                DB.add_rbchip(id ,rb[n-1] , mult*amount)
                 DB.add_loss(id , 1)
-                DB.add_wager(id, amount)
+                DB.add_wager(id, amount*values[colour[n-1]])
                 update.message.reply_text(f" Unfortunately you lost {amount} of {type} chip") 
             else:
              update.message.reply_text("Cannot bet negative or 0")
