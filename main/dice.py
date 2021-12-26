@@ -45,7 +45,7 @@ def dice(update , context):
     if a == 2:
      mult +=0
     if a == 3:
-     mult +=1
+     mult +=0
     if a == 4:
      mult +=1.5
     if a == 5:
@@ -57,7 +57,7 @@ def dice(update , context):
         if type == i:
             if amount <=c[n]:
               update.message.reply_text(f'<b>Dice game classic</b>\n\n'
-                              f'1🎲  0x \n2🎲  0x\n3🎲  1x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
+                              f'1🎲  0x \n2🎲  0x\n3🎲  0x\n4🎲  1.5x\n5🎲  2x\n6🎲  2.5x\n\n'
                               f'<b>You bet</b> {amount} {type} chip\n'
                               f'<b>You rolled </b> {a}\n'
                               f'<b>You got </b>{mult*amount} {type} chip', parse_mode = ParseMode.HTML)
@@ -67,6 +67,7 @@ def dice(update , context):
               DB.add_wager(id , amount*dict[colours[n-1]])
               print("after") 
               DB.add_rbchip(id , i ,mult*amount*multy)
+              print('rb done')
             
             else:
              update.message.reply_text('Balance not enough')
