@@ -48,7 +48,7 @@ def value(update , context):
     context.bot.send_message(chat_id = update.effective_chat.id , text = text, parse_mode = ParseMode.HTML)
     
 def vip(update, context):
-    text = 'Wager\nㅤ\n🎖 Vip 0 - 0$ \n🎖 Vip 1 - 50000$\n🎖 Vip2 - 500000$\n🎖 Vip3 - 2000000$\n🎖 Vip4 - 5000000$\n🎖 Vip5 - 10000000$\n🎖 Vip6 - 250000000$\n🎖 Vip7 - 1000000000$\n🎖 Vip8 - 2500000000$\n🎖 Vip9 - 5000000000$\n🎖 Vip10 - 10000000000$'
+    text = 'Wager\nㅤ\n🎖 Vip 0 - 0$ \n🎖 Vip 1 - 50K$\n🎖 Vip2 - 500K$\n🎖 Vip3 - 2M$\n🎖 Vip4 - 5M$\n🎖 Vip5 - 10M$\n🎖 Vip6 - 25M$\n🎖 Vip7 - 100M$\n🎖 Vip8 - 250M$\n🎖 Vip9 - 500M$\n🎖 Vip10 - 1B$'
     update.message.reply_text(text)
     
     
