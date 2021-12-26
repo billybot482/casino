@@ -59,6 +59,7 @@ def bet(update, context):
                 DB.add_win(id , 1)
                 DB.add_wager(id, amount*values[colour[n-1]])
                 update.message.reply_text(f"Congrats, you won {amount} {type} chip") 
+              n+=1
               else:
                 DB.sub_chip(id , i , amount)
                 DB.add_rbchip(id ,rb[n-1] , mult*amount)
