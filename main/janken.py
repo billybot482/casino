@@ -317,7 +317,7 @@ def res(update: Update, context: CallbackContext):
           if cd['fromhp'] > cd['tohp']:
            for i in range(7):
                 if type == cc[n]:
-                 DB.add_chip(fid, type , amount)
+                  DB.add_chip(fid, type , amount)
                   DB.sub_chip(tid , type, amount)
                   DB.add_win(fid , 1)
                   DB.add_loss(tid , 1)
