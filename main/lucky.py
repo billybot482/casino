@@ -281,7 +281,7 @@ def draw2(update , context):
     winner1 = random.choice(pot)
     
     keyboard = [
-         [InlineKeyboardButton('Draw Winner', callback_data='win1')]]
+         [InlineKeyboardButton('Draw Second Winner', callback_data='win2')]]
     
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b>Lucky Draw Begin❗️\n\nCurrent Lucky draw list:\n1•{name}\n2•{user1_name}\n3•{user2_name}\n4•{user3_name}\n5•{user4_name}</b>\n\nThe Winner of first draw is {winner1['name']}\nCongrats on winning {(amount*5)*0.6} {type}chip", reply_markup = reply_markup , parse_mode = ParseMode.HTML)
@@ -317,12 +317,8 @@ def draw3(update , context):
       
     pot = [{'name': user1_name, 'id': user1_id, 'm':m2},{'name': user2_name, 'id': user2_id, 'm':m3},{'name': user3_name, 'id': user3_id, 'm':m4},{'name': user4_name, 'id': user4_id, 'm':m5},{'name': name, 'id': id, 'm':m}]
     winner2 = random.choice(pot)  
-      
-    keyboard = [
-         [InlineKeyboardButton('Draw Second Winner', callback_data='win2')]
-     ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    query.edit_message_text(f"<b>Lucky Draw Begin❗️\n\nCurrent Lucky draw list:\n1•{name}\n2•{user1_name}\n3•{user2_name}\n4•{user3_name}\n5•{user4_name}</b>\n\nThe Winner of second draw is {winner1['name']}\nCongrats on winning {(amount*5)*0.4} {type}chip", reply_markup = reply_markup , parse_mode = ParseMode.HTML)
+
+    query.edit_message_text(f"<b>Lucky Draw Begin❗️\n\nCurrent Lucky draw list:\n1•{name}\n2•{user1_name}\n3•{user2_name}\n4•{user3_name}\n5•{user4_name}</b>\n\nThe Winner of second draw is {winner1['name']}\nCongrats on winning {(amount*5)*0.4} {type}chip\n\n<b>ENDED</b>", parse_mode = ParseMode.HTML)
     DB.add_chip(winner2['id'], type, (amount*5)*0.4)
     DB.add_win(winner2['id'], 1)
     DB.add_rbchip(winner2['id'], type, amount*winner2['m'])
