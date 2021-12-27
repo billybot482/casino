@@ -202,7 +202,7 @@ def join4(update , context):
     user2_id = cd['u2id'] 
     user3_name  = cd['u3name']
     user3_id = cd['u3id'] 
-    cd['vip']= vip = DB.get_user_value(id , 'vip')
+    cd['vip']= vip = DB.get_user_value(user4_id , 'vip')
     cd['m5'] = (((vip+1)/10)+(vip*0.2))/100
     cd['white'] = white = round(DB.get_user_value(user4_id, "white"),4)
     cd['red'] =  red = round(DB.get_user_value(user4_id, "red"),4)
