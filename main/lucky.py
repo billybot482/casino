@@ -84,7 +84,7 @@ def join1(update , context):
     query = update.callback_query
     amount = cd['amount']
     type = cd['type']
-    cd['name'] = name 
+    name = cd['name']
     cd['u1name'] = user1_name =  update.callback_query.from_user.first_name
     cd['u1id'] = user1_id =  update.callback_query.from_user.id
     cd['vip']= vip = DB.get_user_value(user1_id , 'vip')
