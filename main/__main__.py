@@ -4,7 +4,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 import random
-from main import wheel, dispatcher, bet , airdrop, pet, market, janken, cash, stocks, dice , hilo
+from main import wheel, dispatcher, bet , airdrop, pet, market, janken, cash, stocks, dice , hilo , lucky
 import os
 from telegram.ext.dispatcher import run_async
 from main import database as DB
