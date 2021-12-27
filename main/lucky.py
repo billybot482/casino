@@ -56,9 +56,9 @@ def luckydraw(update , context):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
         update.message.reply_text(f'*{name}* created a Luck draw game\n\n'
-                              f'*Entry chips :* {type}\n'
+                              f'*Entry chips +* {type}\n'
                               f'*Amount :* {amount}\n\n'
-                              f'*Current Lucky draw list:\n1.{name}*', reply_markup = reply_markup , parse_mode = ParseMode.MARKDOWN_V2)
+                              f'*Current Lucky draw list:\n1-{name}*', reply_markup = reply_markup , parse_mode = ParseMode.MARKDOWN_V2)
        n+=1   
     return ONE
       
