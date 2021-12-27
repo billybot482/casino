@@ -319,7 +319,7 @@ def draw3(update , context):
     winner2 = random.choice(pot)  
       
     keyboard = [
-         [InlineKeyboardButton('Draw Winner', callback_data='win1')]
+         [InlineKeyboardButton('Draw Second Winner', callback_data='win2')]
      ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f"<b>Lucky Draw Begin❗️\n\nCurrent Lucky draw list:\n1•{name}\n2•{user1_name}\n3•{user2_name}\n4•{user3_name}\n5•{user4_name}</b>\n\nThe Winner of second draw is {winner1['name']}\nCongrats on winning {(amount*5)*0.4} {type}chip", reply_markup = reply_markup , parse_mode = ParseMode.HTML)
