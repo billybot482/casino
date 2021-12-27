@@ -41,8 +41,8 @@ def airdrop(update , context):
     n = 0
     for i in colour:
      n+=1
-     if units <= colours[n]:  
-         if type == i:
+     if type == i:
+       if units <= colours[n]:
             if id in owners or VIP>1:
               update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
                               reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
@@ -50,7 +50,7 @@ def airdrop(update , context):
             else:
              update.message.reply_text('You must be VIP 1 or above to use this functions')
             return ONE
-     else:
+       else:
           update.message.reply_text('Balance not enough to create an airdrop')
      
     
