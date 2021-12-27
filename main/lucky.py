@@ -102,7 +102,7 @@ def join1(update , context):
          [InlineKeyboardButton('cancel', callback_data='cancel')]
      ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+    n = 1
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
@@ -138,7 +138,7 @@ def join2(update , context):
          [InlineKeyboardButton('cancel', callback_data='cancel')]
      ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+    n = 1
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
@@ -177,7 +177,7 @@ def join3(update , context):
          [InlineKeyboardButton('cancel', callback_data='cancel')]
      ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+    n =1 
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
@@ -217,7 +217,7 @@ def join4(update , context):
          [InlineKeyboardButton('cancel', callback_data='cancel')]
      ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+    n = 1
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
