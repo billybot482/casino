@@ -21,7 +21,8 @@ def luckydraw(update , context):
     cd['id'] = id = update.effective_user.id
     cd['vip']= vip = DB.get_user_value(id , 'vip')
     cd['m1'] = mult1 = (((vip+1)/10)+(vip*0.2))/100
-    
+    cd['join'] = join = [] 
+    join.append(id)
     cd['name'] = name = update.effective_user.first_name
     cd['white'] = white = round(DB.get_user_value(id, "white"),4)
     cd['red'] =  red = round(DB.get_user_value(id, "red"),4)
@@ -97,6 +98,11 @@ def join1(update , context):
     cd['purple'] = purple = round(DB.get_user_value(user1_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user1_id, "black"),4) 
     dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    join = cd['join']
+    if user1_id in join:
+     query.answer("You already joined") 
+     return 0
+    join.append(user1_id)
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join2'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -133,6 +139,11 @@ def join2(update , context):
     cd['purple'] = purple = round(DB.get_user_value(user2_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user2_id, "black"),4) 
     dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    join = cd['join']
+    if user2_id in join:
+     query.answer("You already joined") 
+     return 0
+    join.append(user2_id) 
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join3'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -172,6 +183,11 @@ def join3(update , context):
     cd['purple'] = purple = round(DB.get_user_value(user3_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user3_id, "black"),4) 
     dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    join = cd['join']
+    if user3_id in join:
+     query.answer("You already joined") 
+     return 0
+    join.append(user3_id)
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join4'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -212,6 +228,11 @@ def join4(update , context):
     cd['purple'] = purple = round(DB.get_user_value(user4_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user4_id, "black"),4) 
     dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+    join = cd['join']
+    if user4_id in join:
+     query.answer("You already joined") 
+     return 0
+    join.append(user4_id)
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='draw1'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
