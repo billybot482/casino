@@ -12,7 +12,7 @@ colour = ['white', 'red', 'orange', 'yellow', 'blue', 'purple', 'black']
 rb = ['rbwhite', 'rbred', 'rborange', 'rbyellow', 'rbblue', 'rbpurple', 'rbblack']
 
 cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'black'}
-dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
+
 
 def luckydraw(update , context):
     print('debug')
@@ -29,7 +29,7 @@ def luckydraw(update , context):
     cd['blue'] = blue = round(DB.get_user_value(id, "blue"),4)
     cd['purple'] = purple = round(DB.get_user_value(id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(id, "black"),4) 
-    
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join1'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -95,7 +95,7 @@ def join1(update , context):
     cd['blue'] = blue = round(DB.get_user_value(user1_id, "blue"),4)
     cd['purple'] = purple = round(DB.get_user_value(user1_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user1_id, "black"),4) 
- 
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join2'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -131,7 +131,7 @@ def join2(update , context):
     cd['blue'] = blue = round(DB.get_user_value(user2_id, "blue"),4)
     cd['purple'] = purple = round(DB.get_user_value(user2_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user2_id, "black"),4) 
- 
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join3'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -170,7 +170,7 @@ def join3(update , context):
     cd['blue'] = blue = round(DB.get_user_value(user3_id, "blue"),4)
     cd['purple'] = purple = round(DB.get_user_value(user3_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user3_id, "black"),4) 
- 
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join4'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -210,7 +210,7 @@ def join4(update , context):
     cd['blue'] = blue = round(DB.get_user_value(user4_id, "blue"),4)
     cd['purple'] = purple = round(DB.get_user_value(user4_id, "purple"),4)
     cd['black'] = black = round(DB.get_user_value(user4_id, "black"),4) 
- 
+    dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='draw1'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -242,7 +242,7 @@ def draw1(update , context):
     user3_id = cd['u3id'] 
     user4_name  = cd['u4name']
     user4_id = cd['u4id'] 
-
+   
     keyboard = [
          [InlineKeyboardButton('Draw Winner', callback_data='win1')]
      ]
