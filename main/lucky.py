@@ -15,6 +15,7 @@ cc =  {1: 'white', 2: 'red', 3:'orange', 4:'yellow', 5:'blue', 6:'purple', 7:'bl
 dd = {1:white, 2:red , 3:orange, 4:yellow , 5:blue , 6:purple , 7:black}
 
 def luckydraw(update , context):
+    print('debug')
     cd= context.chat_data
     query = update.callback_query
     cd['vip']= vip = DB.get_user_value(id , 'vip')
