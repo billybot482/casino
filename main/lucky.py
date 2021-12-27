@@ -18,9 +18,10 @@ def luckydraw(update , context):
     print('debug')
     cd= context.chat_data
     query = update.callback_query
+    cd['id'] = id = update.effective_user.id
     cd['vip']= vip = DB.get_user_value(id , 'vip')
     cd['m1'] = mult1 = (((vip+1)/10)+(vip*0.2))/100
-    cd['id'] = id = update.effective_user.id
+    
     cd['name'] = name = update.effective_user.first_name
     cd['white'] = white = round(DB.get_user_value(id, "white"),4)
     cd['red'] =  red = round(DB.get_user_value(id, "red"),4)
