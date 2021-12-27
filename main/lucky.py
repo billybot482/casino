@@ -288,7 +288,7 @@ def draw2(update , context):
     DB.add_chip(winner1['id'], type, (amount*5)*0.6)
     DB.add_win(winner1['id'], 1)
     DB.add_rbchip(winner1['id'], type, amount*winner1['m'])
-    DB.add_wager(winner1['id'], amount*values['type'])
+    DB.add_wager(winner1['id'], amount*values[type])
     return ONE 
                                   
 def draw3(update , context):
@@ -326,7 +326,7 @@ def draw3(update , context):
     DB.add_chip(winner2['id'], type, (amount*5)*0.4)
     DB.add_win(winner2['id'], 1)
     DB.add_rbchip(winner2['id'], type, amount*winner2['m'])
-    DB.add_wager(winner2['id'], amount*values['type']) 
+    DB.add_wager(winner2['id'], amount*values[type]) 
     return ConversationHandler.END
 
 
