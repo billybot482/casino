@@ -267,7 +267,7 @@ def draw2(update , context):
     user3_id = cd['u3id'] 
     user4_name  = cd['u4name']
     user4_id = cd['u4id'] 
-    m1 = cd['m1']
+    m = cd['m1']
     m2 = cd['m2']
     m3 = cd['m3']
     m4 = cd['m4']
@@ -306,7 +306,11 @@ def draw3(update , context):
     user3_id = cd['u3id'] 
     user4_name  = cd['u4name']
     user4_id = cd['u4id'] 
-    
+    m = cd['m1']
+    m2 = cd['m2']
+    m3 = cd['m3']
+    m4 = cd['m4']
+    m5 = cd['m5']
     if update.callback_query.from_user.id != id:
         query.answer('Only creator can use this')
         return None
