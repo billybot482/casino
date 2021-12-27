@@ -280,8 +280,8 @@ def draw2(update , context):
     winner1 = random.choice(pot)
     
     keyboard = [
-         [InlineKeyboardButton('Draw Winner', callback_data='win1')]
-     ]
+         [InlineKeyboardButton('Draw Winner', callback_data='win1')]]
+    
     reply_markup = InlineKeyboardMarkup(keyboard)
     query.edit_message_text(f'*Lucky Draw Begin!\n\nCurrent Lucky draw list:\n1.{name}\n2.{user1_name}\n3.{user2_name}\n4.{user3_name}\n5.{user4_name}*\n\nThe Winner of first draw is {winner1['name']}\nCongrats on winning {(amount*5)*0.6} {type}chip', reply_markup = reply_markup , parse_mode = ParseMode.MARKDOWN_V2)
     DB.add_chip(winner1['id'], type, (amount*5)*0.6)
