@@ -38,8 +38,9 @@ def airdrop(update , context):
         [InlineKeyboardButton('claim', callback_data='claim')]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    
+    n = 0
     for i in colour:
+     n+=1
        if units <= colours[n]:  
          if type == i:
             if id in owners or VIP>1:
@@ -47,7 +48,7 @@ def airdrop(update , context):
                               reply_markup=reply_markup, parse_mode=ParseMode.MARKDOWN_V2)
               context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
          else:
-          update.message.reply_text('You must be VIP 3 or above to use this functions')
+          update.message.reply_text('You must be VIP 1 or above to use this functions')
          return ONE
        else:
           update.message.reply_text('Balance not enough to create an airdrop')
