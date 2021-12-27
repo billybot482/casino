@@ -41,7 +41,7 @@ def airdrop(update , context):
     n = 0
     for i in colour:
      n+=1
-       if units <= colours[n]:  
+      if units <= colours[n]:  
          if type == i:
             if id in owners or VIP>1:
               update.message.reply_text(f"{user} created an airdrop of {units} {type} chip {emote[type]} \n\n First one to click claim will receive it",
