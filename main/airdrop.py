@@ -49,10 +49,10 @@ def airdrop(update , context):
               context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
          else:
           update.message.reply_text('You must be VIP 1 or above to use this functions')
-         return ONE
+         
      else:
           update.message.reply_text('Balance not enough to create an airdrop')
-              
+    return ONE       
     
     
 def airdrop2(update , context):
