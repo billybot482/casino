@@ -310,6 +310,7 @@ def draw2(update , context):
     DB.add_win(winner1['id'], 1)
     DB.add_rbchip(winner1['id'], type, amount*winner1['m'])
     DB.add_wager(winner1['id'], amount*values[type])
+    cd['winner1id'] = winner1['id']
     return ONE 
                                   
 def draw3(update , context):
@@ -327,6 +328,7 @@ def draw3(update , context):
     user3_id = cd['u3id'] 
     user4_name  = cd['u4name']
     user4_id = cd['u4id'] 
+    winner1id = cd['winner1id']
     m = cd['m1']
     m2 = cd['m2']
     m3 = cd['m3']
@@ -344,6 +346,13 @@ def draw3(update , context):
     DB.add_win(winner2['id'], 1)
     DB.add_rbchip(winner2['id'], type, amount*winner2['m'])
     DB.add_wager(winner2['id'], amount*values[type]) 
+    for i in pot:
+     DB.sub_chip(i['id'],type,amount)
+     DB.add_rbchip(i['id'], type, amount*i['m'])
+     DB.add_wager(i['id'],amount*values[type])
+    for i in pot:
+     if i['id']!= winner1id or i['id']!=winner2['id']:
+      DB.add_loss(i['id'],1)
     return ConversationHandler.END
 
 
