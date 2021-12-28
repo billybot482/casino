@@ -298,7 +298,7 @@ def statistic(update, context):
         winrate = 'NA'
         lossrate = 'NA'
 
-    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000)
+    value = (white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000) 
     if wager>50000 and vip<1:
      DB.add_vip(id , 1)
     if wager>500000 and vip<2:
@@ -322,8 +322,8 @@ def statistic(update, context):
 
     update.message.reply_text(f'<b><u>statistic of {name}</u></b>\n\n'
                               f'<b>🎖 VIP  : {vip}</b>\n'
-                              f'<b>★ Current assets :</b> {value}$ \n'
-                              f'<b>★ Total wagered :</b> {wager}$\n'
+                              f'<b>★ Current assets :</b> {round(value,2)}$ \n'
+                              f'<b>★ Total wagered :</b> {round(wager,2)}$\n'
                               f'<b>★ Total win :</b> {win}\n'
                               f'<b>★ Total loss : </b>{loss}\n'
                               f'<b>★ Win rate : </b>{winrate}%\n'
