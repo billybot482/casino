@@ -96,8 +96,8 @@ def p(update, context):
      name = DB.get_stock_value(pick,"name")
      liquid = DB.get_stock_value(pick,"liquid") 
      supply = DB.get_stock_value(pick, "supply")
-     print(name)
-     print(price)
+
+
      price =  liquid/supply
      cap = supply*price
      b = ""
