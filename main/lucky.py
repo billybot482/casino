@@ -102,7 +102,7 @@ def join1(update , context):
     if user1_id in join:
      query.answer("You already joined") 
      return 0
-    join.append(user1_id)
+    
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join2'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -112,6 +112,7 @@ def join1(update , context):
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
+        join.append(user1_id)
         query.edit_message_text(f'*{name}* created a Luck draw game\n\n'
                               f'*Entry chips :* {type}\n'
                               f'*Amount :* {amount}\n\n'
@@ -143,7 +144,7 @@ def join2(update , context):
     if user2_id in join:
      query.answer("You already joined") 
      return 0
-    join.append(user2_id) 
+    
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join3'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -153,6 +154,7 @@ def join2(update , context):
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
+        join.append(user2_id)
         query.edit_message_text(f'*{name}* created a Luck draw game\n\n'
                               f'*Entry chips :* {type}\n'
                               f'*Amount :* {amount}\n\n'
@@ -187,7 +189,7 @@ def join3(update , context):
     if user3_id in join:
      query.answer("You already joined") 
      return 0
-    join.append(user3_id)
+    
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='join4'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -197,6 +199,7 @@ def join3(update , context):
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
+        join.append(user3_id)
         query.edit_message_text(f'*{name}* created a Luck draw game\n\n'
                               f'*Entry chips :* {type}\n'
                               f'*Amount :* {amount}\n\n'
@@ -232,7 +235,7 @@ def join4(update , context):
     if user4_id in join:
      query.answer("You already joined") 
      return 0
-    join.append(user4_id)
+    
     keyboard = [
          [InlineKeyboardButton('Join', callback_data='draw1'),InlineKeyboardButton('rules', callback_data='rules')],
          [InlineKeyboardButton('cancel', callback_data='cancel')]
@@ -242,6 +245,7 @@ def join4(update , context):
     for i in range(7):
       if type in colour:
        if type  == cc[n] and amount <=dd[n]:
+        join.append(user4_id)
         query.edit_message_text(f'*{name}* created a Luck draw game\n\n'
                               f'*Entry chips :* {type}\n'
                               f'*Amount :* {amount}\n\n'
