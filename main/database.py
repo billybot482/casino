@@ -197,9 +197,9 @@ def add_pet_cat(user_id,pet_id , talent , distract , confident):
   'common',
   'pur'
 );"""
-  cur.execute(stmt, (user_id,pet_id , talent , distract , confident)
-  conn.commit()
-  return conn 
+   cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
+   conn.commit()
+   return conn 
 
 def pet_control():
   stmt = """INSERT INTO PetControl (cat , dog , fish)
