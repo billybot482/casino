@@ -197,7 +197,7 @@ def add_pet_cat(user_id,pet_id , talent , distract , confident):
   'common',
   'pur'
 );"""
-  cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
+  cur.execute(stmt, (user_id,pet_id , talent , distract , confident)
   conn.commit()
   return conn 
 
