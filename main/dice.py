@@ -31,7 +31,7 @@ def dice(update , context):
     type = update.message.text.split()[1]
     amount = update.message.text.split()[2]
     amount = int(amount)
-    n = 1
+    n = 0
     vip = int(vip)
     multy = (((vip+1)/10)+(vip*0.2))/100
     if amount <=0:
@@ -54,6 +54,7 @@ def dice(update , context):
      mult +=2.5
 
     for i in colours:
+        n+=1
         if type == i:
             if amount <=c[n]:
               update.message.reply_text(f'<b>Dice game classic</b>\n\n'
@@ -75,7 +76,7 @@ def dice(update , context):
             
             else:
              update.message.reply_text('Balance not enough')
-            n+=1
+            
             
 
 
