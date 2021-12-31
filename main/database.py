@@ -173,12 +173,12 @@ def add_user(user_id):
 
 def get_cat(user_id):
     stmt = f"SELECT pet_id FROM Pet WHERE type = 'cat' AND WHERE user_id = %s;"
-    cur.execute(stmt,(user_id))
+    cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
 def get_pet(user_id):
     stmt = f"SELECT pet_id FROM Pet WHERE user_id = %s;"
-    cur.execute(stmt,(user_id))
+    cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
@@ -214,7 +214,7 @@ def pet_control():
 
 def mint_pet(item , amount):
    stmt = f"UPDATE PetControl SET {item} = {item} + %s;"
-   cur.execute(stmt, (amount))
+   cur.execute(stmt, (amount,))
    conn.commit()
 
 def quantity_cat():
