@@ -19,7 +19,6 @@ def market(update, context):
     name = update.effective_user.first_name
     username = update.effective_user.name
     VIP = DB.get_user_value(id, "vip")
-    worth = DB.get_user_value(id, "worth")
     cd['white'] =white = round(DB.get_user_value(id, "white"),4)
     cd['red'] =red = round(DB.get_user_value(id, "red"),4)
     cd['orange'] =orange = round(DB.get_user_value(id, "orange"),4)
