@@ -7,6 +7,20 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMo
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
+owners = [163494588]
+
+
+def mint(update , context):
+   id = update.effective_user.id
+   type = update.message.text.split()[1]
+   amount = int(update.message.text.split()[2])
+   if id in owners:
+      DB.mint_pet(type , amount)
+      update.message.reply_text(f'minted extra {amount} {type}')
+   else:
+      update.message.reply_text(f'not authorised')
+      
+
 
 def mypet(update , context):
    cd = context.chat_data
@@ -14,17 +28,17 @@ def mypet(update , context):
    id = update.effective_user.id
    name = update.effective_user.first_name
    username = update.effective_user.name
+   n = 1
+   text = '' 
+   cat_id = DB.get_cat(id)
+   for i in cat_id:
+    text += str(n)+'.'+ ' Cat #'+str(i).zfill(3)+'\n'
+    n+=1
+   update.message.reply_text('Pet collection\n\n{text}')
+   
 
-   keyboard = [
-        [InlineKeyboardButton("1", callback_data="1"),InlineKeyboardButton("2", callback_data="2"),InlineKeyboardButton("3", callback_data="3")],
-      [InlineKeyboardButton("Previous", callback_data="back"),InlineKeyboardButton("Next", callback_data="next")]
-    ]
-   reply_markup = InlineKeyboardMarkup(keyboard)
-    
-   update.message.reply_text(f'<b><u>My pet collections</u></b>\n\n<b>Quill #0001</b>\n<b>Blaze #0001</b>\n<b>Dinosaur #0001</b>',reply_markup=reply_markup, parse_mode=ParseMode.HTML)
-
-
-
+def check(update , context):
+    pass
 
 
 
@@ -42,3 +56,5 @@ def mypet(update , context):
     )'''
 MYPET_HANDLER = CommandHandler('mypet', mypet)
 dispatcher.add_handler(MYPET_HANDLER)
+MINT_HANDLER = CommandHandler('mint', mint)
+dispatcher.add_handler(MINT_HANDLER)
