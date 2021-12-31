@@ -37,7 +37,8 @@ def setup():
                   loss integer,
                   vip integer,
                   rakeback real,
-                  claimed boolean
+                  claimed boolean,
+                  slots int
             );
     """)
     conn.commit()
@@ -78,9 +79,70 @@ def setup():
                     )
             """)
     conn.commit()
+    cur.execute("""CREATE TABLE IF NOT EXISTS Pet
+                    (
+                          type TEXT,
+                          user_id int,
+                          pet_id int,
+                          baby text,
+                          teen text,
+                          adult text, 
+                          growth int, 
+                          talent int,
+                          distract int,
+                          confident int,
+                          move1 text,
+                          move2 text,
+                          move3 text,
+                          move4 text,
+                          special text
+                       
+                          
+                    )
+            """)
+    conn.commit()
+    cur.execute("""CREATE TABLE IF NOT EXISTS mainpet
+                    (
+                          type TEXT,
+                          user_id int,
+                          pet_id int,
+                          baby text,
+                          teen text,
+                          adult text, 
+                          growth int, 
+                          talent int,
+                          distract int,
+                          confident int,
+                          rarity text,
+                          special text
+                    )
+            """)
+    conn.commit()
+    cur.execute("""CREATE TABLE IF NOT EXISTS PetControl
+                    (
+                          cat int,
+                          dog int,
+                          fish int
+                    )
+            """)
+    conn.commit()
+    
+def pet_control():
+  stmt = """INSERT INTO PetControl (cat , dog , fish)
+  VALUES (
+  20,
+  20,
+  20
+);"""
+  cur.execute(stmt)
+  conn.commit()
+  return conn
 
+
+    
+    
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots)
   VALUES (
   %s,
   100,
@@ -102,12 +164,59 @@ def add_user(user_id):
   0,
   0,
   0,
-  false
-);"""
+  false,
+  3
+);"""confidenc
   cur.execute(stmt, (user_id,))
   conn.commit()
   return conn
 
+def get_pet(user_id):
+    stmt = f"SELECT pet_id FROM Pet WHERE user_id = %s;"
+    cur.execute(stmt,(user_id))
+    return cur.fetchall()
+
+def add_pet_cat(user_id,pet_id , talent , distract , confident):
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+  VALUES (
+  'cat',
+  %s,
+  %s,
+  'https://telegra.ph/file/f60784ada75e2fe039928.jpg',
+  'https://telegra.ph/file/d02fd8f1c2794177a06e7.jpg',
+  'https://telegra.ph/file/a60b94e4e180dd3df8055.jpg',
+  0,
+  %s,
+  %s,
+  %s,
+  'common',
+  'pur'
+);"""
+  cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
+  conn.commit()
+  return conn 
+
+def pet_control():
+  stmt = """INSERT INTO PetControl (cat , dog , fish)
+  VALUES (
+  20,
+  20,
+  20
+);"""
+  cur.execute(stmt)
+  conn.commit()
+  return conn
+
+def mint_pet(item , amount):
+   stmt = f"UPDATE PetControl SET {item} = {item} + %s;"
+   cur.execute(stmt, (amount))
+   conn.commit()
+
+def quantity_cat():
+    stmt = f"SELECT cat FROM PetControl;"
+    cur.execute(stmt)
+    return cur.fetchall()
+    
 
 def add_stock(name , symbol , liquid, supply):
   stmt = """INSERT INTO Stocks (name , symbol , liquid, supply)
@@ -133,6 +242,9 @@ def add_order(name , symbol , price, supply):
   cur.execute(stmt,(user_id ,symbol,price,supply, orderId))
   conn.commit()
   return conn
+
+
+
 
 def update_price(price , name):
     stmt = "UPDATE Stocks SET price = %s WHERE name = %s;"
@@ -172,6 +284,11 @@ def get_all_value(items: str):
     stmt = f"SELECT {items} FROM Usr;"
     cur.execute(stmt)
     return cur.fetchall()
+
+def get_user_pet_value(user_id: int, items: str):
+    stmt = f"SELECT {items} FROM Pet WHERE user_id=%s;"
+    cur.execute(stmt, (user_id,))
+    return cur.fetchone()[0]
 
 def get_user_value(user_id: int, items: str):
     stmt = f"SELECT {items} FROM Usr WHERE user_id=%s;"
