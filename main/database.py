@@ -166,10 +166,15 @@ def add_user(user_id):
   0,
   false,
   3
-);"""confidenc
+);"""
   cur.execute(stmt, (user_id,))
   conn.commit()
   return conn
+
+def get_cat(user_id):
+    stmt = f"SELECT pet_id FROM Pet WHERE type = 'cat' AND WHERE user_id = %s;"
+    cur.execute(stmt,(user_id))
+    return cur.fetchall()
 
 def get_pet(user_id):
     stmt = f"SELECT pet_id FROM Pet WHERE user_id = %s;"
