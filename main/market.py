@@ -69,9 +69,9 @@ def buy_cat(update , context):
     if slot > cs:
      if blue >=50:
         DB.add_pet_cat(id , a , talent , distract , confident)
-        query.edit_message_text(f'Congratulation you are now owner of Cat {tag}\n'
-                                f'stats if your pet:\n'
-                                f'Talent : {talent}\nDistract : {distract}\nConfident : {confident}', parse_mode = ParseMode.HTML)
+        query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Cat {tag}</b>\n\n'
+                                f'<i>stats if your pet:</i>\n'
+                                f'🔆Talent : {talent}/30\n♨️Distract : {distract}/30\n❤‍🔥Confident : {confident}/200', parse_mode = ParseMode.HTML)
         return ConversationHandler.END
      else:
         query.answer('Balance not enough')
