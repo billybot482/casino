@@ -337,6 +337,11 @@ def add_vip(user_id : int , vip : int):
     cur.execute(stmt, (vip,user_id))
     conn.commit()
     
+def add_slot(user_id : int , vip : int):
+    stmt = f"UPDATE Usr SET slots = slots + %s WHERE user_id =%s;"
+    cur.execute(stmt, (vip,user_id))
+    conn.commit()
+    
 def add_rbchip(user_id, item, amount):
    stmt = f"UPDATE Usr SET {item} = {item} + %s WHERE user_id = %s;"
    cur.execute(stmt, (amount, user_id))
