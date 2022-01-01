@@ -57,7 +57,7 @@ def buy_cat(update , context):
     a = random.randint(1,999)
     talent = random.randint(5,30)
     distract = random.randint(5,30)
-    confident = random.randint(5,200)
+    confident = random.randint(50,200)
     slot = cd['slot']
     cs = cd['cs']
     # max talent = 30
@@ -72,7 +72,7 @@ def buy_cat(update , context):
         DB.sub_mint('cat', 1)
         DB.sub_chip(id,'blue',50)
         query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Cat {tag}</b>\n\n'
-                                f'<i>stats if your pet:</i>\n'
+                                f'<i><b>stats of your pet:</b></i>\n'
                                 f'🔆Talent : {talent}/30\n♨️Distract : {distract}/30\n❤‍🔥Confident : {confident}/200', parse_mode = ParseMode.HTML)
         return ConversationHandler.END
      else:
