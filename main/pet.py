@@ -41,7 +41,7 @@ def buyslot(update , context):
    username = update.effective_user.name
    slot = DB.get_user_value(id , 'slots')
    cd['purple'] = purple = round(DB.get_user_value(id, "purple"),4)
-   cd['cost'] = cost = purple*(slot*slot)
+   cd['cost'] = cost =slot*slot
    keyboard = [
         [InlineKeyboardButton('Confirm', callback_data='confirm'), InlineKeyboardButton('cancel', callback_data='cancel')]
     ]
