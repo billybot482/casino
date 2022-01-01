@@ -289,6 +289,8 @@ def statistic(update, context):
     purple = round(DB.get_user_value(id, "purple"),4)
     black = round(DB.get_user_value(id, "black"),4)
     pet_count = 0
+    slot = DB.get_user_value(id , 'slots')
+    current_slot = len(DB.get_pet(id))
     try:
         ratio = round(((win/loss)/2)*100,2)
         winrate = round(win/(win+loss)*100,2) 
@@ -329,7 +331,7 @@ def statistic(update, context):
                               f'<b>★ Win rate : </b>{winrate}%\n'
                               f'<b>★ Loss rate : </b>{lossrate}%\n'
                               f'<b>★ Ratio : </b>{ratio}%\n\n'
-                              f'<b>💫 Pet owned : </b>{pet_count}', parse_mode = ParseMode.HTML)
+                              f'<b>💫 Pet owned : </b>{current_slot}/{slots}', parse_mode = ParseMode.HTML)
     
                 
 def gift(update , context):
