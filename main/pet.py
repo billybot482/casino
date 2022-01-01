@@ -97,8 +97,7 @@ BUYSLOT_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('buyslot', buyslot, pass_user_data=True)],
         states={
             TWO: [CallbackQueryHandler(buy_res, pattern="^confirm$", pass_user_data=True),
-                  CallbackQueryHandler(buy_res, pattern="^cancel$", pass_user_data=True
-            ],
+                  CallbackQueryHandler(buy_res, pattern="^cancel$", pass_user_data=True)],
         },
         fallbacks=[],
         allow_reentry=True,
