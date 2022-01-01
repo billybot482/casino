@@ -331,7 +331,7 @@ def statistic(update, context):
                               f'<b>★ Win rate : </b>{winrate}%\n'
                               f'<b>★ Loss rate : </b>{lossrate}%\n'
                               f'<b>★ Ratio : </b>{ratio}%\n\n'
-                              f'<b>💫 Pet owned : </b>{current_slot}/{slots}', parse_mode = ParseMode.HTML)
+                              f'<b>💫 Pet owned : </b>{current_slot}/{slot}', parse_mode = ParseMode.HTML)
     
                 
 def gift(update , context):
