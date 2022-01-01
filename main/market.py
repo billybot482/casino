@@ -59,14 +59,12 @@ def buy_cat(update , context):
     distract = random.randint(5,30)
     confident = random.randint(5,200)
     slot = cd['slot']
-    cs = ['cs']
+    cs = cd['cs']
     # max talent = 30
     # max distract = 30 
     # confident 200 
     tag = "#" + str(a).zfill(3)
     id = cd['id']
-    print(slot)
-    print(cs)
     blue = cd['blue']
     if slot > cs:
      if blue >=50:
