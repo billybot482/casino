@@ -33,7 +33,7 @@ def market(update, context):
         cat = b
     cd['slot'] = slot = DB.get_user_value(id , 'slots')
     cd['cs'] = current_slot = len(DB.get_pet(id))
-    
+    print(current_slot)
     value = round((white*1)+(red*5)+(orange*25)+(yellow*100)+(blue*500)+(purple*2000)+(black*15000),4)
     keyboard = [
          [InlineKeyboardButton('cat', callback_data='cat')]
