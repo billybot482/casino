@@ -20,7 +20,13 @@ def mint(update , context):
    else:
       update.message.reply_text(f'not authorised')
       
-
+def petcontrol(update , context):
+   id = update.effective_user.id
+   if id in owners:
+      DB.pet_control()
+      update.message.reply_text(f'added pet control system')
+   else:
+      update.message.reply_text(f'not authorised')
 
 def mypet(update , context):
    cd = context.chat_data
@@ -54,7 +60,17 @@ def check(update , context):
         allow_reentry=True,
         per_user=True
     )'''
+
+
+
 MYPET_HANDLER = CommandHandler('mypet', mypet)
-dispatcher.add_handler(MYPET_HANDLER)
+PETCONTROL_HANDLER = CommandHandler('petcontrol', petcontrol)
 MINT_HANDLER = CommandHandler('mint', mint)
 dispatcher.add_handler(MINT_HANDLER)
+dispatcher.add_handler(MYPET_HANDLER)
+dispatcher.add_handler(PETCONTROL_HANDLER)
+
+
+
+
+
