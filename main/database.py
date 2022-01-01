@@ -95,6 +95,7 @@ def setup():
                           move2 text,
                           move3 text,
                           move4 text,
+                          rarity text,
                           special text
                        
                           
@@ -126,20 +127,6 @@ def setup():
                     )
             """)
     conn.commit()
-    
-def pet_control():
-  stmt = """INSERT INTO PetControl (cat , dog , fish)
-  VALUES (
-  20,
-  20,
-  20
-);"""
-  cur.execute(stmt)
-  conn.commit()
-  return conn
-
-
-    
     
 def add_user(user_id):
   stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots)
@@ -248,7 +235,16 @@ def add_order(name , symbol , price, supply):
   conn.commit()
   return conn
 
-
+def pet_control():
+  stmt = """INSERT INTO PetControl (cat , dog , fish)
+  VALUES (
+  20,
+  20,
+  20
+);"""
+  cur.execute(stmt)
+  conn.commit()
+  return conn
 
 
 def update_price(price , name):
