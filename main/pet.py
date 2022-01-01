@@ -22,6 +22,10 @@ def mint(update , context):
       
 def petcontrol(update , context):
    id = update.effective_user.id
+   check = len(DB.quantity_cat())
+   if check != None:
+      update.message.reply_text('pet control already initiated')
+      return -1
    if id in owners:
       DB.pet_control()
       update.message.reply_text(f'added pet control system')
