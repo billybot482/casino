@@ -67,7 +67,7 @@ def dice(update , context):
               print("before") 
               DB.add_wager(id , amount*dict[colours[n-1]])
               print("after") 
-              DB.add_rbchip(id , i ,mult*amount*multy)
+              DB.add_rbchip(id , i ,amount*multy)
               print('rb done')
               if a>3:
                DB.add_win(id,1)
