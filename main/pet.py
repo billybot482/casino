@@ -65,6 +65,7 @@ def buy_res(update , context):
       if purple>=cost:
          query.edit_message_text('successfully purchased additional slot')
          DB.add_slot(id, 1)
+         DB.sub_chip(id , 'purple', cost)
          return -1
       if purple < cost:
          query.edit_message_text('Balance not enough')
