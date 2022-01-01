@@ -204,6 +204,10 @@ def mint_pet(item , amount):
    cur.execute(stmt, (amount,))
    conn.commit()
 
+def sub_mint(item, amount):
+   mint_pet(item, -amount)
+
+
 def quantity_cat():
     stmt = f"SELECT cat FROM PetControl;"
     cur.execute(stmt)
@@ -341,6 +345,8 @@ def add_rbchip(user_id, item, amount):
 def sub_rbchip(user_id, item, amount):
    add_rbchip(user_id, item, -amount)
  
+    
+    
 
 def get_average_cash() -> float:
     stmt = "SELECT white, red, orange, yellow, blue, purple, black FROM Usr"
