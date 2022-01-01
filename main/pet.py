@@ -31,6 +31,45 @@ def petcontrol(update , context):
       update.message.reply_text(f'added pet control system')
    else:
       update.message.reply_text(f'not authorised')
+      
+      
+def buyslot(update , context):
+   cd = context.chat_data
+   query = update.callback_query
+   cd['id'] = id = update.effective_user.id
+   name = update.effective_user.first_name
+   username = update.effective_user.name
+   slot = DB.get_user_value(id , 'slots')
+   cd['purple'] = purple = round(DB.get_user_value(id, "purple"),4)
+   cd['cost'] = cost = purple*(slot*slot)
+   keyboard = [
+        [InlineKeyboardButton('Confirm', callback_data='confirm'), InlineKeyboardButton('cancel', callback_data='cancel')]
+    ]
+   reply_markup = InlineKeyboardMarkup(keyboard)
+      
+   update.message.reply_text(f'Are you sure to spend {cost}🟣 to increase slot by 1 ? \n\n'
+                              f'current slot : <b>{slot}</b>\nNew slot : {slot+1}', parse_mode = ParseMode.HTML, reply_markup = reply_markup)  
+    
+   return buy_res(update , context)
+
+def buy_res(update , context): 
+   cd = context.chat_data
+   query = update.callback_query
+   purple = cd['purple']
+   cost = cd['cost']
+   id = cd['id']
+   if query.data == 'cancel':
+      query.edit_message_text('cancelled')
+      return -1
+   if query.data == 'confirm':
+      if purple>=cost:
+         query.edit_message_text('successfully purchased additional slot')
+         DB.add_slot(id, 1)
+         return -1
+      if purple < cost:
+         query.edit_message_text('Balance not enough')
+         return -1
+   
 
 def mypet(update , context):
    cd = context.chat_data
@@ -70,9 +109,13 @@ def check(update , context):
 MYPET_HANDLER = CommandHandler('mypet', mypet)
 PETCONTROL_HANDLER = CommandHandler('petcontrol', petcontrol)
 MINT_HANDLER = CommandHandler('mint', mint)
+BUYSLOT_HANDLER = CommandHandler('buyslot', buyslot)
+
+
 dispatcher.add_handler(MINT_HANDLER)
 dispatcher.add_handler(MYPET_HANDLER)
 dispatcher.add_handler(PETCONTROL_HANDLER)
+dispatcher.add_handler(BUYSLOT_HANDLER)
 
 
 
