@@ -52,6 +52,8 @@ def cancel(update , context):
     return ConversationHandler.END
 
 def buy_cat(update , context):
+    cd = context.chat_data
+    query = update.callback_query
     a = random.randint(1,999)
     talent = random.randint(5,30)
     distract = random.randint(5,30)
@@ -63,8 +65,7 @@ def buy_cat(update , context):
     # confident 200 
     tag = "#" + str(a).zfill(3)
     id = cd['id']
-    cd = context.chat_data
-    query = update.callback_query
+    
     blue = cd['blue']
     if slot > cs:
      if blue >=50:
