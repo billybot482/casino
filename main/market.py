@@ -27,6 +27,10 @@ def market(update, context):
     cd['purple'] =purple = round(DB.get_user_value(id, "purple"),4)
     cd['black'] =black = round(DB.get_user_value(id, "black"),4)
     cat_quantity = DB.quantity_cat()
+    cat = 0
+    for i in cat_quantity:
+      for b in i:
+        cat = b
     cd['slot'] = slot = DB.get_user_value(id , 'slots')
     cd['cs'] = current_slot = len(DB.get_pet(id))
     
@@ -37,7 +41,7 @@ def market(update, context):
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     update.message.reply_text(f"Welcome {name} to the market 🏢\n<i>Here the list of things in sale</i>"
-                              f"\n\n1.<b>Cat - 50🔵 </b>\nQuantity left : {cat_quantity}\n\nPress button below to buy", parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+                              f"\n\n1.<b>Cat - 50🔵 </b>\nQuantity left : {cat}\n\nPress button below to buy", parse_mode = ParseMode.HTML, reply_markup = reply_markup)
     
     return ONE
 
