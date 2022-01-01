@@ -9,10 +9,10 @@ from main import database as DB
 ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
 
 def market(update, context):
-    Chat = update.effective_chat
+    '''Chat = update.effective_chat
     if update.effective_chat.type != Chat.PRIVATE:
        update.message.reply_text("Use in pm")
-       return -1
+       return -1'''
     cd = context.chat_data
     query = update.callback_query
     cd['id'] = id = update.effective_user.id
