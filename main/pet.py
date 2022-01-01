@@ -50,7 +50,7 @@ def buyslot(update , context):
    update.message.reply_text(f'Are you sure to spend {cost}🟣 to increase slot by 1 ? \n\n'
                               f'current slot : <b>{slot}</b>\nNew slot : {slot+1}', parse_mode = ParseMode.HTML, reply_markup = reply_markup)  
     
-   return buy_res(update , context)
+   return TWO
 
 def buy_res(update , context): 
    cd = context.chat_data
@@ -93,23 +93,23 @@ def check(update , context):
 
 
 
-'''MYPET_HANDLER = ConversationHandler(
-        entry_points=[CommandHandler('mypet', mypet, pass_user_data=True)],
+BUYSLOT_HANDLER = ConversationHandler(
+        entry_points=[CommandHandler('buyslot', buyslot, pass_user_data=True)],
         states={
-            TWO: [#CallbackQueryHandler(wheelback, pattern="^back$", pass_user_data=True)
+            TWO: [CallbackQueryHandler(buy_res, pattern="^confirm$", pass_user_data=True),
+                  CallbackQueryHandler(buy_res, pattern="^cancel$", pass_user_data=True
             ],
         },
         fallbacks=[],
         allow_reentry=True,
         per_user=True
-    )'''
+    )
 
 
 
 MYPET_HANDLER = CommandHandler('mypet', mypet)
 PETCONTROL_HANDLER = CommandHandler('petcontrol', petcontrol)
 MINT_HANDLER = CommandHandler('mint', mint)
-BUYSLOT_HANDLER = CommandHandler('buyslot', buyslot)
 
 
 dispatcher.add_handler(MINT_HANDLER)
