@@ -291,7 +291,7 @@ def get_all_value(items: str):
     return cur.fetchall()
 
 def get_user_pet_value(user_id: int,pet_id: int, items: str):
-    stmt = f"SELECT {items} FROM Pet WHERE user_id=%s AND WHERE pet_id=%s;"
+    stmt = f"SELECT {items} FROM Pet WHERE user_id=%s AND pet_id=%s;"
     cur.execute(stmt, (user_id,pet_id))
     return cur.fetchone()[0]
 
