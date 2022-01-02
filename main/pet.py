@@ -88,17 +88,65 @@ def mypet(update , context):
    
 
 def check(update , context):
-    pass
+    cd = context.chat_data
+    query = update.callback_query
+    cd['id'] = id = update.effective_user.id
+    cd['type'] = type = update.message.text.split()[1]
+    cats = DB.get_cat(id)
+    keyboard = []
+    for i in cats:
+     keyboard.append([InlineKeyboardButton(f'cat #{i}', callback_data=f'{i}')])
+   
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+    
+    return ONE
 
+def check2(update ,context):
+   cd = context.chat_data
+   query = update.callback_query
+   id = cd['id']
+   type = cd['type']
+   query.edit_message_text()
+   pet_id = query.data
+   img = ''
+   age = DB.get_user_pet_value(id, pet_id , 'age')
+   talent = DB.get_user_pet_value(id, pet_id , 'talent')
+   distract = DB.get_user_pet_value(id, pet_id , 'distract')
+   confident = DB.get_user_pet_value(id, pet_id , 'confident')
+   rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
+   if age >= 0 and age <=4:
+      img+= DB.get_user_pet_value(id, pet_id , 'baby')
+   elif age >4 and age age <8:
+      img+=DB.get_user_pet_value(id, pet_id , 'teen')
+   elif age >=8:
+      img +=DB.get_user_pet_value(id, pet_id , 'adult')
 
-
-
+   text = f'<b>{type} #{query.data}</b>\n\n'
+          f'🔆 <b>Talent :</b> <code>{talent}</code>\n'
+          f'♨️ <b>Distract :</b> <code>{distract}</code>\n'
+          f'❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
+          f'<b>Rarity : <u>{rarity}</u></b>\n'
+         
+   context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text ,parse_mode = ParseMode.HTML)
+   
+   
 
 BUYSLOT_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('buyslot', buyslot, pass_user_data=True)],
         states={
             TWO: [CallbackQueryHandler(buy_res, pattern="^confirm$", pass_user_data=True),
                   CallbackQueryHandler(buy_res, pattern="^cancel$", pass_user_data=True)],
+        },
+        fallbacks=[],
+        allow_reentry=True,
+        per_user=True
+    )
+
+CHECK_HANDLER = ConversationHandler(
+        entry_points=[CommandHandler('check', check, pass_user_data=True)],
+        states={
+            ONE: [CallbackQueryHandler(check2, pattern="^.$", pass_user_data=True),],
         },
         fallbacks=[],
         allow_reentry=True,
@@ -116,6 +164,7 @@ dispatcher.add_handler(MINT_HANDLER)
 dispatcher.add_handler(MYPET_HANDLER)
 dispatcher.add_handler(PETCONTROL_HANDLER)
 dispatcher.add_handler(BUYSLOT_HANDLER)
+dispatcher.add_handler(CHECK_HANDLER)
 
 
 
