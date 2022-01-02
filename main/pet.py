@@ -113,7 +113,6 @@ def check2(update ,context):
    query = update.callback_query
    id = cd['id']
    type = cd['type']
-   query.edit_message_text()
    pet_id = query.data
    query.answer()
    img = ''
