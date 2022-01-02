@@ -72,12 +72,7 @@ def bet(update, context):
              update.message.reply_text("Cannot bet negative or 0")
           else:
            update.message.reply_text("Not enough chip. consider do some /exchange or get some donation")
-      if type not in colour:
-       update.message.reply_text(f"Available option \n{colour}") 
- 
-    
-    
-
+      
 
 
 BET_HANDLER = CommandHandler('bet', bet)
