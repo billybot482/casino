@@ -117,7 +117,7 @@ def check2(update ,context):
    rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
    if age >= 0 and age <=4:
       img+= DB.get_user_pet_value(id, pet_id , 'baby')
-   elif age >4 and age age <8:
+   elif age >4 and age <8:
       img+=DB.get_user_pet_value(id, pet_id , 'teen')
    elif age >=8:
       img +=DB.get_user_pet_value(id, pet_id , 'adult')
