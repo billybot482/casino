@@ -132,7 +132,7 @@ def check2(update ,context):
    text = f'<b>{type} #{query.data}</b>\n\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n<b>Rarity : <u>{rarity}</u></b>\n'
    
    context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text ,parse_mode = ParseMode.HTML)
-   
+   return ConversationHandler.END
    
 
 BUYSLOT_HANDLER = ConversationHandler(
@@ -149,7 +149,7 @@ BUYSLOT_HANDLER = ConversationHandler(
 CHECK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('check', check, pass_user_data=True)],
         states={
-            ONE: [CallbackQueryHandler(check2, pattern="^.$", pass_user_data=True),],
+            ONE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
         },
         fallbacks=[],
         allow_reentry=True,
