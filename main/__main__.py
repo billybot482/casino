@@ -343,7 +343,7 @@ def gift(update , context):
     user_id = update.message.reply_to_message.from_user.id
     id = update.message.from_user.id
     colour = ["white" ,"red", "orange", "yellow", "blue", "purple", "black"] 
-    if id in owners:
+    if id in owners or id in sudo:
      update.message.reply_text("Gift added in batch of 100 white, 100 red, 50 orange, 30 yellow and 10 blue chips.") 
      for i in colour:
          if i == "white":
