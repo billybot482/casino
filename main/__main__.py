@@ -396,7 +396,7 @@ def tip(update , context):
     for i in colour:
         if type == i:
             if (amount+fee)<= c[n]:
-              update.message.reply_text(f'<b>{name}</b> tipped {amount} {type} chip to <b>{to}</b>\n\nTipping fees : {fees}%\n<b>Fees :</b> {fee} {type} chip', parse_mode=ParseMode.HTML)
+              update.message.reply_text(f'<b>{name}</b> tipped {amount} {type} chip to <b>{to}</b>\n\nTipping fees : {round(fees,2)}%\n<b>Fees :</b> {fee} {type} chip', parse_mode=ParseMode.HTML)
               DB.add_chip(toid , i, amount)
               DB.sub_chip(id , i , amount)
               DB.sub_chip(id, i, fee)
