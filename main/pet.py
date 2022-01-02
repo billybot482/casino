@@ -100,7 +100,7 @@ def check(update , context):
     keyboard = []
     for i in cats:
      for k in i:    
-      keyboard.append([InlineKeyboardButton(f'cat #{i}', callback_data=f'{i}')])
+      keyboard.append([InlineKeyboardButton(f'cat #{k}', callback_data=f'{k}')])
    
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
