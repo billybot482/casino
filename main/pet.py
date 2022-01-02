@@ -108,12 +108,14 @@ def check(update , context):
     return ONE
 
 def check2(update ,context):
+   print('in 2')
    cd = context.chat_data
    query = update.callback_query
    id = cd['id']
    type = cd['type']
    query.edit_message_text()
    pet_id = query.data
+   query.answer()
    img = ''
    age = DB.get_user_pet_value(id, pet_id , 'age')
    talent = DB.get_user_pet_value(id, pet_id , 'talent')
@@ -128,7 +130,7 @@ def check2(update ,context):
       img +=DB.get_user_pet_value(id, pet_id , 'adult')
 
    text = f'<b>{type} #{query.data}</b>\n\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n<b>Rarity : <u>{rarity}</u></b>\n'
-         
+   
    context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text ,parse_mode = ParseMode.HTML)
    
    
