@@ -91,7 +91,7 @@ def check(update , context):
     cd = context.chat_data
     query = update.callback_query
     cd['id'] = id = update.effective_user.id
-    try  
+    try:  
      cd['type'] = type = update.message.text.split()[1]
     except IndexError:
       update.message.reply_text('check info of your pet by typing \n\n/check <type of pet>\n\ncat , dog , etc')
