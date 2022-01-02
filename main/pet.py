@@ -122,11 +122,7 @@ def check2(update ,context):
    elif age >=8:
       img +=DB.get_user_pet_value(id, pet_id , 'adult')
 
-   text = f'<b>{type} #{query.data}</b>\n\n'
-          f'🔆 <b>Talent :</b> <code>{talent}</code>\n'
-          f'♨️ <b>Distract :</b> <code>{distract}</code>\n'
-          f'❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
-          f'<b>Rarity : <u>{rarity}</u></b>\n'
+   text = f'<b>{type} #{query.data}</b>\n\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n<b>Rarity : <u>{rarity}</u></b>\n'
          
    context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text ,parse_mode = ParseMode.HTML)
    
