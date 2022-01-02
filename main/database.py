@@ -159,7 +159,7 @@ def add_user(user_id):
   return conn
 
 def get_cat(user_id):
-    stmt = f"SELECT pet_id FROM Pet WHERE type = 'cat' AND WHERE user_id = %s;"
+    stmt = f"SELECT pet_id FROM Pet WHERE type = 'cat' AND user_id = %s;"
     cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
@@ -290,9 +290,9 @@ def get_all_value(items: str):
     cur.execute(stmt)
     return cur.fetchall()
 
-def get_user_pet_value(user_id: int, items: str):
-    stmt = f"SELECT {items} FROM Pet WHERE user_id=%s;"
-    cur.execute(stmt, (user_id,))
+def get_user_pet_value(user_id: int,pet_id: int, items: str):
+    stmt = f"SELECT {items} FROM Pet WHERE user_id=%s AND WHERE pet_id=%s;"
+    cur.execute(stmt, (user_id,pet_id))
     return cur.fetchone()[0]
 
 def get_user_value(user_id: int, items: str):
