@@ -6,7 +6,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
-ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
+ONE , TWO , THREE , FOUR , FIVE , FIRST , SECOND,  *_ = range(50)
 owners = [163494588]
 
 
@@ -110,7 +110,7 @@ def check(update , context):
      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
     else:
      update.message.reply_text("Wrong input") 
-    return ONE
+    return FIVE
 
 def check2(update ,context):
    print('in 2')
@@ -153,7 +153,7 @@ BUYSLOT_HANDLER = ConversationHandler(
 CHECK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('check', check, pass_user_data=True)],
         states={
-            ONE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
+            FIVE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
         },
         fallbacks=[],
         allow_reentry=True,
