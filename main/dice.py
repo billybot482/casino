@@ -34,6 +34,7 @@ def dice(update , context):
     n = 0
     vip = int(vip)
     multy = (((vip+1)/10)+(vip*0.2))/100
+    print(multy)
     if amount <=0:
      update.message.reply_text('Cant be 0 or lower')
      return -1
