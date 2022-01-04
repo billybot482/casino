@@ -114,9 +114,9 @@ def check(update , context):
    
     elif type == "dog":
      keyboard = []
-     for i in cats:
+     for i in dogs:
       for k in i:    
-       keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
+       keyboard.append([InlineKeyboardButton(f'Dog #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
      if len(keyboard) >1:
@@ -126,9 +126,9 @@ def check(update , context):
    
     elif type == "fish":
      keyboard = []
-     for i in cats:
+     for i in fish:
       for k in i:    
-       keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
+       keyboard.append([InlineKeyboardButton(f'Fish #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
      if len(keyboard) >1:
