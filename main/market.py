@@ -103,6 +103,7 @@ def cancel(update , context):
 def buy_cat(update , context):
     cd = context.chat_data
     query = update.callback_query
+    id = cd['id']
     a = get_cat()
     a = get_cat_tag(a)
     talent = random.randint(5,30)
@@ -115,7 +116,7 @@ def buy_cat(update , context):
     # max distract = 30 
     # confident 200 
     tag = "#" + str(a).zfill(3)
-    id = cd['id']
+    
     blue = cd['blue']
     if slot > cs:
      if cq > 0:   
@@ -137,6 +138,7 @@ def buy_cat(update , context):
 def buy_dog(update , context):
     cd = context.chat_data
     query = update.callback_query
+    id = cd['id']
     a = get_dog()
     a = get_dog_tag(a)
     dq = cd['dq']
@@ -149,7 +151,7 @@ def buy_dog(update , context):
     # max distract = 30 
     # confident 150
     tag = "#" + str(a).zfill(3)
-    id = cd['id']
+    
     blue = cd['blue']
     if slot > cs:
      if dq > 0:
@@ -171,6 +173,7 @@ def buy_dog(update , context):
 def buy_fish(update , context):
     cd = context.chat_data
     query = update.callback_query
+    id = cd['id']
     a = get_fish()
     a = get_fish_tag(a)
     fq =cd['fq']
@@ -183,7 +186,7 @@ def buy_fish(update , context):
     # max distract = 35
     # confident 120
     tag = "#" + str(a).zfill(3)
-    id = cd['id']
+    
     blue = cd['blue']
     if slot > cs:
      if cf > 0:
