@@ -188,7 +188,7 @@ def buy_fish(update , context):
     
     blue = cd['blue']
     if slot > cs:
-     if cf > 0:
+     if fq > 0:
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
          DB.sub_mint('cat', 1)
