@@ -107,7 +107,7 @@ def check(update , context):
        keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
-     if len(keyboard) >1:
+     if len(keyboard)>0
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
@@ -119,7 +119,7 @@ def check(update , context):
        keyboard.append([InlineKeyboardButton(f'Dog #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
-     if len(keyboard) >1:
+     if len(keyboard)>0
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
@@ -131,7 +131,7 @@ def check(update , context):
        keyboard.append([InlineKeyboardButton(f'Fish #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
-     if len(keyboard) >1:
+     if len(keyboard)>0
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
