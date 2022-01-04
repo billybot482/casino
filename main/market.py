@@ -29,6 +29,7 @@ def market(update, context):
     cat_quantity = DB.quantity_cat()
     dog_quantity = DB.quantity_dog()
     fish_quantity = DB.quantity_fish()
+    print(cat_quantity)
     cd['dq'] = dog = 0
     cd['fq'] = fish = 0
     cd['cq'] = cat = 0
