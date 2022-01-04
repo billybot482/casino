@@ -29,10 +29,9 @@ def market(update, context):
     cat_quantity = DB.quantity_cat()
     dog_quantity = DB.quantity_dog()
     fish_quantity = DB.quantity_fish()
-    print(cat_quantity)
-    cd['dq'] = dog = 0
-    cd['fq'] = fish = 0
-    cd['cq'] = cat = 0
+    dog = 0
+    fish = 0
+    cat = 0
     for i in cat_quantity:
       for b in i:
         cat = b
@@ -109,7 +108,11 @@ def buy_cat(update , context):
     talent = random.randint(5,30)
     distract = random.randint(5,30)
     confident = random.randint(50,200)
-    cq = cd['cq']
+    cat_quantity = DB.quantity_cat()
+    cat = 0
+    for i in cat_quantity:
+      for b in i:
+        cat = b
     slot = cd['slot']
     cs = cd['cs']
     # max talent = 30
@@ -119,7 +122,7 @@ def buy_cat(update , context):
     print(cq)
     blue = cd['blue']
     if slot > cs:
-     if cq > 0:   
+     if cat > 0:   
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
          DB.sub_mint('cat', 1)
@@ -141,7 +144,11 @@ def buy_dog(update , context):
     id = cd['id']
     a = DB.get_dog(id)
     a = get_dog_tag(a)
-    dq = cd['dq']
+    dog_quantity = DB.quantity_dog()
+    dog = 0
+    for i in dog_quantity:
+      for b in i:
+        dog = b
     talent = random.randint(5,40)
     distract = random.randint(5,30)
     confident = random.randint(30,150)
@@ -154,7 +161,7 @@ def buy_dog(update , context):
     
     blue = cd['blue']
     if slot > cs:
-     if dq > 0:
+     if dog > 0:
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
          DB.sub_mint('dog')
@@ -176,7 +183,11 @@ def buy_fish(update , context):
     id = cd['id']
     a = DB.get_fish(id)
     a = get_fish_tag(a)
-    fq =cd['fq']
+    fish_quantity = DB.quantity_fish()
+    fish = 0
+    for i in fish_quantity:
+      for b in i:
+        fish = b
     talent = random.randint(5,40)
     distract = random.randint(5,35)
     confident = random.randint(30,120)
@@ -189,7 +200,7 @@ def buy_fish(update , context):
     
     blue = cd['blue']
     if slot > cs:
-     if fq > 0:
+     if fish > 0:
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
          DB.sub_mint('cat', 1)
