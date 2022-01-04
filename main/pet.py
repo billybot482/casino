@@ -97,8 +97,8 @@ def check(update , context):
       update.message.reply_text('check info of your pet by typing \n\n/check <type of pet>\n\ncat , dog , etc')
       return -1
     cats = DB.get_cat(id)
-
-
+    dogs =  DB.get_dog(id)
+    fish =  DB.get_fish(id)
 
     if type == "cat":
      keyboard = []
@@ -107,13 +107,41 @@ def check(update , context):
        keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
    
      reply_markup = InlineKeyboardMarkup(keyboard)
-     update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+     if len keyboard >1:
+      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+     else:
+      update.message.reply_text("You dont have this type of pet yet")
+   
+    elif type == "dog":
+     keyboard = []
+     for i in cats:
+      for k in i:    
+       keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
+   
+     reply_markup = InlineKeyboardMarkup(keyboard)
+     if len keyboard >1:
+      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+     else:
+      update.message.reply_text("You dont have this type of pet yet")
+   
+    elif type == "fish":
+     keyboard = []
+     for i in cats:
+      for k in i:    
+       keyboard.append([InlineKeyboardButton(f'cat #{str(k).zfill(3)}', callback_data=f'{k}')])
+   
+     reply_markup = InlineKeyboardMarkup(keyboard)
+     if len keyboard >1:
+      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+     else:
+      update.message.reply_text("You dont have this type of pet yet")
+   
+   
     else:
      update.message.reply_text("Wrong input") 
     return FIVE
 
 def check2(update ,context):
-   print('in 2')
    cd = context.chat_data
    query = update.callback_query
    id = cd['id']
@@ -126,6 +154,11 @@ def check2(update ,context):
    distract = DB.get_user_pet_value(id, pet_id , 'distract')
    confident = DB.get_user_pet_value(id, pet_id , 'confident')
    rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
+   
+   max_talent = DB.get_user_pet_value(id, pet_id , 'max_talent')
+   max_distract = DB.get_user_pet_value(id, pet_id , 'max_distract')
+   max_confident = DB.get_user_pet_value(id, pet_id , 'max_confident')
+   
    if age >= 0 and age <=4:
       img+= DB.get_user_pet_value(id, pet_id , 'baby')
    elif age >4 and age <8:
@@ -133,9 +166,11 @@ def check2(update ,context):
    elif age >=8:
       img +=DB.get_user_pet_value(id, pet_id , 'adult')
 
-   text = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>\n'
+      
+   text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
+   text2 = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>'
    
-   context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text ,parse_mode = ParseMode.HTML)
+   context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML)
    return ConversationHandler.END
    
 
