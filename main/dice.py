@@ -34,7 +34,6 @@ def dice(update , context):
     n = 0
     vip = int(vip)
     multy = (((vip+1)/10)+(vip*0.2))/100
-    print(multy)
     if amount <=0:
      update.message.reply_text('Cant be 0 or lower')
      return -1
@@ -68,7 +67,7 @@ def dice(update , context):
               print("before") 
               DB.add_wager(id , amount*dict[colours[n-1]])
               print("after") 
-              DB.add_rbchip(id , i ,amount*multy)
+              DB.add_rbchip(id , rb[n-1] , amount*multy)
               print('rb done')
               if a>3:
                DB.add_win(id,1)
