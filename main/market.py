@@ -160,7 +160,7 @@ def buy_dog(update , context):
     if slot > cs:
      if dog > 0:
       if blue >=50:
-         DB.add_pet_cat(id , a , talent , distract , confident)
+         DB.add_pet_dog(id , a , talent , distract , confident)
          DB.sub_mint('dog',1)
          DB.sub_chip(id,'blue',50)
          query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Dog {tag}</b>\n\n'
@@ -199,7 +199,7 @@ def buy_fish(update , context):
     if slot > cs:
      if fish > 0:
       if blue >=50:
-         DB.add_pet_cat(id , a , talent , distract , confident)
+         DB.add_pet_fish(id , a , talent , distract , confident)
          DB.sub_mint('fish', 1)
          DB.sub_chip(id,'blue',50)
          query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Fish {tag}</b>\n\n'
