@@ -119,7 +119,6 @@ def buy_cat(update , context):
     # max distract = 30 
     # confident 200 
     tag = "#" + str(a).zfill(3)
-    print(cq)
     blue = cd['blue']
     if slot > cs:
      if cat > 0:   
