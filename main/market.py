@@ -165,7 +165,7 @@ def buy_dog(update , context):
          DB.add_pet_cat(id , a , talent , distract , confident)
          DB.sub_mint('dog',1)
          DB.sub_chip(id,'blue',50)
-         query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Cat {tag}</b>\n\n'
+         query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Dog {tag}</b>\n\n'
                                 f'<i><b>stats of your pet:</b></i>\n'
                                 f'🔆Talent : {talent}/40\n♨️Distract : {distract}/30\n❤‍🔥Confident : {confident}/150', parse_mode = ParseMode.HTML)
          return ConversationHandler.END
