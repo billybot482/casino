@@ -163,7 +163,7 @@ def buy_dog(update , context):
      if dog > 0:
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
-         DB.sub_mint('dog')
+         DB.sub_mint('dog',1)
          DB.sub_chip(id,'blue',50)
          query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Cat {tag}</b>\n\n'
                                 f'<i><b>stats of your pet:</b></i>\n'
@@ -202,7 +202,7 @@ def buy_fish(update , context):
      if fish > 0:
       if blue >=50:
          DB.add_pet_cat(id , a , talent , distract , confident)
-         DB.sub_mint('cat', 1)
+         DB.sub_mint('fish', 1)
          DB.sub_chip(id,'blue',50)
          query.edit_message_text(f'🎊Congratulation !!🎊\nyou are now owner of <b>Fish {tag}</b>\n\n'
                                 f'<i><b>stats of your pet:</b></i>\n'
