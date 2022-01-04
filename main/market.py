@@ -26,12 +26,12 @@ def market(update, context):
     cd['blue'] = blue = round(DB.get_user_value(id, "blue"),4)
     cd['purple'] =purple = round(DB.get_user_value(id, "purple"),4)
     cd['black'] =black = round(DB.get_user_value(id, "black"),4)
-    cd['cq'] = cat_quantity = DB.quantity_cat()
-    cd['dq'] = dog_quantity = DB.quantity_dog()
-    cd['fq'] = fish_quantity = DB.quantity_fish()
-    dog = 0
-    fish = 0
-    cat = 0
+    cat_quantity = DB.quantity_cat()
+    dog_quantity = DB.quantity_dog()
+    fish_quantity = DB.quantity_fish()
+    cd['dq'] = dog = 0
+    cd['fq'] = fish = 0
+    cd['cq'] = cat = 0
     for i in cat_quantity:
       for b in i:
         cat = b
