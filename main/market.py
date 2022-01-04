@@ -67,7 +67,6 @@ def market(update, context):
     return ONE
 
 def get_cat_tag(a):
-  print(a)
   n = 0
   while n ==0:
    b = random.randint(1,999)
@@ -76,7 +75,6 @@ def get_cat_tag(a):
     n+=1
     
 def get_dog_tag(a):
-  print(a)
   n = 0
   while n ==0:
    b = random.randint(1,999)
