@@ -103,7 +103,7 @@ def buy_cat(update , context):
     cd = context.chat_data
     query = update.callback_query
     id = cd['id']
-    a = get_cat(id)
+    a = DB.get_cat(id)
     a = get_cat_tag(a)
     talent = random.randint(5,30)
     distract = random.randint(5,30)
@@ -138,7 +138,7 @@ def buy_dog(update , context):
     cd = context.chat_data
     query = update.callback_query
     id = cd['id']
-    a = get_dog(id)
+    a = DB.get_dog(id)
     a = get_dog_tag(a)
     dq = cd['dq']
     talent = random.randint(5,40)
@@ -173,7 +173,7 @@ def buy_fish(update , context):
     cd = context.chat_data
     query = update.callback_query
     id = cd['id']
-    a = get_fish(id)
+    a = DB.get_fish(id)
     a = get_fish_tag(a)
     fq =cd['fq']
     talent = random.randint(5,40)
