@@ -91,10 +91,9 @@ def setup():
                           talent int,
                           distract int,
                           confident int,
-                          move1 text,
-                          move2 text,
-                          move3 text,
-                          move4 text,
+                          max_talent int,
+                          max_distract int,
+                          max_confident int,
                           rarity text,
                           special text
                        
@@ -179,7 +178,7 @@ def get_pet(user_id):
     return cur.fetchall()
 
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
-   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , max_talent , max_distract , max_confident,  rarity ,special)
   VALUES (
   'cat',
   %s,
@@ -191,6 +190,9 @@ def add_pet_cat(user_id,pet_id , talent , distract , confident):
   %s,
   %s,
   %s,
+  30,
+  30,
+  200,
   'common',
   'pur'
 );"""
@@ -199,7 +201,7 @@ def add_pet_cat(user_id,pet_id , talent , distract , confident):
    return conn 
 
 def add_pet_dog(user_id,pet_id , talent , distract , confident):
-   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , max_talent , max_distract , max_confident, rarity ,special)
   VALUES (
   'dog',
   %s,
@@ -211,6 +213,9 @@ def add_pet_dog(user_id,pet_id , talent , distract , confident):
   %s,
   %s,
   %s,
+  40,
+  30,
+  150,
   'common',
   'bark'
 );"""
@@ -219,7 +224,7 @@ def add_pet_dog(user_id,pet_id , talent , distract , confident):
    return conn 
 
 def add_pet_fish(user_id,pet_id , talent , distract , confident):
-   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,max_talent , max_distract , max_confident, rarity ,special)
   VALUES (
   'fish',
   %s,
@@ -231,6 +236,9 @@ def add_pet_fish(user_id,pet_id , talent , distract , confident):
   %s,
   %s,
   %s,
+  40,
+  35,
+  120,
   'common',
   'swim dance'
 );"""
