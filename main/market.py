@@ -62,8 +62,7 @@ def market(update, context):
                               f"\n\n1.<b>Cat - 50🔵 </b>\nQuantity left : {cat}\n"
                               f"\n\n1.<b>Dog - 50🔵 </b>\nQuantity left : {dog}\n"
                               f"\n\n1.<b>Fish - 50🔵 </b>\nQuantity left : {fish}\n\n"
-                              f'Press button below to buy",
-                              parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+                              f'Press button below to buy', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
     
     return ONE
 
