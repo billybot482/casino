@@ -163,6 +163,16 @@ def get_cat(user_id):
     cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
+def get_dog(user_id):
+    stmt = f"SELECT pet_id FROM Pet WHERE type = 'dog' AND user_id = %s;"
+    cur.execute(stmt,(user_id,))
+    return cur.fetchall()
+
+def get_fish(user_id):
+    stmt = f"SELECT pet_id FROM Pet WHERE type = 'fish' AND user_id = %s;"
+    cur.execute(stmt,(user_id,))
+    return cur.fetchall()
+
 def get_pet(user_id):
     stmt = f"SELECT pet_id FROM Pet WHERE user_id = %s;"
     cur.execute(stmt,(user_id,))
@@ -183,6 +193,46 @@ def add_pet_cat(user_id,pet_id , talent , distract , confident):
   %s,
   'common',
   'pur'
+);"""
+   cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
+   conn.commit()
+   return conn 
+
+def add_pet_dog(user_id,pet_id , talent , distract , confident):
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+  VALUES (
+  'dog',
+  %s,
+  %s,
+  'https://telegra.ph/file/568b3ab5c5077ba6718cd.jpg',
+  'https://telegra.ph/file/bac2b6ec63b09ab3e43d7.jpg',
+  'https://telegra.ph/file/12b3c5d9f12efbb9b8868.jpg',
+  0,
+  %s,
+  %s,
+  %s,
+  'common',
+  'bark'
+);"""
+   cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
+   conn.commit()
+   return conn 
+
+def add_pet_fish(user_id,pet_id , talent , distract , confident):
+   stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , rarity ,special)
+  VALUES (
+  'fish',
+  %s,
+  %s,
+  'https://telegra.ph/file/a49ae4041cd12dce21814.jpg',
+  'https://telegra.ph/file/f0a9f09cbf7af9b45e7da.jpg',
+  'https://telegra.ph/file/714c5ed260c1c53e0d44b.jpg',
+  0,
+  %s,
+  %s,
+  %s,
+  'common',
+  'swim dance'
 );"""
    cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
    conn.commit()
@@ -213,6 +263,16 @@ def quantity_cat():
     cur.execute(stmt)
     return cur.fetchall()
     
+def quantity_dog():
+    stmt = f"SELECT dog FROM PetControl;"
+    cur.execute(stmt)
+    return cur.fetchall()
+
+def quantity_fish():
+    stmt = f"SELECT fish FROM PetControl;"
+    cur.execute(stmt)
+    return cur.fetchall()
+
 
 def add_stock(name , symbol , liquid, supply):
   stmt = """INSERT INTO Stocks (name , symbol , liquid, supply)
