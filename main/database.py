@@ -199,16 +199,16 @@ def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent
 
 def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
     stmt = f"UPDATE mainpet SET type = %s WHERE user_id =%s," 
-        "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET adult = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET growth = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET talent = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET distract = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET confident = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET rarity = %s WHERE user_id =%s,"
-        "UPDATE mainpet SET special = %s WHERE user_id =%s;"
+   "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET adult = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET growth = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET talent = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET distract = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET confident = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET rarity = %s WHERE user_id =%s,"
+   "UPDATE mainpet SET special = %s WHERE user_id =%s;"
     cur.execute(stmt, (user_id,))
     conn.commit()
 
