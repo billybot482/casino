@@ -177,7 +177,7 @@ def get_pet(user_id):
     cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
-def main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
+def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
     stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
   VALUES (
   %s,
@@ -196,6 +196,21 @@ def main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent , d
    cur.execute(stmt, (type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special))
    conn.commit()
    return conn 
+
+def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
+    stmt = f"UPDATE mainpet SET type = %s WHERE user_id =%s," 
+             "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET adult = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET growth = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET talent = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET distract = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET confident = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET rarity = %s WHERE user_id =%s,"
+             "UPDATE mainpet SET special = %s WHERE user_id =%s;"
+    cur.execute(stmt, (user_id))
+    conn.commit()
 
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
    stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , max_talent , max_distract , max_confident,  rarity ,special)
@@ -381,6 +396,11 @@ def get_all_value(items: str):
 def get_user_pet_value(user_id: int,pet_id: int, items: str):
     stmt = f"SELECT {items} FROM Pet WHERE user_id=%s AND pet_id=%s;"
     cur.execute(stmt, (user_id,pet_id))
+    return cur.fetchone()[0]
+
+def get_user_mainpet(user_id: int,pet_id: int, items: str):
+    stmt = f"SELECT {items} FROM mainpet WHERE user_id=%s;"
+    cur.execute(stmt, (user_id,))
     return cur.fetchone()[0]
 
 def get_user_value(user_id: int, items: str):
