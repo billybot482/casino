@@ -177,6 +177,26 @@ def get_pet(user_id):
     cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
+def main_pet(type , user_id, pet_id , growth , talent , distract , confident , rarity , special):
+    stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
+  VALUES (
+  %s,
+  %s,
+  %s,
+  'https://telegra.ph/file/f60784ada75e2fe039928.jpg',
+  'https://telegra.ph/file/d02fd8f1c2794177a06e7.jpg',
+  'https://telegra.ph/file/a60b94e4e180dd3df8055.jpg',
+  %s,
+  %s,
+  %s,
+  %s,
+  %s,
+  %s
+);"""
+   cur.execute(stmt, (type , user_id, pet_id , growth, talent , distract , confident, rarity ,special))
+   conn.commit()
+   return conn 
+
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
    stmt = """INSERT INTO Pet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident , max_talent , max_distract , max_confident,  rarity ,special)
   VALUES (
