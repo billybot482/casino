@@ -6,7 +6,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
-ONE , TWO , THREE , FOUR , FIVE , FIRST , SECOND,  *_ = range(50)
+ONE , TWO , THREE , FOUR , FIVE , SIX , FIRST , SECOND,  *_ = range(50)
 owners = [163494588]
 
 
@@ -146,6 +146,7 @@ def check2(update ,context):
    id = cd['id']
    type = cd['type']
    pet_id = query.data
+   cd['pet_id '] = pet_id
    query.answer()
    img = ''
    cd['age'] = age = DB.get_user_pet_value(id, pet_id , 'growth')
@@ -177,7 +178,7 @@ def check2(update ,context):
    text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
    text2 = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    context.bot.send_photo(chat_id = update.effective_chat.id , photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML, reply_markup = reply_markup)
-   return FIVE
+   return SIX
    
 def checkclose(update , context):
    cd = context.chat_data
@@ -190,7 +191,7 @@ def mainpet(update , context):
    query = update.callback_query
    id = cd['id']
    type = cd['type']
-   #pet_id = cd['pet_id']
+   pet_id = cd['pet_id']
    age =cd['age']
    talent = cd['talent']
    distract = cd['distract']
@@ -224,9 +225,13 @@ BUYSLOT_HANDLER = ConversationHandler(
 CHECK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('check', check, pass_user_data=True)],
         states={
-            FIVE: [CallbackQueryHandler(mainpet, pattern="main", pass_user_data=True),
-                  CallbackQueryHandler(checkclose, pattern="close", pass_user_data=True),
-                  CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
+            FIVE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True)
+                  ],
+                  
+           
+            SIX: [CallbackQueryHandler(mainpet, pattern="main", pass_user_data=True),
+                  CallbackQueryHandler(checkclose, pattern="close", pass_user_data=True)
+            ]
                   
         },
         fallbacks=[],
