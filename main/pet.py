@@ -148,11 +148,15 @@ def check2(update ,context):
    cd['pet_id'] = pet_id = query.data
    query.answer()
    img = ''
-   age = DB.get_user_pet_value(id, pet_id , 'growth')
-   talent = DB.get_user_pet_value(id, pet_id , 'talent')
-   distract = DB.get_user_pet_value(id, pet_id , 'distract')
-   confident = DB.get_user_pet_value(id, pet_id , 'confident')
-   rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
+   cd['age'] = age = DB.get_user_pet_value(id, pet_id , 'growth')
+   cd['talent'] = talent = DB.get_user_pet_value(id, pet_id , 'talent')
+   cd['distract'] = distract = DB.get_user_pet_value(id, pet_id , 'distract')
+   cd['confident'] = confident = DB.get_user_pet_value(id, pet_id , 'confident')
+   cd['rarity'] = rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
+   cd['baby'] = baby = DB.get_user_pet_value(id, pet_id , 'baby')
+   cd['teen'] = teen = DB.get_user_pet_value(id, pet_id , 'teen')
+   cd['adult'] = adult = DB.get_user_pet_value(id, pet_id , 'adult')
+   cd['special'] = special = DB.get_user_pet_value(id, pet_id , 'special')
    
    max_talent = DB.get_user_pet_value(id, pet_id , 'max_talent')
    max_distract = DB.get_user_pet_value(id, pet_id , 'max_distract')
@@ -188,16 +192,15 @@ def mainpet(update , context):
    id = cd['id']
    type = cd['type']
    pet_id = cd['pet_id']
-   age = DB.get_user_pet_value(id, pet_id , 'growth')
-   talent = DB.get_user_pet_value(id, pet_id , 'talent')
-   distract = DB.get_user_pet_value(id, pet_id , 'distract')
-   confident = DB.get_user_pet_value(id, pet_id , 'confident')
-   rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
-   special = DB.get_user_pet_value(id , pet_id , 'special')
-   baby = DB.get_user_pet_value(id, pet_id , 'baby')
-   teen = DB.get_user_pet_value(id, pet_id , 'teen')
-   adult = DB.get_user_pet_value(id, pet_id , 'adult')
-   
+   age =cd['age']
+   talent = cd['talent']
+   distract = cd['distract']
+   confident = cd['confident']
+   baby = cd['baby']
+   teen = cd['teen']
+   adult = cd['adult']
+   special =cd['special']
+   rarity = cd['rarity']
    
    DB.main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
    query.answer(f'{type} #{pet_id} is now your main pet')
