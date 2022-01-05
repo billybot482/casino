@@ -193,7 +193,7 @@ def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent
   %s,
   %s
 );"""
-   cur.execute(stmt, (type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special))
+   cur.execute(stmt, (type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special,))
    conn.commit()
    return conn 
 
@@ -209,7 +209,7 @@ def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract ,
              "UPDATE mainpet SET confident = %s WHERE user_id =%s,"
              "UPDATE mainpet SET rarity = %s WHERE user_id =%s,"
              "UPDATE mainpet SET special = %s WHERE user_id =%s;"
-    cur.execute(stmt, (user_id))
+    cur.execute(stmt, (user_id,))
     conn.commit()
 
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
