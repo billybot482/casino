@@ -202,7 +202,7 @@ def mainpet(update , context):
    special =cd['special']
    rarity = cd['rarity']
    
-   DB.main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
+   DB.add_main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
    query.answer(f'{type} #{pet_id} is now your main pet')
    return None 
   
