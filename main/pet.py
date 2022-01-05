@@ -146,7 +146,7 @@ def check2(update ,context):
    id = cd['id']
    type = cd['type']
    pet_id = query.data
-   cd['pet_id '] = pet_id
+   cd['pet_id'] = pet_id
    query.answer()
    img = ''
    cd['age'] = age = DB.get_user_pet_value(id, pet_id , 'growth')
