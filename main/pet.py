@@ -146,7 +146,7 @@ def check2(update ,context):
    query = update.callback_query
    id = cd['id']
    type = cd['type']
-   pet_id = query.data
+   cd['pet_id'] = pet_id = query.data
    query.answer()
    img = ''
    age = DB.get_user_pet_value(id, pet_id , 'growth')
@@ -166,14 +166,49 @@ def check2(update ,context):
    elif age >=8:
       img +=DB.get_user_pet_value(id, pet_id , 'adult')
 
-      
+   keyboard = [
+        [InlineKeyboardButton('set as main', callback_data='main'),InlineKeyboardButton('close', callback_data='close') ]
+    ]
+   reply_markup = InlineKeyboardMarkup(keyboard)
+   
    text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
    text2 = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
-   context.bot.send_photo(chat_id = update.effective_chat.id, photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML)
+   query.edit_message_text(chat_id = update.effective_chat.id, photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+   return FIVE
+   
+def checkclose(update , context):
+   cd = context.chat_data
+   query = update.callback_query
+   query.edit_message_text('closed')
    return ConversationHandler.END
    
-
+def mainpet(update , context):
+   cd = context.chat_data
+   query = update.callback_query
+   id = cd['id']
+   type = cd['type']
+   pet_id = cd['pet_id']
+   age = DB.get_user_pet_value(id, pet_id , 'growth')
+   talent = DB.get_user_pet_value(id, pet_id , 'talent')
+   distract = DB.get_user_pet_value(id, pet_id , 'distract')
+   confident = DB.get_user_pet_value(id, pet_id , 'confident')
+   rarity = DB.get_user_pet_value(id, pet_id , 'rarity')
+   special = DB.get_user_pet_value(id , pet_id , 'special')
+   baby = DB.get_user_pet_value(id, pet_id , 'baby')
+   teen = DB.get_user_pet_value(id, pet_id , 'teen')
+   adult = DB.get_user_pet_value(id, pet_id , 'adult')
+   
+   
+   DB.main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
+   query.answer(f'{type} #{pet_id} is now your main pet')
+   return None 
+  
+def mymainpet(update , context):
+   pass
+      
+   
+   
 BUYSLOT_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('buyslot', buyslot, pass_user_data=True)],
         states={
@@ -188,7 +223,9 @@ BUYSLOT_HANDLER = ConversationHandler(
 CHECK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('check', check, pass_user_data=True)],
         states={
-            FIVE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
+            FIVE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True),
+                  CallbackQueryHandler(mainpet, pattern="main", pass_user_data=True),
+                  CallbackQueryHandler(checkclose, pattern="close", pass_user_data=True)],
         },
         fallbacks=[],
         allow_reentry=True,
