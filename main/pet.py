@@ -132,11 +132,10 @@ def check(update , context):
    
      reply_markup = InlineKeyboardMarkup(keyboard)
      if len(keyboard)>0:
-      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+      cd['msg'] = update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
-   
-   
+
     else:
      update.message.reply_text("Wrong input") 
     return FIVE
@@ -158,6 +157,7 @@ def check2(update ,context):
    max_talent = DB.get_user_pet_value(id, pet_id , 'max_talent')
    max_distract = DB.get_user_pet_value(id, pet_id , 'max_distract')
    max_confident = DB.get_user_pet_value(id, pet_id , 'max_confident')
+   msg = cd['msg']
    
    if age >= 0 and age <=4:
       img+= DB.get_user_pet_value(id, pet_id , 'baby')
@@ -174,7 +174,9 @@ def check2(update ,context):
    text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
    text2 = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
-   query.edit_message_text(photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+   context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
+   
+   context.bot.send_message(chat_id = update.effective_chat.id , photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    return FIVE
    
 def checkclose(update , context):
