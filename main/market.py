@@ -133,7 +133,7 @@ def buy_cat(update , context):
      else:
         query.answer('Out of stock')
     else:
-        query.asnwer('Not enough slot')
+       query.asnwer('Not enough slot')
     
 def buy_dog(update , context):
     cd = context.chat_data
@@ -172,7 +172,7 @@ def buy_dog(update , context):
      else:
         query.asnwer('Out of stock')
     else:
-        query.asnwer('Not enough slot')
+       query.asnwer('Not enough slot')
         
 def buy_fish(update , context):
     cd = context.chat_data
@@ -212,7 +212,7 @@ def buy_fish(update , context):
      else:   
         query.answer('Out of stock')
     else:
-        query.asnwer('Not enough slot')        
+       query.asnwer('Not enough slot')        
     
     
 def blackmarket(update, context):
