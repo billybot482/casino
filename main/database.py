@@ -178,7 +178,7 @@ def get_pet(user_id):
     return cur.fetchall()
 
 def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
-    stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
+   stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
   VALUES (
   %s,
   %s,
