@@ -132,7 +132,7 @@ def check(update , context):
    
      reply_markup = InlineKeyboardMarkup(keyboard)
      if len(keyboard)>0:
-      cd['msg'] = update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
+      update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
 
@@ -157,7 +157,6 @@ def check2(update ,context):
    max_talent = DB.get_user_pet_value(id, pet_id , 'max_talent')
    max_distract = DB.get_user_pet_value(id, pet_id , 'max_distract')
    max_confident = DB.get_user_pet_value(id, pet_id , 'max_confident')
-   msg = cd['msg']
    
    if age >= 0 and age <=4:
       img+= DB.get_user_pet_value(id, pet_id , 'baby')
