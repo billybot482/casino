@@ -224,9 +224,10 @@ BUYSLOT_HANDLER = ConversationHandler(
 CHECK_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('check', check, pass_user_data=True)],
         states={
-            FIVE: [CallbackQueryHandler(check2, pattern=".", pass_user_data=True),
-                  CallbackQueryHandler(mainpet, pattern="main", pass_user_data=True),
-                  CallbackQueryHandler(checkclose, pattern="close", pass_user_data=True)],
+            FIVE: [CallbackQueryHandler(mainpet, pattern="main", pass_user_data=True),
+                  CallbackQueryHandler(checkclose, pattern="close", pass_user_data=True),
+                  CallbackQueryHandler(check2, pattern=".", pass_user_data=True)],
+                  
         },
         fallbacks=[],
         allow_reentry=True,
