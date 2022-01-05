@@ -173,8 +173,6 @@ def check2(update ,context):
    text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
    text2 = f'<b>{type} #{str(query.data).zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
-   context.bot.delete_message(chat_id = update.effective_chat.id, message_id = msg.message_id)
-   
    context.bot.send_message(chat_id = update.effective_chat.id , photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    return FIVE
    
