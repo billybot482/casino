@@ -79,7 +79,7 @@ def mypet(update , context):
     cats = DB.get_cat(id)
     dogs =  DB.get_dog(id)
     fish =  DB.get_fish(id)
-    slot = DB.get_user_value(id , 'slots')
+    slots = DB.get_user_value(id , 'slots')
     pets = len(DB.get_pet(id))
    
     text = '<b>My pet collection</b>\n\n'
