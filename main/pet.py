@@ -209,6 +209,7 @@ def mainpet(update , context):
 def mymainpet(update , context):
    id = update.effective_user.id
    pet_id = DB.get_user_mainpet(id , 'pet_id')
+   tag = pet_id.zfill(3)
    talent = DB.get_user_mainpet(id , 'talent')
    distract = DB.get_user_mainpet(id , 'distract')
    confident = DB.get_user_mainpet(id , 'confident')
@@ -224,7 +225,7 @@ def mymainpet(update , context):
    elif age >=8:
       img +=DB.get_user_mainpet(id , 'adult')
   
-   text2 = f'<b>{type} #({pet_id}.zfill(3))</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
+   text2 = f'<b>{type} #{tag}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
    context.bot.send_photo(chat_id = update.effective_chat.id , photo = img, caption = text2 ,parse_mode = ParseMode.HTML)
 
