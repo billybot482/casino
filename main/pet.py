@@ -207,9 +207,31 @@ def mainpet(update , context):
    return None 
   
 def mymainpet(update , context):
-   pass
-      
+   id = update.effective_user.id
+   pet_id = DB.get_user_mainpet(id , 'pet_id')
+   talent = DB.get_user_mainpet(id , 'talent')
+   distract = DB.get_user_mainpet(id , 'distract')
+   confident = DB.get_user_mainpet(id , 'confident')
+   special = DB.get_user_mainpet(id , 'special')
+   rarity = DB.get_user_mainpet(id , 'rarity')
+   age = DB.get_user_mainpet(id , 'growth')
+   type = DB.get_user_mainpet(id , 'type')
+   img = ''
+   if age >= 0 and age <=4:
+      img+=DB.get_user_mainpet(id , 'baby')
+   elif age >4 and age <8:
+      img+=DB.get_user_mainpet(id , 'teen')
+   elif age >=8:
+      img +=DB.get_user_mainpet(id , 'adult')
+  
+   text1 = f"\n<b>Base stats</b>\n🔆 <b>Talent :</b> <code>{talent}/{max_talent}</code>\n♨️ <b>Distract :</b> <code>{distract}/{max_distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}/{max_confident}</code>\n\n<b>Rarity : <u>{rarity}</u></b>"
+   text2 = f'<b>{type} #{pet_id}.zfill(3)}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
+   context.bot.send_photo(chat_id = update.effective_chat.id , photo = img, caption = text2 + text1 ,parse_mode = ParseMode.HTML)
+
+   
+
+ 
    
 BUYSLOT_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('buyslot', buyslot, pass_user_data=True)],
@@ -244,6 +266,7 @@ CHECK_HANDLER = ConversationHandler(
 MYPET_HANDLER = CommandHandler('mypet', mypet)
 PETCONTROL_HANDLER = CommandHandler('petcontrol', petcontrol)
 MINT_HANDLER = CommandHandler('mint', mint)
+MAINPET_HANDLER = CommandHandler('mainpet', mainpet)
 
 
 dispatcher.add_handler(MINT_HANDLER)
@@ -251,6 +274,7 @@ dispatcher.add_handler(MYPET_HANDLER)
 dispatcher.add_handler(PETCONTROL_HANDLER)
 dispatcher.add_handler(BUYSLOT_HANDLER)
 dispatcher.add_handler(CHECK_HANDLER)
+dispatcher.add_handler(MAINPET_HANDLER)
 
 
 
