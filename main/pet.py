@@ -209,7 +209,7 @@ def mainpet(update , context):
 def mymainpet(update , context):
    id = update.effective_user.id
    pet_id = DB.get_user_mainpet(id , 'pet_id')
-   tag = pet_id.zfill(3)
+   tag = str(pet_id.zfill(3))
    talent = DB.get_user_mainpet(id , 'talent')
    distract = DB.get_user_mainpet(id , 'distract')
    confident = DB.get_user_mainpet(id , 'confident')
