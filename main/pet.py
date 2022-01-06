@@ -79,22 +79,26 @@ def mypet(update , context):
     cats = DB.get_cat(id)
     dogs =  DB.get_dog(id)
     fish =  DB.get_fish(id)
+    slot = DB.get_user_value(id , 'slots')
+    pets = len(DB.get_pet(id))
+   
+    text = '<b>My pet collection</b>\n\n'
     catlist = ''
     doglist = ''
     fishlist = ''
     for i in cats:
      for k in i:    
-      catlist +='Cat'+ '#'+str(k)+'\n'
+      catlist +='Cat  '+ '#'+str(k)+'\n'
     
     for i in dogs:
      for k in i:    
-      doglist +='Dog'+ '#'+str(k)+'\n'
+      doglist +='Dog  '+ '#'+str(k)+'\n'
       
     for i in fish:
      for k in i:    
-      fishlist +='Fish'+ '#'+str(k)+'\n'
+      fishlist +='Fish  '+ '#'+str(k)+'\n'
        
-    update.message.reply_text(f'{catlist}{doglist}{fishlist}')
+    update.message.reply_text(f'{text}{catlist}{doglist}{fishlist}\nPet: {pets}/{slots}', parse_mode = ParseMode.HTML)
 
 
    
@@ -221,7 +225,7 @@ def mainpet(update , context):
     query.answer(f'{type} #{pet_id} is now your main pet')
     return -1
    
-   DB.main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
+   DB.main_pet(type, pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
    query.answer(f'{type} #{pet_id} is now your main pet')
    return None 
   
