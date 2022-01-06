@@ -266,7 +266,7 @@ CHECK_HANDLER = ConversationHandler(
 MYPET_HANDLER = CommandHandler('mypet', mypet)
 PETCONTROL_HANDLER = CommandHandler('petcontrol', petcontrol)
 MINT_HANDLER = CommandHandler('mint', mint)
-MAINPET_HANDLER = CommandHandler('mainpet', mainpet)
+MAINPET_HANDLER = CommandHandler('mainpet', mymainpet)
 
 
 dispatcher.add_handler(MINT_HANDLER)
