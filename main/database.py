@@ -197,6 +197,8 @@ def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent
    conn.commit()
    return conn 
 
+
+
 def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
     stmt = f"UPDATE mainpet SET type = %s WHERE user_id =%s,"
     "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
