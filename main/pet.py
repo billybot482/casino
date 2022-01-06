@@ -73,18 +73,30 @@ def buy_res(update , context):
    
 
 def mypet(update , context):
-   cd = context.chat_data
-   query = update.callback_query
-   id = update.effective_user.id
-   name = update.effective_user.first_name
-   username = update.effective_user.name
-   n = 1
-   text = '' 
-   cat_id = DB.get_cat(id)
-   for i in cat_id:
-    text += str(n)+'.'+ ' Cat #'+str(i).zfill(3)+'\n'
-    n+=1
-   update.message.reply_text('Pet collection\n\n{text}')
+    cd = context.chat_data
+    query = update.callback_query
+    id = update.effective_user.id
+    cats = DB.get_cat(id)
+    dogs =  DB.get_dog(id)
+    fish =  DB.get_fish(id)
+    catlist = ''
+    doglist = ''
+    fishlist = ''
+    for i in cats:
+     for k in i:    
+      catlist +='Cat'+ '#'+k+'\n'
+    
+    for i in dogs:
+     for k in i:    
+      doglist +='Dog'+ '#'+k+'\n'
+      
+    for i in fish:
+     for k in i:    
+      fishlist +='Fish'+ '#'+k+'\n'
+       
+    update.message.reply_text(f'{catlist}{doglist}{fishlist}')
+
+
    
 
 def check(update , context):
@@ -209,7 +221,7 @@ def mainpet(update , context):
 def mymainpet(update , context):
    id = update.effective_user.id
    pet_id = DB.get_user_mainpet(id , 'pet_id')
-   tag = str(pet_id.zfill(3))
+   tag = str(pet_id).zfill(3)
    talent = DB.get_user_mainpet(id , 'talent')
    distract = DB.get_user_mainpet(id , 'distract')
    confident = DB.get_user_mainpet(id , 'confident')
