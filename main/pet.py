@@ -84,15 +84,15 @@ def mypet(update , context):
     fishlist = ''
     for i in cats:
      for k in i:    
-      catlist +='Cat'+ '#'+k+'\n'
+      catlist +='Cat'+ '#'+str(k)+'\n'
     
     for i in dogs:
      for k in i:    
-      doglist +='Dog'+ '#'+k+'\n'
+      doglist +='Dog'+ '#'+str(k)+'\n'
       
     for i in fish:
      for k in i:    
-      fishlist +='Fish'+ '#'+k+'\n'
+      fishlist +='Fish'+ '#'+str(k)+'\n'
        
     update.message.reply_text(f'{catlist}{doglist}{fishlist}')
 
@@ -213,6 +213,8 @@ def mainpet(update , context):
    adult = cd['adult']
    special =cd['special']
    rarity = cd['rarity']
+   check = DB.get_user_mainpet(id , 'pet_id')
+   
    
    DB.add_main_pet(type , id , pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
    query.answer(f'{type} #{pet_id} is now your main pet')
