@@ -398,7 +398,7 @@ def get_user_pet_value(user_id: int,pet_id: int, items: str):
     cur.execute(stmt, (user_id,pet_id))
     return cur.fetchone()[0]
 
-def get_user_mainpet(user_id: int,pet_id: int, items: str):
+def get_user_mainpet(user_id: int,items: str):
     stmt = f"SELECT {items} FROM mainpet WHERE user_id=%s;"
     cur.execute(stmt, (user_id,))
     return cur.fetchone()[0]
