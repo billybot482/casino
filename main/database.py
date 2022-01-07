@@ -1,4 +1,3 @@
-
 from main.cash import calculate_worth
 from typing import *
 import os
@@ -17,36 +16,35 @@ def setup():
     print("Connected to", cur.fetchone())
     cur.execute("""CREATE TABLE IF NOT EXISTS Usr
             (
-                 user_id int not null primary key,
-                  white real,
-                  red real,
-                  orange real,
-                  yellow real,
-                  blue real,
-                  purple real,
-                  black real,
-                  rbwhite real,
-                  rbred real,
-                  rborange real,
-                  rbyellow real,
-                  rbblue real,
-                  rbpurple real,
-                  rbblack real,
-                  wager real ,
-                  win integer ,
-                  loss integer,
-                  vip integer,
-                  rakeback real,
-                  claimed boolean,
-                  slots int
+                 user_id INT NOT NULL PRIMARY KEY,
+                  white REAL,
+                  red REAL,
+                  orange REAL,
+                  yellow REAL,
+                  blue REAL,
+                  purple REAL,
+                  black REAL,
+                  rbwhite REAL,
+                  rbred REAL,
+                  rborange REAL,
+                  rbyellow REAL,
+                  rbblue REAL,
+                  rbpurple REAL,
+                  rbblack REAL,
+                  wager REAL,
+                  win INT,
+                  loss INT,
+                  vip INT,
+                  rakeback REAL,
+                  claimed BOOLEAN,
+                  slots INT
             );
     """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS title
                     (
-                          title text
-
-                    )
+                          title TEXT
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS Club
@@ -55,75 +53,86 @@ def setup():
                           club2 TEXT,
                           club3 TEXT,
                           club4 TEXT
-
-                    )
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS Stocks
                     (
+                          stock_id INT GENERATED ALWAYS AS IDENTITY,
                           name TEXT,
                           symbol TEXT,
-                          liquid real,
-                          supply real,
-                          savedPrice real
-                    )
+                          liquid REAL,
+                          supply REAL,
+                          savedPrice REAL,
+                          PRIMARY KEY(stock_id)
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS Orders
                     (  
-                          user_id int,
+                          user_id INT,
                           symbol TEXT,
-                          price real,
-                          supply real,
-                          orderId int
-                    )
+                          price REAL,
+                          supply REAL,
+                          orderId INT,
+                          CONSTRAINT fkey_user
+                            FOREIGN KEY(user_id)
+                              REFERENCES Usr(user_id)
+                              ON DELETE CASCADE
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS Pet
                     (
+                          pet_id INT PRIMARY KEY,
+                          user_id INT,
                           type TEXT,
-                          user_id int,
-                          pet_id int,
-                          baby text,
-                          teen text,
-                          adult text, 
-                          growth int, 
-                          talent int,
-                          distract int,
-                          confident int,
-                          max_talent int,
-                          max_distract int,
-                          max_confident int,
-                          rarity text,
-                          special text
-                       
-                          
-                    )
+                          baby TEXT,
+                          teen TEXT,
+                          adult TEXT,
+                          growth INT,
+                          talent INT,
+                          distract INT,
+                          confident INT,
+                          max_talent INT,
+                          max_distract INT,
+                          max_confident INT,
+                          rarity TEXT,
+                          special TEXT,
+                          CONSTRAINT fkey_user
+                            FOREIGN KEY(user_id)
+                              REFERENCES Usr(user_id)
+                              ON DELETE CASCADE
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS mainpet
                     (
+                          user_id INT,
                           type TEXT,
-                          user_id int,
-                          pet_id int,
-                          baby text,
-                          teen text,
-                          adult text, 
-                          growth int, 
-                          talent int,
-                          distract int,
-                          confident int,
-                          rarity text,
-                          special text
-                    )
+                          pet_id INT,
+                          baby TEXT,
+                          teen TEXT,
+                          adult TEXT,
+                          growth INT,
+                          talent INT,
+                          distract INT,
+                          confident INT,
+                          rarity TEXT,
+                          special TEXT,
+                          CONSTRAINT fkey_user
+                            FOREIGN KEY(user_id)
+                              REFERENCES Usr(user_id)
+                              ON DELETE CASCADE
+                    );
             """)
     conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS PetControl
                     (
-                          cat int,
-                          dog int,
-                          fish int
-                    )
+                          cat INT,
+                          dog INT,
+                          fish INT
+                    );
             """)
     conn.commit()
     
@@ -177,7 +186,8 @@ def get_pet(user_id):
     cur.execute(stmt,(user_id,))
     return cur.fetchall()
 
-def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
+# XXX point to pet row
+def add_main_pet(pet_type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
    stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
   VALUES (
   %s,
@@ -193,11 +203,9 @@ def add_main_pet(type , user_id, pet_id , baby , teen , adult  , growth , talent
   %s,
   %s
 );"""
-   cur.execute(stmt, (type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special,))
+   cur.execute(stmt, (pet_type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special,))
    conn.commit()
-   return conn 
-
-
+   return conn
 
 def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
     stmt = f"UPDATE mainpet SET type = %s WHERE user_id =%s,"
@@ -301,7 +309,6 @@ def mint_pet(item , amount):
 
 def sub_mint(item, amount):
    mint_pet(item, -amount)
-
 
 def quantity_cat():
     stmt = f"SELECT cat FROM PetControl;"
@@ -459,15 +466,12 @@ def add_rbchip(user_id, item, amount):
 
 def sub_rbchip(user_id, item, amount):
    add_rbchip(user_id, item, -amount)
- 
-    
-    
 
 def get_average_cash() -> float:
-    stmt = "SELECT white, red, orange, yellow, blue, purple, black FROM Usr"
+    stmt = "SELECT white, red, orange, yellow, blue, purple, black FROM Usr;"
     cur.execute(stmt)
     chips = cur.fetchall()
-    stmt = "SELECT COUNT(*) FROM Usr"
+    stmt = "SELECT COUNT(*) FROM Usr;"
     cur.execute(stmt)
     n = cur.fetchone()[0]
     total_worth = sum(map(lambda l: calculate_worth(*l), chips))
