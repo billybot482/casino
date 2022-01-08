@@ -204,7 +204,7 @@ def get_pet(user_id):
 
 def main_pet(user_id, type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
     stmt = f"UPDATE Usr SET type = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
+    "UPDATE mainpet SET mainpet_id = %s WHERE user_id =%s,"
     "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
     "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
     "UPDATE mainpet SET adult = %s WHERE user_id =%s,"
