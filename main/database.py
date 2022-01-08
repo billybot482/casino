@@ -128,18 +128,18 @@ def setup():
     conn.commit()
     
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots, mainpet_id int,
-                  growth int,
-                  exp int,
-                  baby text,
-                  teen text,
-                  adult text,
-                  type text,
-                  talent int,
-                  distract int,
-                  confident int,
-                  special text,
-                  rarity text)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots, mainpet_id,
+                  growth,
+                  exp,
+                  baby,
+                  teen,
+                  adult,
+                  type,
+                  talent,
+                  distract,
+                  confident,
+                  special,
+                  rarity)
   VALUES (
   %s,
   100,
