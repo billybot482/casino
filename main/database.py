@@ -37,7 +37,21 @@ def setup():
                   vip INT,
                   rakeback REAL,
                   claimed BOOLEAN,
-                  slots INT
+                  slots INT,
+                  mainpet_id int,
+                  growth int,
+                  exp int,
+                  baby text,
+                  teen text,
+                  adult text,
+                  type text,
+                  talent int,
+                  distract int,
+                  confident int,
+                  special text,
+                  rarity text,
+                  
+                  
             );
     """)
     conn.commit()
@@ -106,27 +120,6 @@ def setup():
                     );
             """)
     conn.commit()
-    cur.execute("""CREATE TABLE IF NOT EXISTS mainpet
-                    (
-                          user_id INT,
-                          type TEXT,
-                          pet_id INT,
-                          baby TEXT,
-                          teen TEXT,
-                          adult TEXT,
-                          growth INT,
-                          talent INT,
-                          distract INT,
-                          confident INT,
-                          rarity TEXT,
-                          special TEXT,
-                          CONSTRAINT fkey_user
-                            FOREIGN KEY(user_id)
-                              REFERENCES Usr(user_id)
-                              ON DELETE CASCADE
-                    );
-            """)
-    conn.commit()
     cur.execute("""CREATE TABLE IF NOT EXISTS PetControl
                     (
                           cat INT,
@@ -137,7 +130,18 @@ def setup():
     conn.commit()
     
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots mainpet_id int,
+                  growth int,
+                  exp int,
+                  baby text,
+                  teen text,
+                  adult text,
+                  type text,
+                  talent int,
+                  distract int,
+                  confident int,
+                  special text,
+                  rarity text)
   VALUES (
   %s,
   100,
