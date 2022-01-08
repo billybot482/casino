@@ -49,9 +49,7 @@ def setup():
                   distract int,
                   confident int,
                   special text,
-                  rarity text,
-                  
-                  
+                  rarity text
             );
     """)
     conn.commit()
@@ -164,7 +162,19 @@ def add_user(user_id):
   0,
   0,
   false,
-  3
+  3, 
+  0,
+  0,
+  0,
+  "", 
+  "", 
+  "", 
+  "", 
+  0,
+  0,
+  0,
+  "", 
+  "" 
 );"""
   cur.execute(stmt, (user_id,))
   conn.commit()
@@ -191,28 +201,9 @@ def get_pet(user_id):
     return cur.fetchall()
 
 # XXX point to pet row
-def add_main_pet(pet_type , user_id, pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
-   stmt = """INSERT INTO mainpet (type, user_id ,pet_id , baby , teen , adult , growth , talent , distract , confident ,rarity ,special)
-  VALUES (
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s,
-  %s
-);"""
-   cur.execute(stmt, (pet_type , user_id, pet_id , baby , teen , adult , growth, talent , distract , confident, rarity ,special,))
-   conn.commit()
-   return conn
 
-def main_pet(type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
-    stmt = f"UPDATE mainpet SET type = %s WHERE user_id =%s,"
+def main_pet(user_id, type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
+    stmt = f"UPDATE Usr SET type = %s WHERE user_id =%s,"
     "UPDATE mainpet SET pet_id = %s WHERE user_id =%s,"
     "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
     "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
