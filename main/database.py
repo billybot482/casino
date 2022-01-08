@@ -37,7 +37,7 @@ def setup():
                   vip INT,
                   rakeback REAL,
                   claimed BOOLEAN,
-                  slots INT,
+                  slots int,
                   mainpet_id int,
                   growth int,
                   exp int,
@@ -128,7 +128,7 @@ def setup():
     conn.commit()
     
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots mainpet_id int,
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots, mainpet_id int,
                   growth int,
                   exp int,
                   baby text,
