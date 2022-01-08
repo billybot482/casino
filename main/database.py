@@ -166,15 +166,15 @@ def add_user(user_id):
   0,
   0,
   0,
-  "", 
-  "", 
-  "", 
-  "", 
+  '', 
+  '', 
+  '', 
+  '', 
   0,
   0,
   0,
-  "", 
-  "" 
+  '', 
+  ''
 );"""
   cur.execute(stmt, (user_id,))
   conn.commit()
