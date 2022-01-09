@@ -217,29 +217,40 @@ def mainpet(update , context):
    adult = cd['adult']
    special =cd['special']
    rarity = cd['rarity']
+    
+   check = DB.get_user_value(id , 'mainpet_id')
+   if check == None:
+      qu
+      
    
-   DB.main_pet(id, type, pet_id , baby , teen , adult , age , talent , distract , confident , rarity , special)
+   DB.main_pet(id,pet_id)
    query.answer(f'{type} #{pet_id} is now your main pet')
    return None 
   
 def mymainpet(update , context):
    id = update.effective_user.id
-   pet_id = DB.get_user_mainpet(id , 'pet_id')
+   
+   pet_id = DB.get_user_value(id , 'mainpet_id')
+   if pet_id == None:
+      update.message.reply_text('You dont have mainpet yet')
+      return -1
+   
+   
    tag = str(pet_id).zfill(3)
-   talent = DB.get_user_mainpet(id , 'talent')
-   distract = DB.get_user_mainpet(id , 'distract')
-   confident = DB.get_user_mainpet(id , 'confident')
-   special = DB.get_user_mainpet(id , 'special')
-   rarity = DB.get_user_mainpet(id , 'rarity')
-   age = DB.get_user_mainpet(id , 'growth')
-   type = DB.get_user_mainpet(id , 'type')
+   talent = DB.get_user_pet_value(pet_id , 'talent')
+   distract = DB.get_user_pet_value(pet_id , 'distract')
+   confident = DB.get_user_pet_value(pet_id , 'confident')
+   special = DB.get_user_pet_value(pet_id , 'special')
+   rarity = DB.get_user_pet_value(pet_id , 'rarity')
+   age = DB.get_user_pet_value(pet_id , 'growth')
+   type = DB.get_user_pet_value(pet_id , 'type')
    img = ''
    if age >= 0 and age <=4:
-      img+=DB.get_user_mainpet(id , 'baby')
+      img+=DB.get_user_pet_value(pet_id , 'baby')
    elif age >4 and age <8:
-      img+=DB.get_user_mainpet(id , 'teen')
+      img+=DB.get_user_pet_value(pet_id , 'teen')
    elif age >=8:
-      img +=DB.get_user_mainpet(id , 'adult')
+      img +=DB.get_user_pet_value(pet_id , 'adult')
   
    text2 = f'<b>{type} #{tag}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
