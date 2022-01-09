@@ -38,18 +38,8 @@ def setup():
                   rakeback REAL,
                   claimed BOOLEAN,
                   slots int,
-                  mainpet_id int,
-                  growth int,
-                  exp int,
-                  baby text,
-                  teen text,
-                  adult text,
-                  type text,
-                  talent int,
-                  distract int,
-                  confident int,
-                  special text,
-                  rarity text
+                  mainpet_id int
+
             );
     """)
     conn.commit()
@@ -128,7 +118,7 @@ def setup():
     conn.commit()
     
 def add_user(user_id):
-  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots, mainpet_id,growth,exp,baby,teen,adult,type,talent,distract,confident,special,rarity)
+  stmt = """INSERT INTO Usr (user_id, white , red , orange , yellow , blue , purple , black , rbwhite , rbred, rborange , rbyellow , rbblue , rbpurple , rbblack, wager , win , loss , vip, rakeback, claimed, slots,mainpet_id)
   VALUES (
   %s,
   100,
@@ -151,19 +141,9 @@ def add_user(user_id):
   0,
   0,
   false,
-  3, 
-  0,
-  0,
-  0,
-  '', 
-  '', 
-  '', 
-  '', 
-  0,
-  0,
-  0,
-  '', 
-  ''
+  3,
+  None
+  
 );"""
   cur.execute(stmt, (user_id,))
   conn.commit()
@@ -191,19 +171,9 @@ def get_pet(user_id):
 
 # XXX point to pet row
 
-def main_pet(user_id, type , pet_id , baby , teen , adult  , growth , talent , distract , confident , rarity , special):
-    stmt = f"UPDATE Usr SET type = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET mainpet_id = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET baby = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET teen = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET adult = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET growth = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET talent = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET distract = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET confident = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET rarity = %s WHERE user_id =%s,"
-    "UPDATE mainpet SET special = %s WHERE user_id =%s;"
-    cur.execute(stmt, (user_id,))
+def main_pet(user_id, pet_id):
+    stmt = f"UPDATE Usr SET mainpet_id = %s WHERE user_id =%s,"
+    cur.execute(stmt, (pet_id ,user_id,))
     conn.commit()
 
 def add_pet_cat(user_id,pet_id , talent , distract , confident):
