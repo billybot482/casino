@@ -218,11 +218,6 @@ def mainpet(update , context):
    special =cd['special']
    rarity = cd['rarity']
     
-   check = DB.get_user_value(id , 'mainpet_id')
-   if check == None:
-      qu
-      
-   
    DB.main_pet(id,pet_id)
    query.answer(f'{type} #{pet_id} is now your main pet')
    return None 
@@ -231,7 +226,7 @@ def mymainpet(update , context):
    id = update.effective_user.id
    
    pet_id = DB.get_user_value(id , 'mainpet_id')
-   if pet_id == None:
+   if pet_id ==0:
       update.message.reply_text('You dont have mainpet yet')
       return -1
    
