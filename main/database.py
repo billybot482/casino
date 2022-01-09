@@ -142,7 +142,7 @@ def add_user(user_id):
   0,
   false,
   3,
-  None
+  0
   
 );"""
   cur.execute(stmt, (user_id,))
