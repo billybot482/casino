@@ -129,11 +129,11 @@ def buy_cat(update , context):
                                 f'🔆Talent : {talent}/30\n♨️Distract : {distract}/30\n❤‍🔥Confident : {confident}/200', parse_mode = ParseMode.HTML)
          return ConversationHandler.END
       else:
-         query.answer('Balance not enough')
+         query.edit_message_text('Balance not enough')
      else:
-        query.answer('Out of stock')
+        query.edit_message_text('Out of stock')
     else:
-       query.asnwer('Not enough slot')
+       query.edit_message_text('Not enough slot')
     
 def buy_dog(update , context):
     cd = context.chat_data
@@ -168,11 +168,11 @@ def buy_dog(update , context):
                                 f'🔆Talent : {talent}/40\n♨️Distract : {distract}/30\n❤‍🔥Confident : {confident}/150', parse_mode = ParseMode.HTML)
          return ConversationHandler.END
       else:
-         query.answer('Balance not enough')
+         query.edit_message_text('Balance not enough')
      else:
-        query.asnwer('Out of stock')
+        query.edit_message_text('Out of stock')
     else:
-       query.asnwer('Not enough slot')
+       query.edit_message_text('Not enough slot')
         
 def buy_fish(update , context):
     cd = context.chat_data
@@ -208,9 +208,9 @@ def buy_fish(update , context):
          return ConversationHandler.END
         
       else:
-        query.answer('Balance not enough')
+        query.edit_message_text('Balance not enough')
      else:   
-        query.answer('Out of stock')
+        query.edit_message_text('Out of stock')
     else:
        query.edit_message_text('Not enough slot')        
     
