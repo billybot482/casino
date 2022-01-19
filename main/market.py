@@ -212,7 +212,7 @@ def buy_fish(update , context):
      else:   
         query.answer('Out of stock')
     else:
-       query.asnwer('Not enough slot')        
+       query.edit_message_text('Not enough slot')        
     
     
 def blackmarket(update, context):
