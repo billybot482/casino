@@ -89,17 +89,17 @@ def mypet(update , context):
     for i in cats:
      for k in i:
       k = str(k).zfill(3)
-      catlist +='#'+str(k)+'Cat'+'\n'
+      catlist +='#'+str(k)+' Cat'+'\n'
     
     for i in dogs:
      for k in i:
       k = str(k).zfill(3)
-      doglist +='#'+str(k)+'Dog'+'\n'
+      doglist +='#'+str(k)+' Dog'+'\n'
       
     for i in fish:
      for k in i:  
       k = str(k).zfill(3)
-      fishlist +='#'+str(k)+'Fish'+'\n'
+      fishlist +='#'+str(k)+' Fish'+'\n'
        
     update.message.reply_text(f'{text}{catlist}{doglist}{fishlist}\nPet: {pets}/{slots}', parse_mode = ParseMode.HTML)
 
