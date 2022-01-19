@@ -239,7 +239,7 @@ def add_pet_fish(user_id,pet_id , talent , distract , confident):
   35,
   120,
   'common',
-  'swim dance'
+  'bubble'
 );"""
    cur.execute(stmt, (user_id,pet_id , talent , distract , confident))
    conn.commit()
