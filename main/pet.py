@@ -127,6 +127,7 @@ def check(update , context):
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
+      return -1
    
     elif type == "dog":
      keyboard = []
@@ -139,6 +140,7 @@ def check(update , context):
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
+      return -1
    
     elif type == "fish":
      keyboard = []
@@ -151,6 +153,7 @@ def check(update , context):
       update.message.reply_text(f'Which of this {type} would you like to inspect:', reply_markup =  reply_markup)
      else:
       update.message.reply_text("You dont have this type of pet yet")
+      return -1
 
     else:
      update.message.reply_text("Wrong input") 
