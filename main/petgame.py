@@ -20,6 +20,14 @@ def challenge(update , context):
   cd['p1'] = name = update.effective_user.first_name
   cd['p2'] = to = update.message.reply_to_message.from_user.first_name
   cd['p2id'] = toid = update.message.reply_to_message.from_user.id
+  
+  if id in ingame:
+    update.message.reply_text('finish your game first')
+    return -1
+  if toid in ingame:
+    update.message.reply_text('this person is already in a match , wait for it to end')
+    return -1
+  
   pet_id = DB.get_user_value(id , 'mainpet_id')
    if pet_id ==0:
       update.message.reply_text('You dont have mainpet yet')
@@ -90,7 +98,8 @@ def accept(update, context):
   p1id = cd['p1id']
   p2 = cd['p2']
   p2id = cd['p2id']
-  
+  ingame.append(p1id)
+  ingame.append(p2id)
   cd['round'] =  round = 1
   
   empty = ▒
@@ -103,7 +112,7 @@ def accept(update, context):
   distract1 = DB.get_user_pet_value(pet_id1 , 'distract')
   confident1 = DB.get_user_pet_value(pet_id1 , 'confident')
   special1 = DB.get_user_pet_value(pet_id1 , 'special')
-  type1 = DB.get_user_pet_value(pet_id1 , 'type')
+  cd['type1'] = type1 = DB.get_user_pet_value(pet_id1 , 'type')
   age1 = DB.get_user_pet_value(pet_id1 , 'growth')
   
   #Game stats
@@ -116,7 +125,7 @@ def accept(update, context):
   distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
   confident2 = DB.get_user_pet_value(pet_id2 , 'confident')
   special2 = DB.get_user_pet_value(pet_id2 , 'special')
-  type2 = DB.get_user_pet_value(pet_id2 , 'type')
+  cd['type2'] = type2 = DB.get_user_pet_value(pet_id2 , 'type')
   age2 = DB.get_user_pet_value(pet_id2 , 'growth')
   
   #Game stats
@@ -152,7 +161,38 @@ def accept(update, context):
     text = f'Round {round}\n'
     f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
     f'{p1} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+  return ONE
+
+def first(update , context):
+   cd = context.bot_data
+   query = update.callback_query
+   query.answer()
+   p1 = cd['p1']
+   p1id = cd['p1id']
+   p2 = cd['p2']
+   p2id = cd['p2id']
   
+  
+   keyboard = [
+           [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
+            InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
+            [InlineKeyboardButton("Jump\n💟45", callback_data='jump'),
+           InlineKeyboardButton("Dance\n💟110", callback_data='dance'),],
+         [InlineKeyboardButton(f"{special1}\n💟", callback_data=f'{special1}')],
+    [InlineKeyboardButton("Resign", callback_data='wood'),InlineKeyboardButton("Draw", callback_data='wood')]
+  ]
+  
+  reply_markup = InlineKeyboardMarkup(keyboard)
+  if update.callback_query.from_user.id != p1id:
+        query.answer('player 2 not ur turn')
+        return None
+  query.edit_message_text(
+    text = f'Round {round}\n'
+    f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
+    f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+  cd['round']+=1
+  cd['choice1'] = query.data
+  return THREE
   
 def resign(update , context):
   cd = context.bot_data
@@ -160,28 +200,109 @@ def resign(update , context):
   query.answer()
   p1id = cd['p1id']
   keyboard = [
-  [InlineKeyboardButton("Yes", callback_data='shake',InlineKeyboardButton("No", callback_data='shake']
+  [InlineKeyboardButton("Yes", callback_data='resignyes',InlineKeyboardButton("No", callback_data='resignno']
   ]
   reply_markup = InlineKeyboardMarkup(keyboard)                                                                        
   if update.callback_query.from_user.id != p1id:
         query.answer('Cannot use')
         return None
     query.edit_message_text(f'{p1} are you sure to resisgn the match?', reply_markup = reply_markup)
+  return TWO
 
   
 def resign2(update ,context):
   cd = context.bot_data
   query = update.callback_query
-                                                                          
-                                                                        
-                                                                          
-                                                                          
-  
+  p1id = cd['p1id']
+  p1 = cd['p1']
+  p2 = cd['p2']
+  p2id cd['p2id']
+  type1 = cd['type1'] 
+  type2 = cd['type2']                                                                            
+  if update.callback_query.from_user.id = p1id:
+   if query.data == 'resignyes':
+    query.edit_message_text(f'{p1} resign , {p2} and his/her {type2} won , congrats')
+    return ConversationHandler.END 
+  if update.callback_query.from_user.id = p1id:
+   if query.data == 'resignno':
+    return ONE                                                                         
+                                                                              
+                                                                              
+  if update.callback_query.from_user.id = p2id:
+   if query.data == 'resignyes':
+    query.edit_message_text(f'{p2} resign , {p1} and his/her {type1} won , congrats')
+    return ConversationHandler.END                                                                               
+  if update.callback_query.from_user.id = p2id:
+   if query.data == 'resignno':
+    return ONE                                                                             
+                                                                 
 def draw(update , context):
+  pass
   
+def res(update , context):
+  cd = context.bot_data
+  query = update.callback_query
+  query.answer()
+  p1 = cd['p1']
+  p1id = cd['p1id']
+  p2 = cd['p2']
+  p2id = cd['p2id']
+  empty = ▒
+  full = █
+  cd['choice2']=query.data
+                                                                              
+  c1 = cd['choice1']
+  c2 = cd['choice2']      
+                                                                              
+  pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
+  pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   
+  talent1 = DB.get_user_pet_value(pet_id1 , 'talent')
+  distract1 = DB.get_user_pet_value(pet_id1 , 'distract')
+  confident1 = DB.get_user_pet_value(pet_id1 , 'confident')
+  special1 = DB.get_user_pet_value(pet_id1 , 'special')
+  cd['type1'] = type1 = DB.get_user_pet_value(pet_id1 , 'type')
+  age1 = DB.get_user_pet_value(pet_id1 , 'growth')
   
+  #Game stats
+  attack1 = talent1 + round(((age1+1)*talent1/4),0)
+  defense1 = distract1 + round(((age1+1)*distract1/4),0)
+  hp1 = confident1 + round(((age1+1)*confident1/4),0)
+  current1 = hp1
   
+  talent2 = DB.get_user_pet_value(pet_id2, 'talent')
+  distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
+  confident2 = DB.get_user_pet_value(pet_id2 , 'confident')
+  special2 = DB.get_user_pet_value(pet_id2 , 'special')
+  cd['type2'] = type2 = DB.get_user_pet_value(pet_id2 , 'type')
+  age2 = DB.get_user_pet_value(pet_id2 , 'growth')
+  
+  #Game stats
+  attack2 = talent2 + round(((age2+1)*talent2/4),0)
+  defense2 = distract2 + round(((age2+1)*distract2/4),0)
+  hp2 = confident2 + round(((age2+1)*confident2/4),0)
+  current2 = hp2                                                                            
+ 
+  keyboard = [
+           [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
+            InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
+            [InlineKeyboardButton("Jump\n💟45", callback_data='jump'),
+           InlineKeyboardButton("Dance\n💟110", callback_data='dance'),],
+         [InlineKeyboardButton(f"{special1}\n💟", callback_data=f'{special1}')],
+    [InlineKeyboardButton("Resign", callback_data='wood'),InlineKeyboardButton("Draw", callback_data='wood')]
+  ]
+  
+  reply_markup = InlineKeyboardMarkup(keyboard)                                                                            
+  if update.callback_query.from_user.id != p2id:
+     query.answer('player 2 not ur turn')
+     return None
+                                                                              
+  pair = {'shake':{'attack':10, 'distract':0, 'energy':0},
+         'distract':{'attack':0, 'distract':80, 'energy':60},
+         'jump':{'attack':40, 'distract':0, 'energy':45},
+         'dance':{'attack':110, 'distract':0, 'energy':90},}
+                                                                              
+                                                                              
   
   
   
@@ -202,10 +323,24 @@ def draw(update , context):
 PETGAME_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('challenge', challenge)],
         states={
-            ONE: [CallbackQueryHandler(accpet, pattern='^' + str("accept") + '$'),
+            ONE: [CallbackQueryHandler(accept, pattern='^' + str("accept") + '$'),
                   CallbackQueryHandler(reject, pattern='^' + str("reject") + '$'),
                   CallbackQueryHandler(cancel, pattern='^' + str("cancel") + '$'),
-                   CallbackQueryHandler(rules, pattern='^' + str("rules") + '$')
+                   CallbackQueryHandler(rules, pattern='^' + str("rules") + '$'),
+                  CallbackQueryHandler(first, pattern='^' + str("shake") + '$'),
+                   CallbackQueryHandler(first, pattern='^' + str("distract") + '$'),
+                    CallbackQueryHandler(first, pattern='^' + str("dance") + '$'),
+                   CallbackQueryHandler(first, pattern='^' + str("jump") + '$'),
+                    CallbackQueryHandler(first, pattern='^' + str(".") + '$')
+            ],
+            TWO: [CallbackQueryHandler(resign2, pattern='^' + str("resignyes") + '$'),
+                  CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')
+                  
+            THREE: [CallbackQueryHandler(res, pattern='^' + str("shake") + '$'),
+                   CallbackQueryHandler(res, pattern='^' + str("distract") + '$'),
+                    CallbackQueryHandler(res, pattern='^' + str("dance") + '$'),
+                   CallbackQueryHandler(res, pattern='^' + str("jump") + '$'),
+                    CallbackQueryHandler(res, pattern='^' + str(".") + '$')
             ],
         },
         fallbacks=[],
