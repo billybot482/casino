@@ -185,17 +185,17 @@ def first(update , context):
     [InlineKeyboardButton("Resign", callback_data='wood'),InlineKeyboardButton("Draw", callback_data='wood')]
   ]
   
-  reply_markup = InlineKeyboardMarkup(keyboard)
-  if update.callback_query.from_user.id != p1id:
+   reply_markup = InlineKeyboardMarkup(keyboard)
+   if update.callback_query.from_user.id != p1id:
         query.answer('player 2 not ur turn')
         return None
-  query.edit_message_text(
+   query.edit_message_text(
     text = f'Round {round}\n'
     f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
     f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
-  cd['round']+=1
-  cd['choice1'] = query.data
-  return THREE
+   cd['round']+=1
+   cd['choice1'] = query.data
+   return THREE
   
 def resign(update , context):
   cd = context.bot_data
