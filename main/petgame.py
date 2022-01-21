@@ -222,20 +222,20 @@ def resign2(update ,context):
   p2id = cd['p2id']
   type1 = cd['type1'] 
   type2 = cd['type2']                                                                            
-  if update.callback_query.from_user.id = p1id:
+  if update.callback_query.from_user.id == p1id:
    if query.data == 'resignyes':
     query.edit_message_text(f'{p1} resign , {p2} and his/her {type2} won , congrats')
     return ConversationHandler.END 
-  if update.callback_query.from_user.id = p1id:
+  if update.callback_query.from_user.id == p1id:
    if query.data == 'resignno':
     return ONE                                                                         
                                                                               
                                                                               
-  if update.callback_query.from_user.id = p2id:
+  if update.callback_query.from_user.id == p2id:
    if query.data == 'resignyes':
     query.edit_message_text(f'{p2} resign , {p1} and his/her {type1} won , congrats')
     return ConversationHandler.END                                                                               
-  if update.callback_query.from_user.id = p2id:
+  if update.callback_query.from_user.id == p2id:
    if query.data == 'resignno':
     return ONE                                                                             
                                                                  
