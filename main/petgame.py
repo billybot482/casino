@@ -87,7 +87,7 @@ def cancel(update , context):
 def rules(update , context):
   cd = context.bot_data
   query = update.callback_query
-  query.answer('pet that reach 0 confident loses')
+  query.answer('pet that reach 0 confident loses', show_alert = True)
   return 0
   
 def accept(update, context):
