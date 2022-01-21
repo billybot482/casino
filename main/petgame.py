@@ -42,8 +42,8 @@ def challenge(update , context):
             InlineKeyboardButton("accept", callback_data=str('yes')),
             InlineKeyboardButton("reject", callback_data=str('no')),
         ],
-        [InlineKeyboardButton("rules", callback_data=str('rules'))],
-        [InlineKeyboardButton("cancel", callback_data=str('cancel'))]
+        [InlineKeyboardButton("rules", callback_data=str('rules')),InlineKeyboardButton("cancel", callback_data=str('cancel'))],
+ 
     ]
   reply_markup = InlineKeyboardMarkup(keyboard)
     
