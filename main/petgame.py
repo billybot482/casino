@@ -29,11 +29,11 @@ def challenge(update , context):
     return -1
   
   pet_id = DB.get_user_value(id , 'mainpet_id')
-   if pet_id ==0:
+  if pet_id ==0:
       update.message.reply_text('You dont have mainpet yet')
       return -1
   pet_id2 = DB.get_user_value(toid , 'mainpet_id')
-   if pet_id2 ==0:
+  if pet_id2 ==0:
       update.message.reply_text('The person dont have mainpet yet')
       return -1
     
@@ -119,7 +119,7 @@ def accept(update, context):
   attack1 = talent1 + round(((age1+1)*talent1/4),0)
   defense1 = distract1 + round(((age1+1)*distract1/4),0)
   hp1 = confident1 + round(((age1+1)*confident1/4),0)
-  current1 = hp1
+  cd['hp1'] = current1 = hp1
   
   talent2 = DB.get_user_pet_value(pet_id2, 'talent')
   distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
@@ -132,10 +132,10 @@ def accept(update, context):
   attack2 = talent2 + round(((age2+1)*talent2/4),0)
   defense2 = distract2 + round(((age2+1)*distract2/4),0)
   hp2 = confident2 + round(((age2+1)*confident2/4),0)
-  current2 = hp2
+  cd['hp2'] = current2 = hp2
   
   remain1 = current1*100/hp1
-  remain2 = current1*100/hp1
+  remain2 = current2*100/hp2
   
   p1r1 = int((remain1+10)/10)
   p1r2 = int(11-p1r1)
@@ -145,6 +145,9 @@ def accept(update, context):
   
   bar1 = p1r1*full+p1r2*empty
   bar2 = p2r1*full+p2r2*empty
+  
+  cd['mana1'] = mana1 = 50
+  cd['mana2'] = mana2 = 50
   
   
   keyboard = [
@@ -249,7 +252,10 @@ def res(update , context):
   p2id = cd['p2id']
   empty = ▒
   full = █
+  round = cd['round']                                                                            
   cd['choice2']=query.data
+  current1 = cd['current1']
+  current2 = cd['current2']                                                                            
                                                                               
   c1 = cd['choice1']
   c2 = cd['choice2']      
@@ -268,7 +274,6 @@ def res(update , context):
   attack1 = talent1 + round(((age1+1)*talent1/4),0)
   defense1 = distract1 + round(((age1+1)*distract1/4),0)
   hp1 = confident1 + round(((age1+1)*confident1/4),0)
-  current1 = hp1
   
   talent2 = DB.get_user_pet_value(pet_id2, 'talent')
   distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
@@ -280,8 +285,7 @@ def res(update , context):
   #Game stats
   attack2 = talent2 + round(((age2+1)*talent2/4),0)
   defense2 = distract2 + round(((age2+1)*distract2/4),0)
-  hp2 = confident2 + round(((age2+1)*confident2/4),0)
-  current2 = hp2                                                                            
+  hp2 = confident2 + round(((age2+1)*confident2/4),0)                                                                         
  
   keyboard = [
            [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
@@ -297,19 +301,83 @@ def res(update , context):
      query.answer('player 2 not ur turn')
      return None
                                                                               
+     
+                                                                              
   pair = {'shake':{'attack':10, 'distract':0, 'energy':0},
          'distract':{'attack':0, 'distract':80, 'energy':60},
          'jump':{'attack':40, 'distract':0, 'energy':45},
          'dance':{'attack':110, 'distract':0, 'energy':90},}
                                                                               
                                                                               
+  if c1 != 'distract' and c2 == 'distract':                                                                            
+   result1 = (talent1*pair[c1]['attack']/100)-(distract2*pair['distract']['distract']/100)                                                                        
+   if result1 >1:
+      current2-=result1
+      mana1-=pair[c1]['energy'] 
+      mana2-=pair['distract']['energy']
+                                                                              
+      remain1 = current1*100/hp1
+      remain2 = current2*100/hp2
   
+      p1r1 = int((remain1+10)/10)
+      p1r2 = int(11-p1r1)
   
+      p2r1 = int((remain1+10)/10)
+      p2r2 = int(11-p2r1)
   
+      bar1 = p1r1*full+p1r2*empty
+      bar2 = p2r1*full+p2r2*empty
+      query.edit_message_text(f"<u>Round {round}<u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performance of {c1} caused {p2}'s <b>{type2} #{pet_id2}</b> to lose <b>{result1}</b> confidence"
+                              f"\n{p1}|{type1}\n{bar1} {current1}/{hp1}\n{p2}|{type2}\n{bar1} {current1}/{hp1}\n{p1} pick your move"
+                               ,reply_markup=reply_markup, parse_mode = ParseMode.HTML)   
+      if current1 or current2 <= 0:
+         if current1 > current2:
+           query.edit_message_text(f'{p1} win')
+         elif current2 > current1:
+           query.edit_message_text(f'{p2} win') 
+                                                                              
+         return ConversationHandler.END
+      return ONE                                                                       
+                                                                              
+   if result1 <=0:
+      current2-=0                                                                        
+      mana1-=pair[c1]['energy'] 
+      mana2-=pair['distract']['energy']
+      remain1 = current1*100/hp1
+      remain2 = current2*100/hp2
   
+      p1r1 = int((remain1+10)/10)
+      p1r2 = int(11-p1r1)
   
+      p2r1 = int((remain1+10)/10)
+      p2r2 = int(11-p2r1)
   
+      bar1 = p1r1*full+p1r2*empty
+      bar2 = p2r1*full+p2r2*empty
+      query.edit_message_text(f"<u>Round {round}<u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performed {c1} and {p2}'s <b>{type2} #{pet_id2}</b> performed {c2} no stats affected this round"
+                              f"\n{p1}|{type1}\n{bar1} {current1}/{hp1}\n{p2}|{type2}\n{bar1} {current1}/{hp1}\n{p1} pick your move"
+                               ,reply_markup=reply_markup, parse_mode = ParseMode.HTML)   
+      if current1 or current2 <= 0:
+         if current1 > current2:
+           query.edit_message_text(f'{p1} win')
+         elif current2 > current1:
+           query.edit_message_text(f'{p2} win') 
+                                                                              
+         return ConversationHandler.END                                                                        
+      return ONE                                                                       
   
+  if c1 == 'distract' and c2 == 'distract':
+     mana1-=pair[c1]['energy'] 
+     mana2-=pair[c2]['energy']   
+  
+  if c1 != 'distract' and c2 != 'distract':
+     mana1-=pair[c1]['energy'] 
+     mana2-=pair[c2]['energy']
+     result2 = (talent1*pair[c1]['attack']/100)-(talent2*pair[c2]['attack']/100)
+     result3 = (talent2*pair[c2]['attack']/100)-(talent1*pair[c1]['attack']/100)
+     current1 -= result3
+     current2 -= result2                                                                         
+                                                                              
 
 
 
