@@ -54,7 +54,7 @@ def challenge(update , context):
   if toid != id:
      update.message.reply_text(f'{name} challenged {to} to a pet 🌟talent show🌟\n\nClick accept to begin', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
       
-  return ONE
+  return PETONE
    
   
    
@@ -164,7 +164,7 @@ def accept(update, context):
     text = f'Round {round}\n'
     f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
     f'{p1} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
-  return ONE
+  return PETONE
 
 def first(update , context):
    cd = context.bot_data
@@ -195,7 +195,7 @@ def first(update , context):
     f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    cd['round']+=1
    cd['choice1'] = query.data
-   return THREE
+   return PETTHREE
   
 def resign(update , context):
   cd = context.bot_data
@@ -210,7 +210,7 @@ def resign(update , context):
         query.answer('Cannot use')
         return None
   query.edit_message_text(f'{p1} are you sure to resisgn the match?', reply_markup = reply_markup)
-  return TWO
+  return PETTWO
 
   
 def resign2(update ,context):
@@ -228,7 +228,7 @@ def resign2(update ,context):
     return ConversationHandler.END 
   if update.callback_query.from_user.id == p1id:
    if query.data == 'resignno':
-    return ONE                                                                         
+    return PETONE                                                                         
                                                                               
                                                                               
   if update.callback_query.from_user.id == p2id:
@@ -237,7 +237,7 @@ def resign2(update ,context):
     return ConversationHandler.END                                                                               
   if update.callback_query.from_user.id == p2id:
    if query.data == 'resignno':
-    return ONE                                                                             
+    return PETONE                                                                             
                                                                  
 def draw(update , context):
   pass
@@ -337,7 +337,7 @@ def res(update , context):
            query.edit_message_text(f'{p2} win') 
                                                                               
          return ConversationHandler.END
-      return ONE                                                                       
+      return PETONE                                                                       
                                                                               
    if result1 <=0:
       current2-=0                                                                        
@@ -364,7 +364,7 @@ def res(update , context):
            query.edit_message_text(f'{p2} win') 
                                                                               
          return ConversationHandler.END                                                                        
-      return ONE                                                                       
+      return PETONE                                                                       
   
   if c1 == 'distract' and c2 == 'distract':
      mana1-=pair[c1]['energy'] 
