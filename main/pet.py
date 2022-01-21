@@ -238,20 +238,20 @@ def mymainpet(update , context):
    
    
    tag = str(pet_id).zfill(3)
-   talent = DB.get_user_pet_value(pet_id , 'talent')
-   distract = DB.get_user_pet_value(pet_id , 'distract')
-   confident = DB.get_user_pet_value(pet_id , 'confident')
-   special = DB.get_user_pet_value(pet_id , 'special')
-   rarity = DB.get_user_pet_value(pet_id , 'rarity')
-   age = DB.get_user_pet_value(pet_id , 'growth')
-   type = DB.get_user_pet_value(pet_id , 'type')
+   talent = DB.get_user_pet_value(id ,pet_id , 'talent')
+   distract = DB.get_user_pet_value(id ,pet_id , 'distract')
+   confident = DB.get_user_pet_value(id ,pet_id , 'confident')
+   special = DB.get_user_pet_value(id ,pet_id , 'special')
+   rarity = DB.get_user_pet_value(id ,pet_id , 'rarity')
+   age = DB.get_user_pet_value(id ,pet_id , 'growth')
+   type = DB.get_user_pet_value(id ,pet_id , 'type')
    img = ''
    if age >= 0 and age <=4:
-      img+=DB.get_user_pet_value(pet_id , 'baby')
+      img+=DB.get_user_pet_value(id , pet_id , 'baby')
    elif age >4 and age <8:
-      img+=DB.get_user_pet_value(pet_id , 'teen')
+      img+=DB.get_user_pet_value(id , pet_id , 'teen')
    elif age >=8:
-      img +=DB.get_user_pet_value(pet_id , 'adult')
+      img +=DB.get_user_pet_value(id , pet_id , 'adult')
   
    text2 = f'<b>{type} #{tag}</b>\n\n<b>Growth level : {age}</b>\n🔆 <b>Talent :</b> <code>{talent}</code>\n♨️ <b>Distract :</b> <code>{distract}</code>\n❤‍🔥 <b>Confident : </b><code>{confident}</code>\n'
    
