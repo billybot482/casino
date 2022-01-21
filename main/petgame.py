@@ -203,7 +203,7 @@ def resign(update , context):
   query.answer()
   p1id = cd['p1id']
   keyboard = [
-  [InlineKeyboardButton("Yes", callback_data='resignyes',InlineKeyboardButton("No", callback_data='resignno')]
+  [InlineKeyboardButton("Yes", callback_data='resignyes'),InlineKeyboardButton("No", callback_data='resignno')]
   ]
   reply_markup = InlineKeyboardMarkup(keyboard)                                                                        
   if update.callback_query.from_user.id != p1id:
