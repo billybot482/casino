@@ -203,13 +203,13 @@ def resign(update , context):
   query.answer()
   p1id = cd['p1id']
   keyboard = [
-  [InlineKeyboardButton("Yes", callback_data='resignyes',InlineKeyboardButton("No", callback_data='resignno']
+  [InlineKeyboardButton("Yes", callback_data='resignyes',InlineKeyboardButton("No", callback_data='resignno')]
   ]
   reply_markup = InlineKeyboardMarkup(keyboard)                                                                        
   if update.callback_query.from_user.id != p1id:
         query.answer('Cannot use')
         return None
-    query.edit_message_text(f'{p1} are you sure to resisgn the match?', reply_markup = reply_markup)
+  query.edit_message_text(f'{p1} are you sure to resisgn the match?', reply_markup = reply_markup)
   return TWO
 
   
