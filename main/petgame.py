@@ -45,16 +45,16 @@ def challenge(update , context):
         [InlineKeyboardButton("rules", callback_data=str('rules'))],
         [InlineKeyboardButton("cancel", callback_data=str('cancel'))]
     ]
-   reply_markup = InlineKeyboardMarkup(keyboard)
+  reply_markup = InlineKeyboardMarkup(keyboard)
     
-   if toid == context.bot.id:
+  if toid == context.bot.id:
      update.message.reply_text('cant challenge bot')
-   if toid == id:
+  if toid == id:
      update.message.reply_text('cant challenge yourself')
-   if toid != id:
+  if toid != id:
      update.message.reply_text(f'{name} challenged {to} to a pet 🌟talent show🌟\n\nClick accept to begin', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
       
-   return ONE
+  return ONE
    
   
    
