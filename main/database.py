@@ -172,7 +172,7 @@ def get_pet(user_id):
 # XXX point to pet row
 
 def main_pet(user_id, pet_id):
-    stmt = f"UPDATE Usr SET mainpet_id = %s WHERE user_id =%s,"
+    stmt = f"UPDATE Usr SET mainpet_id = %s WHERE user_id =%s;"
     cur.execute(stmt, (pet_id ,user_id,))
     conn.commit()
 
