@@ -219,7 +219,7 @@ def resign2(update ,context):
   p1id = cd['p1id']
   p1 = cd['p1']
   p2 = cd['p2']
-  p2id cd['p2id']
+  p2id = cd['p2id']
   type1 = cd['type1'] 
   type2 = cd['type2']                                                                            
   if update.callback_query.from_user.id = p1id:
