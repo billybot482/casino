@@ -68,8 +68,8 @@ def reject(update , context):
   if update.callback_query.from_user.id != p2id:
         query.answer('Cannot use')
         return None
-    query.edit_message_text(f'{p2} Rejected the challenge')
-    return ConversationHandler.END
+  query.edit_message_text(f'{p2} Rejected the challenge')
+  return ConversationHandler.END
     
     
 def cancel(update , context):
@@ -80,8 +80,8 @@ def cancel(update , context):
   if update.callback_query.from_user.id != p1id:
         query.answer('Cannot use')
         return None
-    query.edit_message_text(f'{p1} cancelled the challenge')
-    return ConversationHandler.END
+  query.edit_message_text(f'{p1} cancelled the challenge')
+  return ConversationHandler.END
   
 
 def rules(update , context):
