@@ -402,7 +402,7 @@ PETGAME_HANDLER = ConversationHandler(
                     CallbackQueryHandler(first, pattern='^' + str(".") + '$')
             ],
             TWO: [CallbackQueryHandler(resign2, pattern='^' + str("resignyes") + '$'),
-                  CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')
+                  CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')],
                   
             THREE: [CallbackQueryHandler(res, pattern='^' + str("shake") + '$'),
                    CallbackQueryHandler(res, pattern='^' + str("distract") + '$'),
