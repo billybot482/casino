@@ -6,7 +6,7 @@ from telegram.ext import CommandHandler, InlineQueryHandler, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ParseMode
 from telegram.ext import Updater, CallbackQueryHandler, CallbackContext , Filters
 from main import database as DB
-ONE , TWO , THREE , FOUR , FIRST , SECOND,  *_ = range(50)
+PETONE , PETTWO , PETTHREE , PETFOUR , FIRST , SECOND,  *_ = range(50)
 
 ingame = []
 
@@ -391,7 +391,7 @@ def res(update , context):
 PETGAME_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('challenge', challenge)],
         states={
-            ONE: [CallbackQueryHandler(accept, pattern='^' + str("accept") + '$'),
+            PETONE: [CallbackQueryHandler(accept, pattern='^' + str("accept") + '$'),
                   CallbackQueryHandler(reject, pattern='^' + str("reject") + '$'),
                   CallbackQueryHandler(cancel, pattern='^' + str("cancel") + '$'),
                    CallbackQueryHandler(rules, pattern='^' + str("rules") + '$'),
@@ -401,10 +401,10 @@ PETGAME_HANDLER = ConversationHandler(
                    CallbackQueryHandler(first, pattern='^' + str("jump") + '$'),
                     CallbackQueryHandler(first, pattern='^' + str(".") + '$')
             ],
-            TWO: [CallbackQueryHandler(resign2, pattern='^' + str("resignyes") + '$'),
+            PETTWO: [CallbackQueryHandler(resign2, pattern='^' + str("resignyes") + '$'),
                   CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')],
                   
-            THREE: [CallbackQueryHandler(res, pattern='^' + str("shake") + '$'),
+            PETTHREE: [CallbackQueryHandler(res, pattern='^' + str("shake") + '$'),
                    CallbackQueryHandler(res, pattern='^' + str("distract") + '$'),
                     CallbackQueryHandler(res, pattern='^' + str("dance") + '$'),
                    CallbackQueryHandler(res, pattern='^' + str("jump") + '$'),
