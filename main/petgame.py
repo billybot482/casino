@@ -62,6 +62,7 @@ def reject(update , context):
   cd = context.bot_data
   query = update.callback_query
   query.answer()
+  print('reject enter')
   p2id = cd['p2id']
   p2 = cd[p2]
   if update.callback_query.from_user.id != p2id:
@@ -94,6 +95,7 @@ def accept(update, context):
   cd = context.bot_data
   query = update.callback_query
   query.answer()
+  print('accept enter')
   p1 = cd['p1']
   p1id = cd['p1id']
   p2 = cd['p2']
