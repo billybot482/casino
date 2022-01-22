@@ -180,11 +180,29 @@ def first(update , context):
    p2 = cd['p2']
    p2id = cd['p2id']
    rd = cd['round']
+  
+   current1 = cd['current1']
+   current2 = cd['current2']
+  
+   empty = '▒'
+   full = '█'
    pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
    pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   
    special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
    special2 = DB.get_user_pet_value(p2id ,pet_id2 , 'special')
+  
+   remain1 = current1*100/hp1
+   remain2 = current2*100/hp2
+  
+   p1r1 = int((remain1+10)/10)
+   p1r2 = int(11-p1r1)
+  
+   p2r1 = int((remain1+10)/10)
+   p2r2 = int(11-p2r1)
+  
+   bar1 = p1r1*full+p1r2*empty
+   bar2 = p2r1*full+p2r2*empty 
   
    type1 = cd['type1']
    type2 = cd['type2']
