@@ -102,7 +102,7 @@ def accept(update, context):
   p2id = cd['p2id']
   ingame.append(p1id)
   ingame.append(p2id)
-  cd['round'] =  round = 1
+  cd['round'] =  rd = 1
   
   empty = '▒'
   full = '█'
@@ -254,7 +254,7 @@ def res(update , context):
   p2id = cd['p2id']
   empty = '▒'
   full = '█'
-  round = cd['round']                                                                            
+  rd = cd['round']                                                                            
   cd['choice2']=query.data
   current1 = cd['current1']
   current2 = cd['current2']                                                                            
