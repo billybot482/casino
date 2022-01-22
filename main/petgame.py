@@ -371,7 +371,8 @@ def res(update , context):
                                                                               
                                                                               
   if c1 != 'distract' and c2 == 'distract':                                                                            
-   result1 = (talent1*pair[c1]['attack']/100)-(distract2*pair['distract']['distract']/100)                                                                        
+   result1 = (talent1*pair[c1]['attack']/100)-(distract2*pair['distract']['distract']/100)
+   print(result1)
    if result1 >1:
       current2-=result1
       mana1-=pair[c1]['energy'] 
