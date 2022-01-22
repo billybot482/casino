@@ -110,6 +110,9 @@ def accept(update, context):
   pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
   pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   
+  pet1 = str(pet_id1).zfill(3)
+  pet2 = str(pet_id2).zfill(3)
+  
   talent1 = DB.get_user_pet_value(p1id , pet_id1 , 'talent')
   distract1 = DB.get_user_pet_value(p1id ,pet_id1 , 'distract')
   confident1 = DB.get_user_pet_value(p1id , pet_id1 , 'confident')
@@ -164,7 +167,7 @@ def accept(update, context):
   reply_markup = InlineKeyboardMarkup(keyboard)
   query.edit_message_text(
     text = f'<i><b>Round {rd}</b></i>\n\n'
-    f'{p1}|{type1} #{pet_id1}\n {bar1}\n\n{p2}|{type2} #{pet_id2}\n{bar2}\n\n'
+    f'{p1}|{type1} #{pet1}\n {bar1}\n\n{p2}|{type2} #{pet2}\n{bar2}\n\n'
     f'<b>{p1} pick a move</b>', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
   return PETONE
 
