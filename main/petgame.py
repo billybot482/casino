@@ -180,13 +180,18 @@ def first(update , context):
    p2 = cd['p2']
    p2id = cd['p2id']
    rd = cd['round']
+   pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
+   pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
+  
+   special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
+   special2 = DB.get_user_pet_value(p2id ,pet_id2 , 'special')
   
    keyboard = [
            [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
             InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
             [InlineKeyboardButton("Jump\n💟45", callback_data='jump'),
            InlineKeyboardButton("Dance\n💟110", callback_data='dance'),],
-         [InlineKeyboardButton(f"{special1}\n💟", callback_data=f'{special1}')],
+         [InlineKeyboardButton(f"{special2}\n💟", callback_data=f'{special2}')],
     [InlineKeyboardButton("Resign", callback_data='wood'),InlineKeyboardButton("Draw", callback_data='wood')]
   ]
   
