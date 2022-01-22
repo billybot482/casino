@@ -163,7 +163,7 @@ def accept(update, context):
   
   reply_markup = InlineKeyboardMarkup(keyboard)
   query.edit_message_text(
-    text = f'Round {round}\n'
+    text = f'Round {rd}\n'
     f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
     f'{p1} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
   return PETONE
@@ -176,7 +176,7 @@ def first(update , context):
    p1id = cd['p1id']
    p2 = cd['p2']
    p2id = cd['p2id']
-  
+   rd = cd['round']
   
    keyboard = [
            [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
@@ -192,7 +192,7 @@ def first(update , context):
         query.answer('player 2 not ur turn')
         return None
    query.edit_message_text(
-    text = f'Round {round}\n'
+    text = f'Round {rd}\n'
     f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
     f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    cd['round']+=1
