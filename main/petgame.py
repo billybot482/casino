@@ -64,7 +64,7 @@ def reject(update , context):
   query.answer()
   print('reject enter')
   p2id = cd['p2id']
-  p2 = cd[p2]
+  p2 = cd['p2']
   if update.callback_query.from_user.id != p2id:
         query.answer('Cannot use')
         return None
