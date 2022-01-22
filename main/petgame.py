@@ -164,7 +164,7 @@ def accept(update, context):
   reply_markup = InlineKeyboardMarkup(keyboard)
   query.edit_message_text(
     text = f'<i><b>Round {rd}</b></i>\n\n'
-    f'{p1}|{type1}\n {bar1}\n\n{p2}|{type2}\n{bar2}\n\n'
+    f'{p1}|{type1} #{pet_id1}\n {bar1}\n\n{p2}|{type2} #{pet_id2}\n{bar2}\n\n'
     f'<b>{p1} pick a move</b>', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
   return PETONE
 
@@ -193,7 +193,7 @@ def first(update , context):
         return None
    query.edit_message_text(
     text = f'Round {rd}\n'
-    f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
+    f'{p1}|{type1}\n {bar1}\n\n{p2}|{type2}\n{bar2}'
     f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    cd['round']+=1
    cd['choice1'] = query.data
