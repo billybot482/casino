@@ -76,6 +76,7 @@ def cancel(update , context):
   query = update.callback_query
   query.answer()
   p1id = cd['p1id']
+  p1 = cd['p1']
   if update.callback_query.from_user.id != p1id:
         query.answer('Cannot use')
         return None
