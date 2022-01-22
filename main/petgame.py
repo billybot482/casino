@@ -186,6 +186,9 @@ def first(update , context):
    special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
    special2 = DB.get_user_pet_value(p2id ,pet_id2 , 'special')
   
+   type1 = cd['type1']
+   type2 = cd['type2']
+  
    keyboard = [
            [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
             InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
