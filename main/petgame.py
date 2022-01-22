@@ -49,15 +49,14 @@ def challenge(update , context):
     
   if toid == context.bot.id:
      update.message.reply_text('cant challenge bot')
+     return -1
   if toid == id:
      update.message.reply_text('cant challenge yourself')
+     return -1
   if toid != id:
      update.message.reply_text(f'{name} challenged {to} to a pet 🌟talent show🌟\n\nClick accept to begin', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
-      
-  return PETONE
-   
-  
-   
+  print('end 1')    
+     return PETONE
   
 def reject(update , context):
   cd = context.bot_data
