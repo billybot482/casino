@@ -296,7 +296,28 @@ def res(update , context):
   hp2 = cd['max2']
                                                                               
   c1 = cd['choice1']
-  c2 = cd['choice2']      
+  c2 = cd['choice2'] 
+  
+  special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
+  special2 = DB.get_user_pet_value(p2id ,pet_id2 , 'special')
+  
+  remain1 = current1*100/hp1
+  remain2 = current2*100/hp2
+ 
+  p1r1 = int((remain1+10)/10)
+  p1r2 = int(11-p1r1)
+  
+  p2r1 = int((remain1+10)/10)
+  p2r2 = int(11-p2r1)
+  
+  bar1 = p1r1*full+p1r2*empty
+  bar2 = p2r1*full+p2r2*empty 
+  
+  type1 = cd['type1']
+  type2 = cd['type2']
+  
+  mana1 = cd['mana1']
+  mana2 = cd['mana2']
                                                                               
   pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
   pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
