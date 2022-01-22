@@ -110,12 +110,12 @@ def accept(update, context):
   pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
   pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   
-  talent1 = DB.get_user_pet_value(pet_id1 , 'talent')
-  distract1 = DB.get_user_pet_value(pet_id1 , 'distract')
-  confident1 = DB.get_user_pet_value(pet_id1 , 'confident')
-  special1 = DB.get_user_pet_value(pet_id1 , 'special')
-  cd['type1'] = type1 = DB.get_user_pet_value(pet_id1 , 'type')
-  age1 = DB.get_user_pet_value(pet_id1 , 'growth')
+  talent1 = DB.get_user_pet_value(p1id , pet_id1 , 'talent')
+  distract1 = DB.get_user_pet_value(p1id ,pet_id1 , 'distract')
+  confident1 = DB.get_user_pet_value(p1id , pet_id1 , 'confident')
+  special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
+  cd['type1'] = type1 = DB.get_user_pet_value(p1id ,pet_id1 , 'type')
+  age1 = DB.get_user_pet_value(p1id ,pet_id1 , 'growth')
   
   #Game stats
   attack1 = talent1 + round(((age1+1)*talent1/4),0)
@@ -123,12 +123,12 @@ def accept(update, context):
   hp1 = confident1 + round(((age1+1)*confident1/4),0)
   cd['hp1'] = current1 = hp1
   
-  talent2 = DB.get_user_pet_value(pet_id2, 'talent')
-  distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
-  confident2 = DB.get_user_pet_value(pet_id2 , 'confident')
-  special2 = DB.get_user_pet_value(pet_id2 , 'special')
-  cd['type2'] = type2 = DB.get_user_pet_value(pet_id2 , 'type')
-  age2 = DB.get_user_pet_value(pet_id2 , 'growth')
+  talent2 = DB.get_user_pet_value(p2id ,pet_id2, 'talent')
+  distract2 = DB.get_user_pet_value(p2id ,pet_id2 , 'distract')
+  confident2 = DB.get_user_pet_value(p2id ,pet_id2 , 'confident')
+  special2 = DB.get_user_pet_value(p2id ,pet_id2 , 'special')
+  cd['type2'] = type2 = DB.get_user_pet_value(p2id ,pet_id2 , 'type')
+  age2 = DB.get_user_pet_value(p2id ,pet_id2 , 'growth')
   
   #Game stats
   attack2 = talent2 + round(((age2+1)*talent2/4),0)
@@ -265,24 +265,24 @@ def res(update , context):
   pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
   pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   
-  talent1 = DB.get_user_pet_value(pet_id1 , 'talent')
-  distract1 = DB.get_user_pet_value(pet_id1 , 'distract')
-  confident1 = DB.get_user_pet_value(pet_id1 , 'confident')
-  special1 = DB.get_user_pet_value(pet_id1 , 'special')
-  cd['type1'] = type1 = DB.get_user_pet_value(pet_id1 , 'type')
-  age1 = DB.get_user_pet_value(pet_id1 , 'growth')
+  talent1 = DB.get_user_pet_value(p1id , pet_id1 , 'talent')
+  distract1 = DB.get_user_pet_value(p1id ,pet_id1 , 'distract')
+  confident1 = DB.get_user_pet_value(p1id ,pet_id1 , 'confident')
+  special1 = DB.get_user_pet_value(p1id ,pet_id1 , 'special')
+  cd['type1'] = type1 = DB.get_user_pet_value(p1id ,pet_id1 , 'type')
+  age1 = DB.get_user_pet_value(p1id ,pet_id1 , 'growth')
   
   #Game stats
   attack1 = talent1 + round(((age1+1)*talent1/4),0)
   defense1 = distract1 + round(((age1+1)*distract1/4),0)
   hp1 = confident1 + round(((age1+1)*confident1/4),0)
   
-  talent2 = DB.get_user_pet_value(pet_id2, 'talent')
-  distract2 = DB.get_user_pet_value(pet_id2 , 'distract')
-  confident2 = DB.get_user_pet_value(pet_id2 , 'confident')
-  special2 = DB.get_user_pet_value(pet_id2 , 'special')
-  cd['type2'] = type2 = DB.get_user_pet_value(pet_id2 , 'type')
-  age2 = DB.get_user_pet_value(pet_id2 , 'growth')
+  talent2 = DB.get_user_pet_value(p2id, pet_id2, 'talent')
+  distract2 = DB.get_user_pet_value(p2id, pet_id2 , 'distract')
+  confident2 = DB.get_user_pet_value(p2id, pet_id2 , 'confident')
+  special2 = DB.get_user_pet_value(p2id, pet_id2 , 'special')
+  cd['type2'] = type2 = DB.get_user_pet_value(p2id, pet_id2 , 'type')
+  age2 = DB.get_user_pet_value(p2id, pet_id2 , 'growth')
   
   #Game stats
   attack2 = talent2 + round(((age2+1)*talent2/4),0)
