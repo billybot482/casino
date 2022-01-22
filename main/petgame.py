@@ -286,6 +286,8 @@ def res(update , context):
   p1id = cd['p1id']
   p2 = cd['p2']
   p2id = cd['p2id']
+  pet_id1 = DB.get_user_value(p1id , 'mainpet_id')
+  pet_id2 = DB.get_user_value(p2id , 'mainpet_id')
   empty = '▒'
   full = '█'
   rd = cd['round']                                                                            
