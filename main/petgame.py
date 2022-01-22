@@ -394,8 +394,12 @@ def res(update , context):
       if current1 or current2 <= 0:
          if current1 > current2:
            query.edit_message_text(f'{p1} win')
+           ingame.remove(p1id)
+           ingame.remove(p2id)
          elif current2 > current1:
            query.edit_message_text(f'{p2} win') 
+           ingame.remove(p1id)
+           ingame.remove(p2id)
                                                                               
          return ConversationHandler.END
       return PETONE                                                                       
@@ -421,8 +425,12 @@ def res(update , context):
       if current1 or current2 <= 0:
          if current1 > current2:
            query.edit_message_text(f'{p1} win')
+           ingame.remove(p1id)
+           ingame.remove(p2id)
          elif current2 > current1:
-           query.edit_message_text(f'{p2} win') 
+           query.edit_message_text(f'{p2} win')
+           ingame.remove(p1id)
+           ingame.remove(p2id)
                                                                               
          return ConversationHandler.END                                                                        
       return PETONE                                                                       
