@@ -414,7 +414,7 @@ PETGAME_HANDLER = ConversationHandler(
         fallbacks=[],
 
     allow_reentry=True,
-    per_user=True
+    per_user=False
     )
 
 
