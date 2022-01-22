@@ -226,7 +226,7 @@ def first(update , context):
         query.answer('player 2 not ur turn')
         return None
    query.edit_message_text(
-    text = f'<i><b>Round {rd}</i></b>\n'
+    text = f'<i><b>Round {rd}</b></i>\n'
     f'{p1}|{type1}\n💟Mana : {mana1}\n{bar1} {current1}/{hp1}\n\n{p2}|{type2}\n💟Mana : {mana1}\n{bar2} {current2}/{hp2}\n\n'
     f'<b>{p2} pick a move</b>', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    cd['round']+=1
