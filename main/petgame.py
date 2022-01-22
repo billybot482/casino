@@ -181,8 +181,8 @@ def first(update , context):
    p2id = cd['p2id']
    rd = cd['round']
   
-   current1 = cd['current1']
-   current2 = cd['current2']
+   current1 = cd['hp1']
+   current2 = cd['hp2']
   
    empty = '▒'
    full = '█'
