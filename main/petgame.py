@@ -157,15 +157,15 @@ def accept(update, context):
             InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
             [InlineKeyboardButton("Jump\n💟45", callback_data='jump'),
            InlineKeyboardButton("Dance\n💟110", callback_data='dance'),],
-         [InlineKeyboardButton(f"{special1}\n💟", callback_data=f'{special1}')],
+         [InlineKeyboardButton(f"Special : {special1}\n💟", callback_data=f'{special1}')],
     [InlineKeyboardButton("Resign", callback_data='wood'),InlineKeyboardButton("Draw", callback_data='wood')]
   ]
   
   reply_markup = InlineKeyboardMarkup(keyboard)
   query.edit_message_text(
-    text = f'Round {rd}\n'
-    f'{p1}\n{type1}\n {bar1}\n\n{p2}\n{type2}\n{bar2}'
-    f'{p1} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+    text = f'<i><b>Round {rd}</b></i>\n\n'
+    f'{p1}|{type1}\n {bar1}\n\n{p2}|{type2}\n{bar2}\n\n'
+    f'<b>{p1} pick a move</b>', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
   return PETONE
 
 def first(update , context):
