@@ -388,7 +388,7 @@ def res(update , context):
   
       bar1 = p1r1*full+p1r2*empty
       bar2 = p2r1*full+p2r2*empty
-      query.edit_message_text(f"<u>Round {rd}<u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performance of {c1} caused {p2}'s <b>{type2} #{pet_id2}</b> to lose <b>{result1}</b> confidence"
+      query.edit_message_text(f"<u>Round {rd}</u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performance of {c1} caused {p2}'s <b>{type2} #{pet_id2}</b> to lose <b>{result1}</b> confidence"
                               f"\n{p1}|{type1}\n{bar1} {current1}/{hp1}\n{p2}|{type2}\n{bar1} {current1}/{hp1}\n{p1} pick your move"
                                ,reply_markup=reply_markup, parse_mode = ParseMode.HTML)   
       if current1 or current2 <= 0:
@@ -415,7 +415,7 @@ def res(update , context):
   
       bar1 = p1r1*full+p1r2*empty
       bar2 = p2r1*full+p2r2*empty
-      query.edit_message_text(f"<u>Round {rd}<u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performed {c1} and {p2}'s <b>{type2} #{pet_id2}</b> performed {c2} no stats affected this round"
+      query.edit_message_text(f"<u>Round {rd}</u>\n\n{p1}'s <b>{type1} #{pet_id1}</b> performed {c1} and {p2}'s <b>{type2} #{pet_id2}</b> performed {c2} no stats affected this round"
                               f"\n{p1}|{type1}\n{bar1} {current1}/{hp1}\n{p2}|{type2}\n{bar1} {current1}/{hp1}\n{p1} pick your move"
                                ,reply_markup=reply_markup, parse_mode = ParseMode.HTML)   
       if current1 or current2 <= 0:
