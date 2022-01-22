@@ -123,7 +123,7 @@ def accept(update, context):
   #Game stats
   attack1 = talent1 + round(((age1+1)*talent1/4),0)
   defense1 = distract1 + round(((age1+1)*distract1/4),0)
-  hp1 = confident1 + round(((age1+1)*confident1/4),0)
+  cd['max1'] = hp1 = confident1 + round(((age1+1)*confident1/4),0)
   cd['hp1'] = current1 = hp1
   
   talent2 = DB.get_user_pet_value(p2id ,pet_id2, 'talent')
@@ -136,7 +136,7 @@ def accept(update, context):
   #Game stats
   attack2 = talent2 + round(((age2+1)*talent2/4),0)
   defense2 = distract2 + round(((age2+1)*distract2/4),0)
-  hp2 = confident2 + round(((age2+1)*confident2/4),0)
+  cd['max2'] = hp2 = confident2 + round(((age2+1)*confident2/4),0)
   cd['hp2'] = current2 = hp2
   
   remain1 = current1*100/hp1
@@ -183,6 +183,8 @@ def first(update , context):
   
    current1 = cd['hp1']
    current2 = cd['hp2']
+   hp1 = cd['max1']
+   hp2 = cd['max2']
   
    empty = '▒'
    full = '█'
