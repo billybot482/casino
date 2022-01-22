@@ -189,6 +189,9 @@ def first(update , context):
    type1 = cd['type1']
    type2 = cd['type2']
   
+   mana1 = cd['mana1']
+   mana2 = cd['mana2']
+  
    keyboard = [
            [InlineKeyboardButton("Shake\n💟0", callback_data='shake'),
             InlineKeyboardButton("Distract\n💟60", callback_data='distract'),],
