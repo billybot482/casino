@@ -39,8 +39,8 @@ def challenge(update , context):
     
   keyboard = [
         [
-            InlineKeyboardButton("accept", callback_data=str('yes')),
-            InlineKeyboardButton("reject", callback_data=str('no')),
+            InlineKeyboardButton("accept", callback_data=str('accept')),
+            InlineKeyboardButton("reject", callback_data=str('reject')),
         ],
         [InlineKeyboardButton("rules", callback_data=str('rules')),InlineKeyboardButton("cancel", callback_data=str('cancel'))],
  
@@ -394,23 +394,23 @@ PETGAME_HANDLER = ConversationHandler(
         entry_points=[CommandHandler('challenge', challenge)],
         states={
             PETONE: [CallbackQueryHandler(accept, pattern='^' + str("accept") + '$'),
-                  CallbackQueryHandler(reject, pattern='^' + str("reject") + '$'),
-                  CallbackQueryHandler(cancel, pattern='^' + str("cancel") + '$'),
-                   CallbackQueryHandler(rules, pattern='^' + str("rules") + '$'),
-                  CallbackQueryHandler(first, pattern='^' + str("shake") + '$'),
-                   CallbackQueryHandler(first, pattern='^' + str("distract") + '$'),
-                    CallbackQueryHandler(first, pattern='^' + str("dance") + '$'),
-                   CallbackQueryHandler(first, pattern='^' + str("jump") + '$'),
-                    CallbackQueryHandler(first, pattern='^' + str(".") + '$')
+                     CallbackQueryHandler(reject, pattern='^' + str("reject") + '$'),
+                     CallbackQueryHandler(cancel, pattern='^' + str("cancel") + '$'),
+                     CallbackQueryHandler(rules, pattern='^' + str("rules") + '$'),
+                     CallbackQueryHandler(first, pattern='^' + str("shake") + '$'),
+                     CallbackQueryHandler(first, pattern='^' + str("distract") + '$'),
+                     CallbackQueryHandler(first, pattern='^' + str("dance") + '$'),
+                     CallbackQueryHandler(first, pattern='^' + str("jump") + '$'),
+                     CallbackQueryHandler(first, pattern='^' + str(".") + '$')
             ],
             PETTWO: [CallbackQueryHandler(resign2, pattern='^' + str("resignyes") + '$'),
-                  CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')],
+                     CallbackQueryHandler(resign2, pattern='^' + str("resignno") + '$')],
                   
             PETTHREE: [CallbackQueryHandler(res, pattern='^' + str("shake") + '$'),
-                   CallbackQueryHandler(res, pattern='^' + str("distract") + '$'),
-                    CallbackQueryHandler(res, pattern='^' + str("dance") + '$'),
-                   CallbackQueryHandler(res, pattern='^' + str("jump") + '$'),
-                    CallbackQueryHandler(res, pattern='^' + str(".") + '$')
+                       CallbackQueryHandler(res, pattern='^' + str("distract") + '$'),
+                       CallbackQueryHandler(res, pattern='^' + str("dance") + '$'),
+                       CallbackQueryHandler(res, pattern='^' + str("jump") + '$'),
+                       CallbackQueryHandler(res, pattern='^' + str(".") + '$')
             ],
         },
         fallbacks=[],
