@@ -55,7 +55,7 @@ def challenge(update , context):
      return -1
   if toid != id:
      update.message.reply_text(f'{name} challenged {to} to a pet 🌟talent show🌟\n\nClick accept to begin', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
-  print('end 1')    
+     print('end 1')    
      return PETONE
   
 def reject(update , context):
