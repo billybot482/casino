@@ -226,9 +226,9 @@ def first(update , context):
         query.answer('player 2 not ur turn')
         return None
    query.edit_message_text(
-    text = f'Round {rd}\n'
-    f'{p1}|{type1}\n💟Mana : {mana1}\n{bar1} {current1}/{hp1}\n\n{p2}|{type2}\n💟Mana : {mana1}\n{bar2} {current2}/{hp2}'
-    f'{p2} pick a move', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
+    text = f'<i><b>Round {rd}</i></b>\n'
+    f'{p1}|{type1}\n💟Mana : {mana1}\n{bar1} {current1}/{hp1}\n\n{p2}|{type2}\n💟Mana : {mana1}\n{bar2} {current2}/{hp2}\n\n'
+    f'<b>{p2} pick a move</b>', parse_mode = ParseMode.HTML, reply_markup = reply_markup)
    cd['round']+=1
    cd['choice1'] = query.data
    return PETTHREE
@@ -290,8 +290,10 @@ def res(update , context):
   full = '█'
   rd = cd['round']                                                                            
   cd['choice2']=query.data
-  current1 = cd['current1']
-  current2 = cd['current2']                                                                            
+  current1 = cd['hp1']
+  current2 = cd['hp2']
+  hp1 = cd['max1']
+  hp2 = cd['max2']
                                                                               
   c1 = cd['choice1']
   c2 = cd['choice2']      
