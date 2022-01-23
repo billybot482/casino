@@ -226,7 +226,7 @@ def mainpet(update , context):
     
    DB.main_pet(id,pet_id)
    query.answer(f'{type} #{pet_id} is now your main pet')
-   return None 
+   return ConversationHandler.END
   
 def mymainpet(update , context):
    id = update.effective_user.id
